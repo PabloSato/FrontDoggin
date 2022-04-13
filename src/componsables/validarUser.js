@@ -1,29 +1,39 @@
 import { ref } from "vue";
 
-const valida = (e) => {
-  console.log("hola");
-  console.log(this);
-  const name = e.target.nombre.value;
+const validarUser = (user) => {
   //Expresiones Regulares
   const emailReg =
     /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
   const nameReg = /^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙa-zäëïöÜáéíóúâêîôûàèìòù]+/;
   const passReg = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/; //La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.
 
-  if (nombre.value.trim() == "" || nameReg.test(nombre)) {
-    return false;
+  const name = user.nombre;
+  const pass = user.password;
+  const mail = user.email;
+
+  var validacion = true;
+  var mensajesValidacion = [];
+  if (name && pass && mail) {
+    if (name.trim() == "" || !nameReg.test(name)) {
+      validacion = false;
+      mensajesValidacion.push("Nombre de formato no permitido");
+    }
+    if (mail.trim() == "" || !emailReg.test(mail)) {
+      validacion = false;
+      mensajesValidacion.push("Email de formato no permitido");
+    }
+    if (pass.trim() == "" || !passReg.test(pass)) {
+      validacion = false;
+      mensajesValidacion.push(
+        "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula"
+      );
+    }
+  } else {
+    validacion = false;
+    mensajesValidacion.push("Debe de rellenar todos los campos del formulario");
   }
-  if (mail.value.trim() == "" || emailReg.test(mail)) {
-    return false;
-  }
-  if (pass.value.trim() == "") {
-    return false;
-  }
-  if (passReg.test(pass)) {
-    errorPass.innerHTML =
-      "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula";
-    return false;
-  }
+
+  return { validacion, mensajesValidacion };
 };
 
-export default valida;
+export default validarUser;

@@ -18,34 +18,35 @@ const createAdiestrador = (user) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usuario),
       });
-      if (!data.ok) throw Error("error al insertar usuario");
-      usuarioId.value = await data.json();
+      if (!data.ok) {
+        throw Error("error al insertar usuario");
+      } else {
+        usuarioId.value = await data.json();
+        const adi = {
+          userId: usuarioId.value._id,
+          nombre: user.nombre,
+          eventos: [],
+          rating: [],
+        };
+        const insert = async () => {
+          try {
+            let data = await fetch("http://localhost:3000/adiestradores", {
+              method: "post",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(adi),
+            });
+            if (!data.ok) throw Error("error al insertar adiestrador");
+            adiestrador.value = await data.json();
+          } catch (err) {
+            error.value = err.message;
+            console.log(error.value);
+          }
+        };
+        insert();
+      }
     } catch (err) {
       error.value = err.message;
       console.log(error.value);
-    }
-    if (usuarioId) {
-      const adi = {
-        userId: usuarioId.value._id,
-        nombre: user.nombre,
-        eventos: [],
-        rating: [],
-      };
-      const insert = async () => {
-        try {
-          let data = await fetch("http://localhost:3000/adiestradores", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(adi),
-          });
-          if (!data.ok) throw Error("error al insertar adiestrador");
-          adiestrador.value = await data.json();
-        } catch (err) {
-          error.value = err.message;
-          console.log(error.value);
-        }
-      };
-      insert();
     }
   };
   return { adiestrador, error, insertAdiestrador };

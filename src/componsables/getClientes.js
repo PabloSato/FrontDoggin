@@ -1,4 +1,5 @@
-import { ref } from "vue";
+import { ref } from 'vue';
+import { getToken, resetToken } from './tokenHandler';
 
 const getClientes = () => {
   const clientes = ref([]);
@@ -6,8 +7,12 @@ const getClientes = () => {
 
   const load = async () => {
     try {
-      let data = await fetch("http://localhost:3001/clientes");
-      if (!data.ok) throw new Error("errorrrrr");
+      resetToken();
+      const token = await getToken();
+      let data = await fetch('http://localhost:3000/clientes', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!data.ok) throw new Error('errorrrrr');
       clientes.value = await data.json();
     } catch (err) {
       error.value = err.message;

@@ -1,35 +1,35 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Elige from "../views/Elige.vue";
-import Login from "../views/Login.vue";
-import FormAd from "../views/FormAdiestrador.vue";
-import FormCli from "../views/FormCliente.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import Elige from '../views/Elige.vue';
+import Login from '../views/Login.vue';
+import RegAdiestrador from '../views/RegAdiestrador.vue';
+import RegCliente from '../views/RegCliente.vue';
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: Home,
   },
   {
-    path: "/elige",
-    name: "elige",
+    path: '/elige',
+    name: 'elige',
     component: Elige,
   },
   {
-    path: "/login",
-    name: "login",
+    path: '/login',
+    name: 'login',
     component: Login,
   },
   {
-    path: "/form-ad",
-    name: "form-ad",
-    component: FormAd,
+    path: '/alta-adiestrador',
+    name: 'alta-ad',
+    component: RegAdiestrador,
   },
   {
-    path: "/form-cli",
-    name: "form-cli",
-    component: FormCli,
+    path: '/alta-cliente',
+    name: 'alta-cliente',
+    component: RegCliente,
   },
 ];
 

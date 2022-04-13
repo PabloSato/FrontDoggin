@@ -11,7 +11,7 @@
 import { ref } from 'vue';
 import RegForm from '../components/RegForm.vue';
 import validarUser from '../componsables/validarUser';
-import createAdiestrador from '../componsables/createAdiestrador';
+import createAdiestrador from '../componsables/Adiestrador/createAdiestrador';
 export default {
   components: { RegForm },
   setup() {

@@ -26,18 +26,18 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import validarUser from "../componsables/validarUser";
+import { ref } from 'vue';
+import validarUser from '../componsables/validarUser';
 
 //
-import getUsers from "../componsables/getUsers";
-import getUser from "../componsables/getUser";
-import getClientes from "../componsables/getClientes";
-import getCliente from "../componsables/getCliente";
-import getAdiestrador from "../componsables/getAdiestrador";
-import getAdiestradores from "../componsables/getAdiestradores";
-import createUser from "../componsables/createUser";
-import createAdiestrador from "@/componsables/createAdiestrador";
+import getUsers from '../componsables/User/getUsers';
+import getUser from '../componsables/User/getUser';
+import getClientes from '../componsables/Cliente/getClientes';
+import getCliente from '../componsables/Cliente/getCliente';
+import getAdiestrador from '../componsables/Adiestrador/getAdiestrador';
+import getAdiestradores from '../componsables/Adiestrador/getAdiestradores';
+import createUser from '../componsables/User/createUser';
+import createAdiestrador from '@/componsables/Adiestrador/createAdiestrador';
 
 export default {
   setup() {
@@ -48,7 +48,7 @@ export default {
       nombre: null,
     });
     //Nodo formulario
-    const formu = document.getElementById("formulario");
+    const formu = document.getElementById('formulario');
     //Variable que nos recogerá los errores de validación
     const errorValida = ref([null]); //Guardamos los errores de validacion
     const errorInsert = ref(null); // guardmos los errores de insert

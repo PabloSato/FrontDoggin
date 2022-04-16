@@ -1,5 +1,8 @@
 <template>
-  <h2>Nuevo {{ textH2 }}</h2>
+  <h2>{{ act }} {{ quienH2 }}</h2>
+  <div v-if="errorInsert.length > 0">
+    <p>{{ errorInsert }}</p>
+  </div>
   <div v-if="errorValida.length > 0">
     <p v-for="mensaje in errorValida" :key="mensaje">
       {{ mensaje }}
@@ -19,6 +22,16 @@
     <br /><label for="email">Email:</label>
     <input type="mail" v-model="user.email" placeholder="ejemplo@tu.mail" />
     <br />
+    <div v-if="quienH2 === 'Adiestrador'">
+      <label for="bio">Descripción:</label>
+      <textarea
+        v-model="user.bio"
+        id="bio"
+        cols="30"
+        rows="10"
+        placeholder="sobre ti..."
+      ></textarea>
+    </div>
     <input type="submit" value="registrar" />
     <input type="reset" value="borrar" />
   </form>
@@ -27,7 +40,7 @@
 <script>
 import { ref } from 'vue';
 export default {
-  props: ['textH2', 'user', 'errorValida'],
+  props: ['quienH2', 'user', 'errorValida', 'act', 'errorInsert'],
   setup(props, context) {
     const user = ref(null); //Variable para el usuario
     const errorValida = ref(null); //Variable para el Error de validacion

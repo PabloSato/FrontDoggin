@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <router-link to="/elige">Registrarse</router-link> |
-    <router-link to="/login">Login</router-link>
     <h3 v-if="error">{{ error }}</h3>
     <div v-if="adiestradores.length">
       <ListAdiestra :adiestradores="adiestradores" />

@@ -19,7 +19,7 @@ const createCliente = user => {
         body: JSON.stringify(us),
       });
       if (!response.ok) {
-        throw Error('errorrrr');
+        throw Error('error al insertar usuario');
       } else {
         usuarioId.value = await response.json();
         const cli = {
@@ -34,7 +34,7 @@ const createCliente = user => {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(cli),
             });
-            if (!response2.ok) throw Error('errorrr 2');
+            if (!response2.ok) throw Error('error al insertar cliente');
             cliente.value = await response2.json();
           } catch (err) {
             error.value = err.message;

@@ -4,6 +4,7 @@ import Elige from '../views/Elige.vue';
 import Login from '../views/Login.vue';
 import RegAdiestrador from '../views/RegAdiestrador.vue';
 import RegCliente from '../views/RegCliente.vue';
+import EditarUSuario from '../views/EditarUsuario.vue';
 
 import Perfil from '../views/Perfil.vue';
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
     path: '/perfil/:id',
     name: 'perfil',
     component: Perfil,
+    props: true,
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit',
+    component: EditarUSuario,
     props: true,
   },
 ];

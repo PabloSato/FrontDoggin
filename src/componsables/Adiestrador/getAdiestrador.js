@@ -20,8 +20,12 @@ const getAdiestrador = id => {
         } else {
           user.value = await data2.json();
           let adiestra = {
+            _id: adiestraID.value._id,
             nombre: adiestraID.value.nombre,
             email: user.value.email,
+            bio: adiestraID.value.bio,
+            eventos: adiestraID.value.eventos,
+            rating: adiestraID.value.rating,
           };
           adiestrador.value = adiestra;
         }

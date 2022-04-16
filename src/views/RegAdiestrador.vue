@@ -2,7 +2,9 @@
   <RegForm
     :user="user"
     :errorValida="errorValida"
-    textH2="Adiestrador"
+    :errorInsert="errorInsert"
+    act="Nuevo"
+    quienH2="Adiestrador"
     @formProce="procForm(user)"
   />
 </template>
@@ -12,6 +14,7 @@ import { ref } from 'vue';
 import RegForm from '../components/RegForm.vue';
 import validarUser from '../componsables/validarUser';
 import createAdiestrador from '../componsables/Adiestrador/createAdiestrador';
+import { useRouter } from 'vue-router';
 export default {
   components: { RegForm },
   setup() {
@@ -20,12 +23,16 @@ export default {
       email: null,
       password: null,
       nombre: null,
+      bio: null,
     });
+    //Router
+    const router = useRouter();
+
     //Variable que nos recogerá los errores de validación
     const errorValida = ref([null]); //Guardamos los errores de validacion
-    const errorInsert = ref(null); // guardmos los errores de insert
+    let errorInsert = '';
     //Función que procesa el formulario
-    const procForm = async () => {
+    const procForm = async user => {
       const { validacion, mensajesValidacion } = validarUser(user.value);
       errorValida.value = mensajesValidacion; //Si hay algun error en validación, guardamos su mensaje
       //Si la validación ha sido correcta, insertamos
@@ -35,11 +42,20 @@ export default {
         );
         //Llamams a la función que inserta el Usuario/Adiestrador
         insertAdiestrador();
+
         //redireccionamos ?¿?¿?¿
+        if (
+          !error.value === 'error al insertar usuario' ||
+          !error.value === 'error al insertar adiestrador'
+        ) {
+          router.push({ name: 'home' });
+        } else {
+          errorInsert = error.value;
+        }
       }
     };
 
-    return { user, procForm, errorValida };
+    return { user, procForm, errorValida, errorInsert };
   },
 };
 </script>

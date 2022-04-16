@@ -11,14 +11,16 @@
 <script>
 import { ref } from 'vue';
 import RegForm from '../components/RegForm.vue';
-import getAdiestrador from '../componsables/Adiestrador/getAdiestrador';
-import validarUser from '../componsables/validarUser';
+import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import validarUser from '../composables/validarUser';
 export default {
   props: ['id'],
   components: { RegForm },
   setup(props) {
     //Traemos el User
+    // const { adiestrador, error, load } = getAdiestrador(props.id);
     const { adiestrador, error, load } = getAdiestrador(props.id);
+
     load(); //Llamamos a la función que nos devuevle un usuario
     //Variables que nos recogerá los errores
     const errorValida = ref([null]);

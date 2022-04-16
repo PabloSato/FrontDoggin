@@ -27,17 +27,17 @@
 
 <script>
 import { ref } from 'vue';
-import validarUser from '../componsables/validarUser';
+import validarUser from '../composables/validarUser';
 
 //
-import getUsers from '../componsables/User/getUsers';
-import getUser from '../componsables/User/getUser';
-import getClientes from '../componsables/Cliente/getClientes';
-import getCliente from '../componsables/Cliente/getCliente';
-import getAdiestrador from '../componsables/Adiestrador/getAdiestrador';
-import getAdiestradores from '../componsables/Adiestrador/getAdiestradores';
-import createUser from '../componsables/User/createUser';
-import createAdiestrador from '@/componsables/Adiestrador/createAdiestrador';
+import getUsers from '../composables/User/getUsers';
+import getUser from '../composables/User/getUser';
+import getClientes from '../composables/Cliente/getClientes';
+import getCliente from '../composables/Cliente/getCliente';
+import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import getAdiestradores from '../composables/Adiestrador/getAdiestradores';
+import createUser from '../composables/User/createUser';
+import createAdiestrador from '@/composables/Adiestrador/createAdiestrador';
 
 export default {
   setup() {
@@ -59,7 +59,10 @@ export default {
       errorValida.value = mensajesValidacion; //Si hay algun error en validación, guardamos su mensaje
       //Si la validació ha sido correcta, insertamos
       if (validacion) {
-        const { adiestrador, error, insertAdiestrador } = createAdiestrador(
+        // const { adiestrador, error, insertAdiestrador } = createAdiestrador(
+        //   user.value
+        // );
+        const { adiestrador, insertAdiestrador } = createAdiestrador(
           user.value
         );
         //Llamamos a la función que inserta el Usuario/Adiestrador

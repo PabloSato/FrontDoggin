@@ -13,7 +13,7 @@
     <input
       type="text"
       v-model="user.nombre"
-      placeholder="mete nombre"
+      placeholder="Introduce tu nombre"
       required
     />
     <br />
@@ -41,6 +41,7 @@
 import { ref } from 'vue';
 export default {
   props: ['quienH2', 'user', 'errorValida', 'act', 'errorInsert'],
+  emits: ['formProce'],
   setup(props, context) {
     const user = ref(null); //Variable para el usuario
     const errorValida = ref(null); //Variable para el Error de validacion

@@ -1,17 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Eventos from '../views/Eventos.vue';
+import Adiestradores from '../views/Adiestradores.vue';
 import Elige from '../views/Elige.vue';
 import Login from '../views/Login.vue';
 import RegAdiestrador from '../views/RegAdiestrador.vue';
 import RegCliente from '../views/RegCliente.vue';
 import EditarUSuario from '../views/EditarUsuario.vue';
 
-import Perfil from '../views/Perfil.vue';
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/eventos',
+    name: 'Eventos',
+    component: Eventos,
+  },
+  {
+    path: '/adiestradores',
+    name: 'Adiestradores',
+    component: Adiestradores,
   },
   {
     path: '/elige',
@@ -32,12 +43,6 @@ const routes = [
     path: '/alta-cliente',
     name: 'alta-cliente',
     component: RegCliente,
-  },
-  {
-    path: '/perfil/:id',
-    name: 'perfil',
-    component: Perfil,
-    props: true,
   },
   {
     path: '/edit/:id',

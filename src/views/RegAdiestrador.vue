@@ -12,8 +12,8 @@
 <script>
 import { ref } from 'vue';
 import RegForm from '../components/RegForm.vue';
-import validarUser from '../componsables/validarUser';
-import createAdiestrador from '../componsables/Adiestrador/createAdiestrador';
+import validarUser from '../composables/validarUser';
+import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
 import { useRouter } from 'vue-router';
 export default {
   components: { RegForm },

@@ -25,6 +25,12 @@ const routes = [
     component: Adiestradores,
   },
   {
+    path: '/adiestradores/:idAdiestrador/eventos',
+    name: 'eventos',
+    component: Eventos,
+    props: true,
+  },
+  {
     path: '/elige',
     name: 'elige',
     component: Elige,

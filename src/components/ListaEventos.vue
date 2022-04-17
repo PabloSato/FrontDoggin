@@ -15,13 +15,18 @@ import Evento from '../components/Evento.vue';
 import getEventos from '../composables/Evento/getEventos';
 export default {
   components: { Evento },
-  setup() {
+  props: ['idAdiestrador'],
+  setup(props) {
     const { eventos, load } = getEventos();
     load();
     const eventosVisibles = computed(() => {
-      return eventos.value.filter(
-        evento => !evento.terminado && !evento.privado
-      );
+      let resultado = eventos.value;
+      if (props.idAdiestrador) {
+        resultado = eventos.value.filter(evento => {
+          return evento.idAdiestrador === props.idAdiestrador;
+        });
+      }
+      return resultado.filter(evento => !evento.terminado && !evento.privado);
     });
     return { eventosVisibles };
   },

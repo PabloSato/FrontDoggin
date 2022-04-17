@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <h3 v-if="error">{{ error }}</h3>
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>

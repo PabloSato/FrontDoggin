@@ -11,7 +11,6 @@ const getEventos = () => {
       eventos.value = await data.json();
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
     }
   };
   return { eventos, error, load };

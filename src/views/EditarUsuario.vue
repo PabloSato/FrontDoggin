@@ -1,7 +1,7 @@
 <template>
   <h2>Editar Descripción</h2>
   <form action="">
-    <label for="bio">Descripción: </label>
+    <label for="bio">Descripción:</label>
     <textarea
       name="bio"
       id="bio"
@@ -13,23 +13,14 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import RegForm from '../components/RegForm.vue';
 import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
-import validarUser from '../composables/validarUser';
+import _ from 'lodash';
 export default {
   props: ['id'],
-  components: { RegForm },
   setup(props) {
-    let adiestra = ref(null);
-    //Router
-    const router = useRouter();
-    let idAd = '625bccc8c67f1d20739a6942';
-    //Cargamos el Adiestrador
-    const { adiestrador, error, load } = getAdiestrador(idAd);
+    let idAd = '625bdf68ffb1e36e3f12acc0';
+    const { adiestrador, error, load } = getAdiestrador(props.idAd);
     load();
-    console.log(adiestrador);
 
     return { adiestrador };
   },

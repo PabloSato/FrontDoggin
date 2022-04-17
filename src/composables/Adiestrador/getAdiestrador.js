@@ -6,11 +6,10 @@ const getAdiestrador = id => {
 
   const load = async () => {
     try {
-      let data = await fetch('http://localhost:3000/clientes/' + id);
+      let data = await fetch('http://localhost:3000/adiestradores/' + id);
       if (!data.ok) throw Error('error al coger adiestrador');
       adiestrador.value = await data.json();
     } catch (err) {
-      let data = await fetch();
       error.value = err.message;
       console.log(error.value);
     }

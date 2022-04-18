@@ -11,6 +11,7 @@ export default createStore({
   mutations: {
     //login
     setToken(state, payload){
+      console.log("payload", payload)
       state.token = payload
     }
   },
@@ -35,6 +36,7 @@ export default createStore({
         //localStorge sirve para almacenar las credenciales y que no sean volatiles
         //almacenamos token y le pasamos el token
         localStorage.setItem('token', resDB.token)
+        
       } catch (error) {
         console.log(error)
       }

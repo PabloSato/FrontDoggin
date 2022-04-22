@@ -10,7 +10,6 @@ const createAdiestrador = user => {
     password: user.password,
     role: 'ADIESTRADOR',
   };
-
   const insertAdiestrador = async () => {
     try {
       let data = await fetch('http://localhost:3000/users', {
@@ -21,14 +20,11 @@ const createAdiestrador = user => {
       if (!data.ok) {
         throw Error('error al insertar usuario');
       } else {
-        // console.log(user);
         usuarioId.value = await data.json();
         const adi = {
           userId: usuarioId.value._id,
           nombre: user.nombre,
           bio: user.bio,
-          eventos: [],
-          rating: [],
         };
         const insert = async () => {
           try {

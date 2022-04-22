@@ -10,7 +10,6 @@ const createCliente = user => {
     password: user.password,
     role: 'CLIENTE',
   };
-  console.log(usuarioId);
   const insertCliente = async () => {
     try {
       let response = await fetch('http://localhost:3000/users', {

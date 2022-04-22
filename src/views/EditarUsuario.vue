@@ -1,14 +1,16 @@
 <template>
   <h2>Editar Descripción</h2>
   <form action="">
-    <label for="bio">Descripción:</label>
+    <label for="bio">Descripción:</label><br />
     <textarea
       name="bio"
       id="bio"
       cols="30"
       rows="10"
       v-model="adiestrador.bio"
-    ></textarea>
+    ></textarea
+    ><br />
+    <button>Editar</button>
   </form>
 </template>
 
@@ -18,8 +20,8 @@ import _ from 'lodash';
 export default {
   props: ['id'],
   setup(props) {
-    let idAd = '625bdf68ffb1e36e3f12acc0';
-    const { adiestrador, error, load } = getAdiestrador(props.idAd);
+    let idAd = '625d730e35c6f4bb050fe7db';
+    const { adiestrador, error, load } = getAdiestrador(idAd);
     load();
 
     return { adiestrador };

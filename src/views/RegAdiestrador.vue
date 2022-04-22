@@ -33,22 +33,21 @@ export default {
     let errorInsert = '';
     //Función que procesa el formulario
     const procForm = async user => {
-      const { validacion, mensajesValidacion } = validarUser(user.value);
+      const { validacion, mensajesValidacion } = validarUser(user);
       errorValida.value = mensajesValidacion; //Si hay algun error en validación, guardamos su mensaje
       //Si la validación ha sido correcta, insertamos
       if (validacion) {
-        const { adiestrador, error, insertAdiestrador } = createAdiestrador(
-          user.value
-        );
+        const { adiestrador, error, insertAdiestrador } =
+          createAdiestrador(user);
         //Llamams a la función que inserta el Usuario/Adiestrador
         insertAdiestrador();
 
         //redireccionamos ?¿?¿?¿
         if (
-          !error.value === 'error al insertar usuario' ||
-          !error.value === 'error al insertar adiestrador'
+          error.value !== 'error al insertar usuario' ||
+          error.value !== 'error al insertar adiestrador'
         ) {
-          router.push({ name: 'home' });
+          router.push('/login');
         } else {
           errorInsert = error.value;
         }

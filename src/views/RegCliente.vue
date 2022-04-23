@@ -1,4 +1,5 @@
 <template>
+    <Header />
   <RegForm
     :user="user"
     :errorValida="errorValida"
@@ -10,13 +11,15 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import Header from '../components/Header.vue'
 import RegForm from '../components/RegForm.vue';
+
+import { ref } from 'vue';
 import validarUser from '../composables/validarUser';
 import createCliente from '../composables/Cliente/createCliente';
 import { useRouter } from 'vue-router';
 export default {
-  components: { RegForm },
+  components: { RegForm, Header },
   setup() {
     //Recogemos los campos del User
     const user = ref({

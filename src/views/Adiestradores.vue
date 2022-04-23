@@ -1,12 +1,14 @@
 <template>
+    <Header />
   <h1>Adiestradores</h1>
   <lista-adiestradores />
 </template>
 
 <script>
 import ListaAdiestradores from '../components/ListaAdiestradores.vue';
+import Header from '../components/Header.vue'
 export default {
-  components: { ListaAdiestradores },
+  components: { ListaAdiestradores, Header },
 };
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+    <Header />
   <div class="container">
     <h1>Login</h1>
     <form @submit.prevent="logear(usuario)">
@@ -18,11 +19,13 @@
 </template>
 
 <script>
+import Header from '../components/Header.vue'
 import useRouter from 'vue-router'
 import {mapActions} from 'vuex'
 import createStore from '../store/index'
 
-export default{
+export default {
+  components: {Header},
   data() {
     return {
       usuario: {
@@ -39,10 +42,9 @@ export default{
        await this.login(usuario);
        this.isLogin = createStore.state.token
        if(this.isLogin){
-         this.$emit('logueado');
         this.$router.push('/');
        }
-     }
+     }, 
 
   }
   // setups(){

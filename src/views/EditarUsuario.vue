@@ -1,4 +1,5 @@
 <template>
+    <Header />
   <h2>Editar Descripción</h2>
   <form action="">
     <label for="bio">Descripción:</label><br />
@@ -16,8 +17,10 @@
 
 <script>
 import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import Header from '../components/Header.vue'
 import _ from 'lodash';
 export default {
+  components: {Header},
   props: ['id'],
   setup(props) {
     let idAd = '625d730e35c6f4bb050fe7db';

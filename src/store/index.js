@@ -1,19 +1,21 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
     //login
-    token: null
+    token: null,
+    userId: null,
   },
-  getters: {
-  },
+  getters: {},
   //mutation modifica el state
   mutations: {
     //login
-    setToken(state, payload){
-      console.log("payload", payload)
-      state.token = payload
-    }
+    setToken(state, payload) {
+      state.token = payload;
+    },
+    setIdUsuario(state, payload) {
+      state.userId = payload;
+    },
   },
 
   actions: {
@@ -26,29 +28,38 @@ export default createStore({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(usuario)
-        })
-        const resDB = await res.json()
-        console.log(resDB.token)
+          body: JSON.stringify(usuario),
+        });
+        const resDB = await res.json();
         //almacenamos el token
-        commit('setToken', resDB.token)
+        commit('setToken', resDB.token);
 
         //localStorge sirve para almacenar las credenciales y que no sean volatiles
         //almacenamos token y le pasamos el token
-        localStorage.setItem('token', resDB.token)
-        
+        localStorage.setItem('token', resDB.token);
+        localStorage.setItem('userId', resDB.userId);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
-      leerToken({ commit }) {
+    leerToken({ commit }) {
       if (localStorage.getItem('token')) {
-        commit('setToken', localStorage.getItem('token'))
+        commit('setToken', localStorage.getItem('token'));
       } else {
-        commit('setToken', null)
+        commit('setToken', null);
       }
-    }
+    },
+    leerUserId({ commit }) {
+      if (localStorage.getItem('userId')) {
+        commit('setIdusuario', localStorage.getItem('userId'));
+      } else {
+        commit('setIdUsuario', null);
+      }
+    },
+    logOut({ commit }) {
+      commit('setToke', null);
+      commit('setIdUsuario', null);
+    },
   },
-    modules: {
-  }
-})
+  modules: {},
+});

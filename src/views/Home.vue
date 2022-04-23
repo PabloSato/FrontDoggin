@@ -3,8 +3,12 @@
 </template>
 
 <script>
+import createStore from '../store/index';
 export default {
   name: 'Home',
-  setup() {},
+  setup() {
+    if (localStorage.getItem('idUsuario')) {
+    }
+  },
 };
 </script>

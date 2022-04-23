@@ -39,6 +39,7 @@ export default{
        await this.login(usuario);
        this.isLogin = createStore.state.token
        if(this.isLogin){
+         this.$emit('logueado');
         this.$router.push('/');
        }
      }

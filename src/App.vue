@@ -3,21 +3,30 @@
   <router-link to="/eventos">Eventos</router-link> |
   <router-link to="/adiestradores">Adiestradores</router-link> |
   <router-link to="/elige">Registrarse</router-link> |
-  <router-link to="/login">Login</router-link>
+  <router-link v-if="isLogin" to="/">Logout</router-link>
+  <router-link v-else to="/login">Login</router-link>
   <router-view />
+  {{isLogin}}
 </template>
 
 <script>
 import {mapActions} from 'vuex'
-
-
 export default {
+
+  computed:{
+    isLogin(){
+      return localStorage.getItem('token');
+    },
+  },
   methods:{
     ...mapActions(['leerToken'])
   },
   created() {
     this.leerToken()
   },
+  updated(){
+    console.log('modificado');
+  }
 }
 
 </script>

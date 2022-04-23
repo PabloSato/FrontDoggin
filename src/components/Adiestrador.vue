@@ -7,6 +7,7 @@
       ><span v-else>No disponible</span>
     </p>
     <button @click="verEventos(adiestrador._id)">Ver eventos</button>
+    <button>valorar</button>
   </div>
 </template>
 

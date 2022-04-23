@@ -17,7 +17,11 @@ export default {
   components: { Evento },
   props: ['idAdiestrador'],
   setup(props) {
-    const { eventos, load } = getEventos();
+    let token = '';
+    if(localStorage.getItem('token')){
+      token = localStorage.getItem('token');
+    }
+    const { eventos, load } = getEventos(token);
     load();
     const eventosVisibles = computed(() => {
       let resultado = eventos.value;

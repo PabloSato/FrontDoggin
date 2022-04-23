@@ -57,7 +57,8 @@ export default createStore({
       }
     },
     logOut({ commit }) {
-      commit('setToke', null);
+      console.log('YIJA');
+      commit('setToken', null);
       commit('setIdUsuario', null);
     },
   },

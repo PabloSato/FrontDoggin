@@ -3,7 +3,7 @@
   <router-link to="/eventos">Eventos</router-link> |
   <router-link to="/adiestradores">Adiestradores</router-link> |
   <router-link to="/elige">Registrarse</router-link> |
-  <router-link v-if="isLogin" to="/">Logout</router-link>
+  <router-link v-if="isLogin" @click="logOut" to="/">Logout</router-link>
   <router-link v-else to="/login">Login</router-link>
 </template>
 
@@ -13,12 +13,15 @@ export default {
   setup(){
     let isLogin = ref(null);
     if(localStorage.getItem('token')){
-      isLogin = true;
-      console.log(isLogin);
+      isLogin.value = true;
     }
-    return{isLogin}
+    const logOut = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId')
+      isLogin.value = false;
+    }
+    return{isLogin, logOut}
   }
-
 }
 </script>
 

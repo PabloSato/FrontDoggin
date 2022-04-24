@@ -1,6 +1,5 @@
 <template>
-  <h2>Lista de eventos activos</h2>
-  <div class="grid-container">
+  <div class="container">
     <evento
       v-for="evento in eventosVisibles"
       :key="evento._id"
@@ -41,8 +40,10 @@ export default {
 </script>
 
 <style>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.container {
+  min-height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
 }
 </style>

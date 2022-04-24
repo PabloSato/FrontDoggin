@@ -1,18 +1,38 @@
 <template>
-    <Header />
-  <h1>Eventos</h1>
-  <lista-eventos :idAdiestrador="idAdiestrador" />
+  <Header />
+  <div class="contenedor">
+    <div class="titulos">
+      <h1>Eventos</h1>
+      <h2>Lista de eventos activos</h2>
+    </div>
+    <div class="eventos">
+      <lista-eventos :idAdiestrador="idAdiestrador" />
+    </div>
+  </div>
+  <Footer />
 </template>
 
 <script>
 //Componentes
-import Header from '../components/Header.vue'
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 //Composables
 import ListaEventos from '../components/ListaEventos.vue';
 export default {
-  components: { ListaEventos, Header },
+  components: { ListaEventos, Header, Footer },
   props: ['idAdiestrador'],
 };
 </script>
 
-<style></style>
+<style>
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+.titulos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

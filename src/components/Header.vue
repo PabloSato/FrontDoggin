@@ -1,15 +1,17 @@
 <template>
   <header>
-    <div class="logo">
-      <img src="../assets/logo_doggin.svg" alt="" />
-    </div>
-    <div class="navegador">
-      <router-link to="/">Home</router-link>
-      <router-link to="/eventos">Eventos</router-link>
-      <router-link to="/adiestradores">Adiestradores</router-link>
-      <router-link v-if="!isLogin" to="/elige">Registrarse</router-link>
-      <router-link v-if="isLogin" @click="logOut" to="/">Logout</router-link>
-      <router-link v-else to="/login">Login</router-link>
+    <div class="cabecera">
+      <div class="logo">
+        <img src="../assets/logo_doggin.svg" alt="" />
+      </div>
+      <div class="navegador">
+        <router-link to="/">Home</router-link>
+        <router-link to="/eventos">Eventos</router-link>
+        <router-link to="/adiestradores">Adiestradores</router-link>
+        <router-link v-if="!isLogin" to="/elige">Registrarse</router-link>
+        <router-link v-if="isLogin" @click="logOut" to="/">Logout</router-link>
+        <router-link v-else to="/login">Login</router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -36,29 +38,32 @@ export default {
 header {
   width: 100vw;
   background-color: #f1f1f1;
-  display: flex;
-  gap: 2rem;
   box-shadow: 1px 1px 10px #cdddc2;
-  justify-content: space-between;
   padding: 20px;
 }
-header > .logo img {
-  width: 100px;
-  margin-left: 50px;
+.cabecera {
+  width: 85vw;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
 }
-header > .navegador {
+.logo img {
+  width: 100px;
+}
+.navegador {
   width: 60%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-header > .navegador a {
+.navegador a {
   text-decoration: none;
   display: block;
   color: #184d47;
   border-bottom: 2px solid transparent;
 }
-header > .navegador a:hover {
+.navegador a:hover {
   color: #96bb7c;
   border-bottom: 2px solid #96bb7c;
 }
@@ -67,11 +72,11 @@ header > .navegador a:hover {
   header {
     display: block;
   }
-  header > .logo {
+  .logo {
     width: 100%;
     text-align: center;
   }
-  header > .navegador {
+  .navegador {
     flex-direction: column;
   }
 }

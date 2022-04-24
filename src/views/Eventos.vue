@@ -5,7 +5,7 @@
       <h1>Eventos</h1>
       <h2>Lista de eventos activos</h2>
     </div>
-    <div class="eventos">
+    <div class="lista-eventos">
       <lista-eventos :idAdiestrador="idAdiestrador" />
     </div>
   </div>
@@ -29,6 +29,10 @@ export default {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+}
+.lista-eventos {
+  padding: 0 auto;
+  max-width: 1000px;
 }
 .titulos {
   display: flex;

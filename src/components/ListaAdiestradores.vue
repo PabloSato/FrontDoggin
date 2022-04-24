@@ -1,5 +1,4 @@
 <template>
-  <h2>Lista de adiestradores</h2>
   <div class="container">
     <adiestrador
       v-for="adiestrador in adiestradores"
@@ -26,9 +25,10 @@ export default {
 
 <style>
 .container {
-  min-height: 100vh;
+  width: 100%;
   padding: 20px 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
 }
 </style>

@@ -1,16 +1,40 @@
 <template>
-    <Header />
-  <h1>Adiestradores</h1>
-  <lista-adiestradores />
+  <Header />
+  <div class="contenedor">
+    <div class="titulos">
+      <h1>Adiestradores</h1>
+      <h2>Lista de adiestradores</h2>
+    </div>
+    <div class="lista-adiestradores">
+      <lista-adiestradores />
+    </div>
+  </div>
+  <Footer />
 </template>
 
 <script>
 //Componentes
 import ListaAdiestradores from '../components/ListaAdiestradores.vue';
-import Header from '../components/Header.vue'
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 export default {
-  components: { ListaAdiestradores, Header },
+  components: { ListaAdiestradores, Header, Footer },
 };
 </script>
 
-<style></style>
+<style>
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+.lista-adiestradores {
+  padding: 0 auto;
+  max-width: 1000px;
+}
+.titulos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

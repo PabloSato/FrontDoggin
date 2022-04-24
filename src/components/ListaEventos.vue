@@ -34,6 +34,7 @@ export default {
       }
       return resultado.filter(evento => !evento.terminado && !evento.privado);
     });
+    //console.log(eventosVisibles); //para ver que viene
     return { eventosVisibles };
   },
 };
@@ -41,9 +42,10 @@ export default {
 
 <style>
 .container {
-  min-height: 100vh;
-  padding: 20px 0;
+  width: 100%;
+  padding: 20px auto;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
 }
 </style>

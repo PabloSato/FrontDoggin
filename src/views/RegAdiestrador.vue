@@ -1,5 +1,5 @@
 <template>
-    <Header />
+  <Header />
   <RegForm
     :user="user"
     :errorValida="errorValida"
@@ -8,12 +8,14 @@
     quienH2="Adiestrador"
     @formProce="procForm(user)"
   />
+  <Footer />
 </template>
 
 <script>
 //Componentes
-import Header from '../components/Header.vue'
+import Header from '../components/Header.vue';
 import RegForm from '../components/RegForm.vue';
+import Footer from '../components/Footer.vue';
 //Composables
 import validarUser from '../composables/validarUser';
 import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
@@ -21,7 +23,7 @@ import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
-  components: { RegForm, Header },
+  components: { RegForm, Header, Footer },
   setup() {
     //Recogemos los campos del User
     const user = ref({
@@ -33,8 +35,8 @@ export default {
     //Router
     const router = useRouter();
     //Comprobamos si el Usuario ya está Logueado, en el caso que asi sea, lo enviamos a Home
-    if(localStorage.getItem('token') || localStorage.getItem('userId')){
-      router.push('/')      
+    if (localStorage.getItem('token') || localStorage.getItem('userId')) {
+      router.push('/');
     }
     //Variable que nos recogerá los errores de validación
     const errorValida = ref([null]); //Guardamos los errores de validacion

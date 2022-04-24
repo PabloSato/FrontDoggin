@@ -77,18 +77,6 @@ export default {
 </script>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-}
-
-body {
-  margin-top: 30px;
-  background-color: #eee;
-}
-
 .container {
   min-height: 100vh;
   padding: 20px 0;

@@ -21,7 +21,7 @@ export default {
   props: ['idAdiestrador'],
   setup(props) {
     let token = '';
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       token = localStorage.getItem('token');
     }
     const { eventos, load } = getEventos(token);

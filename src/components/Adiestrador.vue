@@ -1,34 +1,62 @@
 <template>
-  <div class="card">
-    <h3>{{ adiestrador.nombre }}</h3>
-    <p>{{ adiestrador.bio }}</p>
-    <p>
-      Rating: <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span
-      ><span v-else>No disponible</span>
-    </p>
-    <button @click="verEventos(adiestrador._id)">Ver eventos</button>
-    <form @submit.prevent="procValora">
-      <p class="clasificacion">
-        <input id="radio1" type="radio" v-model="star" value="5"><!--
-        --><label for="radio1">★</label><!--
-        --><input id="radio2" type="radio" v-model="star" value="4"><!--
-        --><label for="radio2">★</label><!--
-        --><input id="radio3" type="radio" v-model="star" value="3"><!--
-        --><label for="radio3">★</label><!--
-        --><input id="radio4" type="radio" v-model="star" value="2"><!--
-        --><label for="radio4">★</label><!--
-        --><input id="radio5" type="radio" v-model="star" value="1"><!--
-        --><label for="radio5">★</label>
-        <input type="submit" value="Votar">
-      </p>
-    </form>
+  <div class="container">
+    <div class="d-lg-flex">
+      <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
+        <div class="backgroundEffect"></div>
+        <div class="pic">
+          <img class="" :src="adiestrador.imageUrl" alt="" />
+          <div class="date">
+            <span class="day">26</span> <span class="month">June</span>
+            <span class="year">2019</span>
+          </div>
+        </div>
+        <div class="content">
+          <p class="h-1 mt-4">{{ adiestrador.nombre }}</p>
+          <p class="text-muted mt-3">{{ adiestrador.bio }}</p>
+          <div
+            class="d-flex align-items-center justify-content-between mt-3 pb-3"
+          >
+            <button
+              class="btn btn-primary"
+              @click="verEventos(adiestrador._id)"
+            >
+              Ver eventos
+            </button>
+            <div class="d-flex align-items-center justify-content-center foot">
+              <p>
+                Rating:
+                <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span>
+                <span v-else>No disponible</span>
+              </p>
+              <div class="formu">
+                <form @submit.prevent="procValora">
+                  <p class="clasificacion">
+                    <input id="radio1" type="radio" v-model="star" value="5" />
+                    <label for="radio1">★</label>
+                    <input id="radio2" type="radio" v-model="star" value="4" />
+                    <label for="radio2">★</label>
+                    <input id="radio3" type="radio" v-model="star" value="3" />
+                    <label for="radio3">★</label>
+                    <input id="radio4" type="radio" v-model="star" value="2" />
+                    <label for="radio4">★</label>
+                    <input id="radio5" type="radio" v-model="star" value="1" />
+                    <label for="radio5">★</label>
+                    <input type="submit" value="Votar" />
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 //Utilidades
 import { useRouter } from 'vue-router';
-import {ref} from 'vue';
+import { ref } from 'vue';
 export default {
   props: ['adiestrador', 'star'],
   setup(props, context) {
@@ -39,9 +67,9 @@ export default {
 
     const star = ref(null);
 
-    const procValora = async() =>{
-     console.log(star.value); 
-    }
+    const procValora = async () => {
+      console.log(star.value);
+    };
 
     return { verEventos, procValora, star };
   },
@@ -49,30 +77,194 @@ export default {
 </script>
 
 <style>
-form{
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin-top: 30px;
+  background-color: #eee;
+}
+
+.container {
+  min-height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+p {
+  margin: 0px;
+}
+
+.card {
+  width: 280px;
+  height: 520px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #fff;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card .backgroundEffect {
+  bottom: 0;
+  height: 0px;
+  width: 100%;
+}
+
+.card:hover {
+  color: #fff;
+  transform: scale(1.025);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+}
+
+.card:hover .backgroundEffect {
+  bottom: 0;
+  height: 320px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  background: #1b9ce3;
+  animation: popBackground 0.3s ease-in;
+}
+
+@keyframes popBackground {
+  0% {
+    height: 20px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+
+  50% {
+    height: 80px;
+    border-top-left-radius: 75%;
+    border-top-right-radius: 75%;
+  }
+
+  75% {
+    height: 160px;
+    border-top-left-radius: 85%;
+    border-top-right-radius: 85%;
+  }
+
+  100% {
+    height: 320px;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+  }
+}
+
+.card .pic {
+  position: relative;
+}
+
+.card .pic img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.card .date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  background-color: #1b9ce3;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  transition: all ease;
+}
+
+.card .date .day {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card .date .month,
+.card .date .year {
+  font-size: 10px;
+}
+
+.card .text-muted {
+  font-size: 12px;
+}
+
+.card:hover .text-muted {
+  color: #fff !important;
+}
+
+.card .content {
+  padding: 0 20px;
+}
+
+.card .content .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: #1b9ce3;
+  border-radius: 25px;
+  font-size: 12px;
+  border: none;
+}
+
+.card:hover .content .btn {
+  background: #fff;
+  color: #1b9ce3;
+  box-shadow: #0000001a 0px 3px 5px;
+}
+
+.card .content .btn .fas {
+  font-size: 10px;
+  padding-left: 5px;
+}
+
+.card .content .foot .admin {
+  color: #1b9ce3;
+  font-size: 12px;
+}
+
+.card:hover .content .foot .admin {
+  color: #fff;
+}
+
+.card .content .foot .icon {
+  font-size: 12px;
+}
+/*-------------------------------VOLARACIONES-RATING */
+.formu {
   margin-top: 10px;
 }
-form label{
+.formu label {
   font-size: 14px;
   color: grey;
 }
-  input[type="radio"]{
-    display: none;
-  }
-  .clasificacion{
-    direction: rtl;
-    unicode-bidi: bidi-override;
-  }
-form label:hover,
-form label:hover ~ label{ /*(~) => esto indica precedidas por. En este caso, label precedidas por label con hover*/
+.formu input[type='radio'] {
+  display: none;
+}
+.formu .clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+.formu label:hover,
+.formu label:hover ~ label {
+  /*(~) => esto indica precedidas por. En este caso, label precedidas por label con hover*/
   color: orange;
 }
-input[type="radio"]:checked ~ label{/*En naranja todas las label que preceden a la que elegimos*/
+.formu input[type='radio']:checked ~ label {
+  /*En naranja todas las label que preceden a la que elegimos*/
   color: orange;
 }
-input[type="submit"]{
+.formu input[type='submit'] {
   margin-right: 10px;
 }
-
-
 </style>

@@ -53,7 +53,6 @@ export default {
     const procesaFormu = () => {
       context.emit('formProce', user);
     };
-
     return { user, procesaFormu, errorValida };
   },
 };

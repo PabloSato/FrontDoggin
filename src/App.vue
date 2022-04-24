@@ -1,38 +1,27 @@
-<template>
-  <!-- <router-link to="/">Home</router-link> |
-  <router-link to="/eventos">Eventos</router-link> |
-  <router-link to="/adiestradores">Adiestradores</router-link> |
-  <router-link to="/elige">Registrarse</router-link> |
-  <router-link v-if="isLogin" to="/">Logout</router-link>
-  <router-link v-else to="/login">Login</router-link> -->
+<template .container-flex>
   <router-view />
 </template>
 
 <script>
 import { ref } from 'vue';
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex';
 export default {
-
-
-  computed:{
+  computed: {
     // isLogin(){
     //   return localStorage.getItem('token');
     // },
   },
-  methods:{
-    ...mapActions(['leerToken'])
+  methods: {
+    ...mapActions(['leerToken']),
   },
   created() {
-    this.leerToken()
+    this.leerToken();
   },
-  updated(){
+  updated() {
     console.log('modificado');
-  }
-}
-
+  },
+};
 </script>
-
-
 
 <style>
 #app {

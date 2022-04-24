@@ -1,6 +1,6 @@
 <template>
   <h2>Lista de adiestradores</h2>
-  <div class="grid-container">
+  <div class="container">
     <adiestrador
       v-for="adiestrador in adiestradores"
       :key="adiestrador._id"
@@ -25,8 +25,10 @@ export default {
 </script>
 
 <style>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.container {
+  min-height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
 }
 </style>

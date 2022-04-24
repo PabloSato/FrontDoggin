@@ -19,11 +19,12 @@
 </template>
 
 <script>
+//Componentes
 import Header from '../components/Header.vue'
+//Utilidades
 import useRouter from 'vue-router'
 import {mapActions} from 'vuex'
 import createStore from '../store/index'
-
 export default {
   components: {Header},
   data() {

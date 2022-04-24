@@ -2,7 +2,7 @@
   <router-link to="/">Home</router-link> |
   <router-link to="/eventos">Eventos</router-link> |
   <router-link to="/adiestradores">Adiestradores</router-link> |
-  <router-link to="/elige">Registrarse</router-link> |
+  <router-link v-if="!isLogin" to="/elige">Registrarse</router-link> |
   <router-link v-if="isLogin" @click="logOut" to="/">Logout</router-link>
   <router-link v-else to="/login">Login</router-link>
 </template>

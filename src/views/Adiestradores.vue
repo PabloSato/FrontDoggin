@@ -5,6 +5,7 @@
 </template>
 
 <script>
+//Componentes
 import ListaAdiestradores from '../components/ListaAdiestradores.vue';
 import Header from '../components/Header.vue'
 export default {

@@ -10,7 +10,9 @@
 </template>
 
 <script>
+//Componentes
 import Adiestrador from '../components/Adiestrador.vue';
+//Composables
 import getAdiestradores from '../composables/Adiestrador/getAdiestradores';
 export default {
   components: { Adiestrador },

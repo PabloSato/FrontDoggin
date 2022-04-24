@@ -11,12 +11,14 @@
 </template>
 
 <script>
+//Componentes
 import Header from '../components/Header.vue'
 import RegForm from '../components/RegForm.vue';
-
-import { ref } from 'vue';
+//Composables
 import validarUser from '../composables/validarUser';
 import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
+//Utilidades
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
   components: { RegForm, Header },
@@ -30,7 +32,10 @@ export default {
     });
     //Router
     const router = useRouter();
-
+    //Comprobamos si el Usuario ya está Logueado, en el caso que asi sea, lo enviamos a Home
+    if(localStorage.getItem('token') || localStorage.getItem('userId')){
+      router.push('/')      
+    }
     //Variable que nos recogerá los errores de validación
     const errorValida = ref([null]); //Guardamos los errores de validacion
     let errorInsert = '';

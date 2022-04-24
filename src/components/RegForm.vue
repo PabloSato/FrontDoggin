@@ -38,6 +38,7 @@
 </template>
 
 <script>
+//Utilidades
 import { ref } from 'vue';
 export default {
   props: ['quienH2', 'user', 'errorValida', 'act', 'errorInsert'],

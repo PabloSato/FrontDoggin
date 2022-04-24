@@ -7,9 +7,20 @@
 </template>
 
 <script>
+//Componentes
 import Header from '../components/Header.vue'
+//Utilidades
+import {useRouter} from 'vue-router';
 export default {
-  components: {Header}
+  components: {Header},
+  setup(){
+    //Router
+    const router = useRouter();
+    //Comprobamos si el Usuario ya está Logueado, en el caso que asi sea, lo enviamos a Home
+    if(localStorage.getItem('token') || localStorage.getItem('userId')){
+      router.push('/')      
+    }
+  }
 };
 </script>
 

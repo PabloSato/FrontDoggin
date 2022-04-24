@@ -27,11 +27,13 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import validarUser from '../composables/validarUser';
+//Componentes
 import Header from '../components/Header.vue'
+//Composables
+import validarUser from '../composables/validarUser';
 import createAdiestrador from '@/composables/Adiestrador/createAdiestrador';
-
+//Utilidades
+import { ref } from 'vue';
 export default {
   components: {Header},
   setup() {

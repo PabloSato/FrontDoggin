@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import createStore from '../store/index';
+//Componentes
 import Header from '../components/Header.vue'
 export default {
   components: {Header},

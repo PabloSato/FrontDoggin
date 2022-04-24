@@ -16,8 +16,11 @@
 </template>
 
 <script>
-import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+//Componentes
 import Header from '../components/Header.vue'
+//Composables
+import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+//Utilidades
 import _ from 'lodash';
 export default {
   components: {Header},

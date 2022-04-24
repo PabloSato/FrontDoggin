@@ -10,9 +10,12 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core';
+//Componentes
 import Evento from '../components/Evento.vue';
+//Composables
 import getEventos from '../composables/Evento/getEventos';
+//Utilidades
+import { computed } from '@vue/runtime-core';
 export default {
   components: { Evento },
   props: ['idAdiestrador'],

@@ -61,7 +61,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .login {
-  min-height: 65vh;
+  padding-bottom: 100px;
+  min-height: 95vh;
   min-width: 100vw;
   display: flex;
   align-items: center;

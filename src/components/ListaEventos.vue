@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="eventos">
     <evento
       v-for="evento in eventosVisibles"
       :key="evento._id"
@@ -41,11 +41,11 @@ export default {
 </script>
 
 <style>
-.container {
-  width: 100%;
-  padding: 20px auto;
+.eventos {
+  max-width: 80%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 </style>

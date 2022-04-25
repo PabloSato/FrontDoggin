@@ -32,8 +32,8 @@ export default {
 
 <style>
 .elige {
-  margin: 20px auto;
-  min-height: 65vh;
+  padding: 50px 0;
+  min-height: 95vh;
   min-width: 100vw;
   display: flex;
   flex-direction: column;
@@ -55,10 +55,10 @@ export default {
   border-radius: 10px;
   font-size: 20px;
   text-decoration: none;
+  box-shadow: 0 5px 5px #170f11;
 }
 .opcs a:hover {
   background-color: #184d47;
   color: #ddd;
-  box-shadow: 0 2px 2px #171e1c inset;
 }
 </style>

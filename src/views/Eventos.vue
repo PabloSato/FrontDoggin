@@ -29,10 +29,12 @@ export default {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+  min-width: 100vw;
+  min-height: 95vh;
 }
 .lista-eventos {
   padding: 0 auto;
-  max-width: 1000px;
+  width: 100%;
 }
 .titulos {
   display: flex;

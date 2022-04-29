@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="elige">
     <h2>Registrarse</h2>
     <div class="opcs">
@@ -8,7 +7,6 @@
       <router-link to="/alta-cliente">¿Eres Cliente?</router-link>
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>

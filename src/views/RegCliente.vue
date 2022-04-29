@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <RegForm
     :user="user"
     :errorValida="errorValida"
@@ -8,7 +7,6 @@
     quienH2="Cliente"
     @formProce="procForm(user)"
   />
-  <Footer />
 </template>
 
 <script>

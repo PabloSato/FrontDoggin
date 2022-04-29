@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="contenedor">
     <div class="titulos">
       <h1>Eventos</h1>
@@ -9,7 +8,6 @@
       <lista-eventos :idAdiestrador="idAdiestrador" />
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="contenedor">
     <div class="titulos">
       <h1>Adiestradores</h1>
@@ -9,7 +8,6 @@
       <lista-adiestradores />
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>

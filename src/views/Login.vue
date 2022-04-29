@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="login">
     <div class="container">
       <img
@@ -24,7 +23,6 @@
     <p v-if="!isLogin">Not logged in :(</p>
     {{ usuario }} -->
   </div>
-  <Footer />
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-    <Header />
   <h2>Nuevo Adiestrador</h2>
   <div v-if="errorValida.length > 0">
     <p v-for="mensaje in errorValida" :key="mensaje">{{ mensaje }}</p>
@@ -28,14 +27,14 @@
 
 <script>
 //Componentes
-import Header from '../components/Header.vue'
+import Header from '../components/Header.vue';
 //Composables
 import validarUser from '../composables/validarUser';
 import createAdiestrador from '@/composables/Adiestrador/createAdiestrador';
 //Utilidades
 import { ref } from 'vue';
 export default {
-  components: {Header},
+  components: { Header },
   setup() {
     //Recogemos los campos del User
     const user = ref({

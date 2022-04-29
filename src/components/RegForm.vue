@@ -49,7 +49,6 @@ export default {
 
     user.value = props.user; //Recogemos los valores que nos vienen
     errorValida.value = props.errorValida; //Obtenemos los errores
-
     const procesaFormu = () => {
       context.emit('formProce', user);
     };

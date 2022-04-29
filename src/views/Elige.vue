@@ -31,7 +31,7 @@ export default {
 <style>
 .elige {
   padding: 50px 0;
-  min-height: 95vh;
+  min-height: 90vh;
   min-width: 100vw;
   display: flex;
   flex-direction: column;

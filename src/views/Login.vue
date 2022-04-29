@@ -60,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 .login {
   padding-bottom: 100px;
-  min-height: 95vh;
+  min-height: 90vh;
   min-width: 100vw;
   display: flex;
   align-items: center;
@@ -68,7 +68,9 @@ export default {
 
 .container {
   background-color: #5f4bb6;
-  max-width: 85vw;
+  width: 60vw;
+  max-width: 1150px;
+  min-width: 510px;
   height: 450px;
   position: relative;
   display: grid;

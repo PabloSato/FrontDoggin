@@ -17,17 +17,17 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 export default {
   setup() {
-    let isLogin = ref(null);
-    if (localStorage.getItem('token')) {
-      isLogin.value = true;
-    }
+    const isLogin = computed(() => {
+      console.log(localStorage.getItem('token'));
+      return !!localStorage.getItem('token'); //Devuelve un boolean si es true/false
+    });
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
-      isLogin.value = false;
+      // isLogin.value = false;
     };
     return { isLogin, logOut };
   },
@@ -53,6 +53,7 @@ header {
 }
 .navegador {
   width: 60%;
+  max-width: 655px;
   display: flex;
   justify-content: space-around;
   align-items: center;

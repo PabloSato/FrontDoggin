@@ -28,7 +28,7 @@ export default {
   flex-direction: column;
   padding-top: 20px;
   min-width: 100vw;
-  min-height: 95vh;
+  min-height: 90vh;
 }
 .lista-eventos {
   padding: 0 auto;

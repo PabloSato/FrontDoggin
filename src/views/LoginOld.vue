@@ -30,32 +30,31 @@
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 //Utilidades
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
-import useEmitter from '../composables/emitter';
+import useRouter from 'vue-router';
+import { mapActions } from 'vuex';
 import createStore from '../store/index';
 export default {
   components: { Header, Footer },
-  setup() {
-    const usuario = ref({
-      email: '',
-      password: '',
-    });
-    let isLogin = createStore.state.token;
-    const router = useRouter();
-    const store = useStore();
-    const emitter = useEmitter();
-    const logear = async usuario => {
-      //
-      await store.dispatch('login', usuario);
-      isLogin = createStore.state.token;
-      if (isLogin) {
-        emitter.emit('isLog', true);
-        router.push('/');
-      }
+  data() {
+    return {
+      usuario: {
+        email: '',
+        password: '',
+      },
+      isLogin: createStore.state.token,
     };
-    return { usuario, logear };
+  },
+  methods: {
+    ...mapActions(['login']),
+
+    async logear(usuario) {
+      await this.login(usuario);
+      this.isLogin = createStore.state.token;
+      if (this.isLogin) {
+        this.emitter.emit('isLog', true);
+        this.$router.push('/');
+      }
+    },
   },
 };
 </script>

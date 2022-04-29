@@ -1,5 +1,5 @@
 <template .container-flex>
-  <Header />
+  <Header :userLogin="login" />
   <router-view />
   <Footer />
 </template>
@@ -13,10 +13,19 @@ import { ref } from 'vue';
 import { mapActions } from 'vuex';
 export default {
   components: { Header, Footer },
-  computed: {
-    // isLogin(){
-    //   return localStorage.getItem('token');
-    // },
+  // computed: {
+  //   login() {
+  //     console.log(localStorage.getItem('token'));
+  //     return !!localStorage.getItem('token');
+  //   },
+  // },
+  data() {
+    return { login: !!localStorage.getItem('token') };
+  },
+  mounted() {
+    this.emitter.on('isLog', log => {
+      this.login = log;
+    });
   },
   methods: {
     ...mapActions(['leerToken']),

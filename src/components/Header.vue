@@ -5,11 +5,14 @@
         <img src="../assets/logo_doggin.svg" alt="" />
       </div>
       <div class="navegador">
+        <h2>{{ userLogin }}</h2>
         <router-link to="/">Home</router-link>
         <router-link to="/eventos">Eventos</router-link>
         <router-link to="/adiestradores">Adiestradores</router-link>
-        <router-link v-if="!isLogin" to="/elige">Registrarse</router-link>
-        <router-link v-if="isLogin" @click="logOut" to="/">Logout</router-link>
+        <router-link v-if="!userLogin" to="/elige">Registrarse</router-link>
+        <router-link v-if="userLogin" @click="logOut" to="/"
+          >Logout</router-link
+        >
         <router-link v-else to="/login">Login</router-link>
       </div>
     </div>
@@ -17,19 +20,18 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+//Utilidades
+import useEmitter from '../composables/emitter';
 export default {
-  setup() {
-    const isLogin = computed(() => {
-      console.log(localStorage.getItem('token'));
-      return !!localStorage.getItem('token'); //Devuelve un boolean si es true/false
-    });
+  props: ['userLogin'],
+  setup(props) {
+    const emitter = useEmitter();
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
-      // isLogin.value = false;
+      emitter.emit('isLog', false);
     };
-    return { isLogin, logOut };
+    return { logOut };
   },
 };
 </script>

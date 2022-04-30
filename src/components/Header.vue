@@ -8,8 +8,13 @@
         <router-link to="/">Home</router-link>
         <router-link to="/eventos">Eventos</router-link>
         <router-link to="/adiestradores">Adiestradores</router-link>
-        <router-link v-if="!userLogin" to="/elige">Registrarse</router-link>
-        <router-link v-if="userLogin" @click="logOut" to="/"
+        <router-link v-if="userLogin.rol === 'ADIESTRADOR'" :to="perfilUrl"
+          >Mi Perfil</router-link
+        >
+        <router-link v-if="!userLogin.token" to="/elige"
+          >Registrarse</router-link
+        >
+        <router-link v-if="userLogin.token" @click="logOut" to="/"
           >Logout</router-link
         >
         <router-link v-else to="/login">Login</router-link>
@@ -22,9 +27,12 @@
 //Utilidades
 import useEmitter from '../composables/emitter';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 export default {
   props: ['userLogin'],
   setup(props) {
+    const perfilUrl = ref(null);
+    perfilUrl.value = ref(`/adiestradores/${props.userLogin.id}/miperfil`);
     //Tools
     const emitter = useEmitter();
     const router = useRouter();
@@ -32,10 +40,12 @@ export default {
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
+      localStorage.removeItem('rol');
+      localStorage.removeItem('id');
       emitter.emit('isLog', false);
       router.push('/login');
     };
-    return { logOut };
+    return { logOut, perfilUrl };
   },
 };
 </script>

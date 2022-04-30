@@ -20,11 +20,17 @@ export default {
   //   },
   // },
   data() {
-    return { login: !!localStorage.getItem('token') };
+    return {
+      login: {
+        token: localStorage.getItem('token'),
+        rol: localStorage.getItem('rol'),
+        id: localStorage.getItem('id'),
+      },
+    };
   },
   mounted() {
-    this.emitter.on('isLog', log => {
-      this.login = log;
+    this.emitter.on('isLog', loginInfo => {
+      this.login = loginInfo;
     });
   },
   methods: {

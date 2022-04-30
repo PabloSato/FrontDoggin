@@ -56,7 +56,11 @@ export default {
       ) {
         isLogin = createStore.state.token;
         if (isLogin) {
-          emitter.emit('isLog', true);
+          emitter.emit('isLog', {
+            token: localStorage.getItem('token'),
+            rol: localStorage.getItem('rol'),
+            id: localStorage.getItem('id'),
+          });
           if (localStorage.getItem('rol') == 'ADIESTRADOR') {
             let idAdi = localStorage.getItem('id');
             emitter.emit('isAdi', true);

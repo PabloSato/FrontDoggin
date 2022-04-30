@@ -1,12 +1,14 @@
 <template>
-  <RegForm
-    :user="user"
-    :errorValida="errorValida"
-    :errorInsert="errorInsert"
-    act="Nuevo"
-    quienH2="Adiestrador"
-    @formProce="procForm(user)"
-  />
+  <div class="contenedor">
+    <RegForm
+      :user="user"
+      :errorValida="errorValida"
+      :errorInsert="errorInsert"
+      act="Nuevo"
+      quienH2="Adiestrador"
+      @formProce="procForm(user)"
+    />
+  </div>
 </template>
 
 <script>
@@ -67,4 +69,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  width: 100vw;
+  min-height: 90vh;
+}
+</style>

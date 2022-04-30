@@ -14,12 +14,23 @@ export const login = async ({ commit }, usuario) => {
       throw Error('email/password incorrectos');
     } else {
       const response = await data.json(); //Esperamos la respuesta
+      console.log('login');
+      console.log(response);
       //Almacenamos el Token
       commit('setToken', response.token);
+      commit('setIdUsuario', response.userId);
+      if (response.role === 'CLIENTE') {
+        commit('setId', response.idCliente);
+      } else {
+        commit('setId', response.idAdiestrador);
+      }
+      commit('setRol', response.role);
       //localStorage sirve para almacenar las credenciales
       //Almacenamos tanto el token como el ID de usuario
       localStorage.setItem('token', response.token);
       localStorage.setItem('userId', response.userId);
+      localStorage.setItem('id', response.idCliente);
+      localStorage.setItem('rol', response.role);
     }
   } catch (err) {
     console.log(err); //En caso de error, lo pintamos
@@ -42,8 +53,26 @@ export const leerUserId = ({ commit }) => {
     commit('setIdUsuario', null);
   }
 };
+//Función LEER ID
+export const leerId = ({ commit }) => {
+  if (localStorage.getItem('id')) {
+    commit('setId', localStorage.getItem('id'));
+  } else {
+    commit('setId', null);
+  }
+};
+//Función LEER ROL
+export const leerRol = ({ commit }) => {
+  if (localStorage.getItem('rol')) {
+    commit('setRol', localStorage.getItem('rol'));
+  } else {
+    commit('setRol', null);
+  }
+};
 //Función LOGOUT
 export const logOut = ({ commit }) => {
   commit('setToken', null);
   commit('setIdUsuario', null);
+  commit('setId', null);
+  commit('setRol', null);
 };

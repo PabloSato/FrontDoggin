@@ -8,7 +8,6 @@
       <div class="container-text">
         <h2>Bienvenido!!</h2>
         <p>Introduce tu usuario y contraseña</p>
-        <p v-if="errorLogin">{{ errorLogin }}</p>
         <form @submit.prevent="logear(usuario)">
           <input type="email" placeholder="Email" v-model="usuario.email" />
           <input
@@ -20,9 +19,7 @@
         </form>
       </div>
     </div>
-    <!-- 
-    <p v-if="!isLogin">Not logged in :(</p>
-    {{ usuario }} -->
+    <p v-if="errorLogin">{{ errorLogin }}</p>
   </div>
 </template>
 
@@ -81,6 +78,7 @@ export default {
   min-height: 90vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 

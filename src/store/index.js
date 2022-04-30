@@ -5,6 +5,8 @@ import mutations from './mutations';
 const state = {
   token: null,
   userId: null,
+  id: null,
+  rol: null,
 };
 
 export default createStore({

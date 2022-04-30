@@ -2,9 +2,9 @@
   <div class="elige">
     <h2>Registrarse</h2>
     <div class="opcs">
-      <router-link to="/alta-adiestrador">¿Eres Adiestrador?</router-link>
+      <router-link :to="{ name: 'alta-ad' }">¿Eres Adiestrador?</router-link>
       <br />
-      <router-link to="/alta-cliente">¿Eres Cliente?</router-link>
+      <router-link :to="{ name: 'alta-cliente' }">¿Eres Cliente?</router-link>
     </div>
   </div>
 </template>

@@ -43,23 +43,23 @@ const routes = [
     component: Login,
   },
   {
-    path: '/alta-adiestrador',
+    path: '/adiestradores/alta',
     name: 'alta-ad',
     component: RegAdiestrador,
   },
   {
-    path: '/alta-cliente',
+    path: '/clientes/alta',
     name: 'alta-cliente',
     component: RegCliente,
   },
   {
-    path: '/detalle/:id',
+    path: '/adiestradores/:id/detalle',
     name: 'detalle',
     component: DetalleAdiestrador,
     props: true,
   },
   {
-    path: '/contacto/:id',
+    path: '/adiestradores/:id/contacto',
     name: 'contacto',
     component: Contacto,
     props: true,

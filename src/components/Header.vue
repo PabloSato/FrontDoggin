@@ -5,7 +5,6 @@
         <img src="../assets/logo_doggin.svg" alt="" />
       </div>
       <div class="navegador">
-        <h2>{{ userLogin }}</h2>
         <router-link to="/">Home</router-link>
         <router-link to="/eventos">Eventos</router-link>
         <router-link to="/adiestradores">Adiestradores</router-link>
@@ -33,6 +32,8 @@ export default {
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
+      localStorage.removeItem('id');
+      localStorage.removeItem('rol');
       emitter.emit('isLog', false);
       router.push('/login');
     };

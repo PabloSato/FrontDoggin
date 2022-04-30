@@ -20,16 +20,12 @@ const enviarMailToAdiestrador = (adiestradorId, clienteId, token, mail) => {
           body: JSON.stringify(mensaje),
         }
       );
-      if (!response.ok) {
-        throw Error('error al mandar el email');
-      } else {
-        enviado.value = await response.json();
-
-        send();
-      }
+      if (!response.ok) throw Error('error al mandar el email');
+      enviado.value = await response.json();
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
       error.value = err.message;
+      console.log(error.value);
     }
   };
   return { enviado, error, send };

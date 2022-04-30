@@ -53,7 +53,6 @@ export default {
     //Variables
     const isLogin = ref(null);
     const adiestrador = props.adiestrador;
-    adiestrador.rating = 0; // LO DEL RATING
 
     //Tools
     const router = useRouter();

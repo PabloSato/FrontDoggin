@@ -28,25 +28,9 @@
                 <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span>
                 <span v-else>No disponible</span>
               </p>
-              <div class="formu">
-                <form @submit.prevent="procValora">
-                  <p class="clasificacion">
-                    <input id="radio1" type="radio" v-model="star" value="5" />
-                    <label for="radio1">★</label>
-                    <input id="radio2" type="radio" v-model="star" value="4" />
-                    <label for="radio2">★</label>
-                    <input id="radio3" type="radio" v-model="star" value="3" />
-                    <label for="radio3">★</label>
-                    <input id="radio4" type="radio" v-model="star" value="2" />
-                    <label for="radio4">★</label>
-                    <input id="radio5" type="radio" v-model="star" value="1" />
-                    <label for="radio5">★</label>
-                    <input type="submit" value="Votar" />
-                  </p>
-                </form>
-              </div>
             </div>
           </div>
+          <FormValora />
         </div>
       </div>
     </div>
@@ -54,10 +38,13 @@
 </template>
 
 <script>
+//Componentes
+import FormValora from './FormValoracion.vue';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 export default {
+  components: { FormValora },
   props: ['adiestrador', 'star'],
   setup(props, context) {
     const router = useRouter();
@@ -65,13 +52,7 @@ export default {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
 
-    const star = ref(null);
-
-    const procValora = async () => {
-      console.log(star.value);
-    };
-
-    return { verEventos, procValora, star };
+    return { verEventos };
   },
 };
 </script>
@@ -227,32 +208,5 @@ p {
 
 .card .content .foot .icon {
   font-size: 12px;
-}
-/*-------------------------------VOLARACIONES-RATING */
-.formu {
-  margin-top: 10px;
-}
-.formu label {
-  font-size: 14px;
-  color: grey;
-}
-.formu input[type='radio'] {
-  display: none;
-}
-.formu .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-}
-.formu label:hover,
-.formu label:hover ~ label {
-  /*(~) => esto indica precedidas por. En este caso, label precedidas por label con hover*/
-  color: orange;
-}
-.formu input[type='radio']:checked ~ label {
-  /*En naranja todas las label que preceden a la que elegimos*/
-  color: orange;
-}
-.formu input[type='submit'] {
-  margin-right: 10px;
 }
 </style>

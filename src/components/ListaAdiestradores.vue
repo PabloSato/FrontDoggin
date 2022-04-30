@@ -16,6 +16,7 @@ import getAdiestradores from '../composables/Adiestrador/getAdiestradores';
 export default {
   components: { Adiestrador },
   setup() {
+    let array = [];
     const { adiestradores, load } = getAdiestradores();
     load();
     return { adiestradores };

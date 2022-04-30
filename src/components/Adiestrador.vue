@@ -4,7 +4,7 @@
       <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
         <div class="backgroundEffect"></div>
         <div class="pic">
-          <img class="" :src="adiestrador.imageUrl" alt="" />
+          <img class="" :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
           <div class="date">
             <span class="day">26</span> <span class="month">June</span>
             <span class="year">2019</span>
@@ -26,11 +26,14 @@
               <p>
                 Rating:
                 <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span>
-                <span v-else>No disponible</span>
+                <span v-else>-</span>
               </p>
             </div>
           </div>
-          <FormValora />
+          <router-link
+            :to="{ name: 'detalle', params: { id: adiestrador._id } }"
+            >detalle</router-link
+          >
         </div>
       </div>
     </div>
@@ -47,12 +50,23 @@ export default {
   components: { FormValora },
   props: ['adiestrador', 'star'],
   setup(props, context) {
+    //Variables
+    const isLogin = ref(null);
+    const adiestrador = props.adiestrador;
+    adiestrador.rating = 0; // LO DEL RATING
+
+    //Tools
     const router = useRouter();
+    //Funciones
     const verEventos = id => {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
 
-    return { verEventos };
+    if (localStorage.getItem('token')) {
+      isLogin.value = true;
+    }
+
+    return { verEventos, isLogin, adiestrador };
   },
 };
 </script>
@@ -208,5 +222,8 @@ p {
 
 .card .content .foot .icon {
   font-size: 12px;
+}
+.d-flex {
+  gap: 20px;
 }
 </style>

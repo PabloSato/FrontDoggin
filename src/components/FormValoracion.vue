@@ -1,19 +1,44 @@
 <template>
   <div class="formu">
-    <form @submit.prevent="procValora">
+    <form @submit.prevent="procValora(adiestrador)">
       <p class="clasificacion">
-        <input id="radio1" type="radio" v-model="star" value="5" />
-        <label for="radio1">★</label>
-        <input id="radio2" type="radio" v-model="star" value="4" />
-        <label for="radio2">★</label>
-        <input id="radio3" type="radio" v-model="star" value="3" />
-        <label for="radio3">★</label>
-        <input id="radio4" type="radio" v-model="star" value="2" />
-        <label for="radio4">★</label>
-        <input id="radio5" type="radio" v-model="star" value="1" />
-        <label for="radio5">★</label>
+        <input
+          :id="staticID + 1"
+          type="radio"
+          v-model="adiestrador.rating"
+          value="5"
+        />
+        <label :for="staticID + 1">★</label>
+        <input
+          :id="staticID + 2"
+          type="radio"
+          v-model="adiestrador.rating"
+          value="4"
+        />
+        <label :for="staticID + 2">★</label>
+        <input
+          :id="staticID + 3"
+          type="radio"
+          v-model="adiestrador.rating"
+          value="3"
+        />
+        <label :for="staticID + 3">★</label>
+        <input
+          :id="staticID + 4"
+          type="radio"
+          v-model="adiestrador.rating"
+          value="2"
+        />
+        <label :for="staticID + 4">★</label>
+        <input
+          :id="staticID + 5"
+          type="radio"
+          v-model="adiestrador.rating"
+          value="1"
+        />
+        <label :for="staticID + 5">★</label>
       </p>
-      <input type="submit" value="Votar" />
+      <input type="submit" value="Valorar" />
     </form>
   </div>
 </template>
@@ -22,14 +47,18 @@
 //Utilidades
 import { ref } from 'vue';
 export default {
-  setup() {
-    const star = ref(null);
-
-    const procValora = async () => {
-      console.log(star.value);
+  props: ['adiestrador'],
+  setup(props) {
+    //Variables
+    const adiestrador = props.adiestrador;
+    const staticID = adiestrador._id;
+    //Funciones
+    const procValora = async adiestrador => {
+      console.log(adiestrador.rating);
+      console.log(adiestrador);
     };
 
-    return { procValora, star };
+    return { procValora, staticID };
   },
 };
 </script>
@@ -73,8 +102,5 @@ export default {
 .formu input[type='radio']:checked ~ label {
   /*En naranja todas las label que preceden a la que elegimos*/
   color: orange;
-}
-.formu input[type='submit'] {
-  margin-right: 10px;
 }
 </style>

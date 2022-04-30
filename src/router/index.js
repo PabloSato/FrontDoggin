@@ -7,6 +7,8 @@ import Login from '../views/Login.vue';
 import RegAdiestrador from '../views/RegAdiestrador.vue';
 import RegCliente from '../views/RegCliente.vue';
 import EditarUSuario from '../views/EditarUsuario.vue';
+import DetalleAdiestrador from '../views/DetalleAdiestrador.vue';
+import Contacto from '../views/Contacto.vue';
 
 const routes = [
   {
@@ -49,6 +51,18 @@ const routes = [
     path: '/alta-cliente',
     name: 'alta-cliente',
     component: RegCliente,
+  },
+  {
+    path: '/detalle/:id',
+    name: 'detalle',
+    component: DetalleAdiestrador,
+    props: true,
+  },
+  {
+    path: '/contacto/:id',
+    name: 'contacto',
+    component: Contacto,
+    props: true,
   },
   {
     path: '/edit/:id',

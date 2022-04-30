@@ -9,6 +9,8 @@ import RegCliente from '../views/RegCliente.vue';
 import EditarUSuario from '../views/EditarUsuario.vue';
 import DetalleAdiestrador from '../views/DetalleAdiestrador.vue';
 import Contacto from '../views/Contacto.vue';
+import MiPerfil from '../views/MiPerfil.vue';
+import CrearEvento from '../views/CrearEvento.vue';
 
 const routes = [
   {
@@ -62,6 +64,18 @@ const routes = [
     path: '/adiestradores/:id/contacto',
     name: 'contacto',
     component: Contacto,
+    props: true,
+  },
+  {
+    path: '/adiestradores/:id/miperfil',
+    name: 'miPerfil',
+    component: MiPerfil,
+    props: true,
+  },
+  {
+    path: '/adiestradores/:id/crearevento',
+    name: 'crearEvento',
+    component: CrearEvento,
     props: true,
   },
   {

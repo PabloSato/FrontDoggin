@@ -24,9 +24,6 @@
 </template>
 
 <script>
-//Componentes
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
 //Utilidades
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -34,7 +31,6 @@ import { useStore } from 'vuex';
 import useEmitter from '../composables/emitter';
 import createStore from '../store/index';
 export default {
-  components: { Header, Footer },
   setup() {
     //Tools
     const router = useRouter();
@@ -63,7 +59,8 @@ export default {
           emitter.emit('isLog', true);
           if (localStorage.getItem('rol') == 'ADIESTRADOR') {
             let idAdi = localStorage.getItem('id');
-            router.push({ name: 'detalle', params: { id: idAdi } });
+            emitter.emit('isAdi', true);
+            router.push({ name: 'miPerfil', params: { id: idAdi } });
           } else {
             router.push('/');
           }

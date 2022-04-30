@@ -32,8 +32,6 @@ export default {
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
-      localStorage.removeItem('id');
-      localStorage.removeItem('rol');
       emitter.emit('isLog', false);
       router.push('/login');
     };

@@ -61,7 +61,12 @@ export default {
         isLogin = createStore.state.token;
         if (isLogin) {
           emitter.emit('isLog', true);
-          router.push('/');
+          if (localStorage.getItem('rol') == 'ADIESTRADOR') {
+            let idAdi = localStorage.getItem('id');
+            router.push({ name: 'detalle', params: { id: idAdi } });
+          } else {
+            router.push('/');
+          }
         }
       } else {
         //Si ha habido un error, pasamos el error

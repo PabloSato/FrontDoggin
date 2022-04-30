@@ -14,22 +14,21 @@ export const login = async ({ commit }, usuario) => {
       throw Error('email/password incorrectos');
     } else {
       const response = await data.json(); //Esperamos la respuesta
-      console.log('login');
-      console.log(response);
       //Almacenamos el Token
       commit('setToken', response.token);
       commit('setIdUsuario', response.userId);
       if (response.role === 'CLIENTE') {
         commit('setId', response.idCliente);
+        localStorage.setItem('id', response.idCliente);
       } else {
         commit('setId', response.idAdiestrador);
+        localStorage.setItem('id', response.idAdiestrador);
       }
       commit('setRol', response.role);
       //localStorage sirve para almacenar las credenciales
       //Almacenamos tanto el token como el ID de usuario
       localStorage.setItem('token', response.token);
       localStorage.setItem('userId', response.userId);
-      localStorage.setItem('id', response.idCliente);
       localStorage.setItem('rol', response.role);
     }
   } catch (err) {

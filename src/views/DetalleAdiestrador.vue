@@ -38,8 +38,9 @@ export default {
     //Funciones
     load();
     if (
-      localStorage.getItem('token') !== null ||
-      localStorage.getItem('userId') !== null
+      (localStorage.getItem('token') !== null ||
+        localStorage.getItem('userId') !== null) &&
+      localStorage.getItem('rol') == 'CLIENTE'
     ) {
       isLogin.value = true;
       token = localStorage.getItem('token');

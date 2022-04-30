@@ -14,7 +14,6 @@
 //Componentes
 import FormMail from '../components/FormMail.vue';
 //Composables
-import getCliente from '../composables/Cliente/getCliente';
 import enviarMailToAdiestrador from '../composables/Cliente/enviarMailToAdiestrador';
 //Utilidades
 import { useRouter } from 'vue-router';
@@ -28,7 +27,8 @@ export default {
     //ANTES DE NADA COMPROBAMOS SI ESTÁ LOGUEADO
     if (
       localStorage.getItem('token') == null ||
-      localStorage.getItem('userId') == null
+      localStorage.getItem('userId') == null ||
+      localStorage.getItem('rol') == 'ADIESTRADOR'
     ) {
       router.push('/');
     }

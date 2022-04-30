@@ -71,7 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  min-width: 100vw;
+  width: 100vw;
   min-height: 90vh;
 }
 </style>

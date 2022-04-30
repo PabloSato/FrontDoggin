@@ -18,7 +18,7 @@ import { useRouter } from 'vue-router';
 export default {
   components: { Header, Footer },
   setup() {
-    //Router
+    //Tools
     const router = useRouter();
     //Comprobamos si el Usuario ya está Logueado, en el caso que asi sea, lo enviamos a Home
     if (localStorage.getItem('token') || localStorage.getItem('userId')) {
@@ -32,7 +32,7 @@ export default {
 .elige {
   padding: 50px 0;
   min-height: 90vh;
-  min-width: 100vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-content: center;

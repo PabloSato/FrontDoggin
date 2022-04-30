@@ -33,9 +33,7 @@ export default {
   created() {
     this.leerToken();
   },
-  updated() {
-    console.log('modificado');
-  },
+  updated() {},
 };
 </script>
 

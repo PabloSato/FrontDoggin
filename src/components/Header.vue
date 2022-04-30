@@ -22,14 +22,19 @@
 <script>
 //Utilidades
 import useEmitter from '../composables/emitter';
+import { useRouter } from 'vue-router';
 export default {
   props: ['userLogin'],
   setup(props) {
+    //Tools
     const emitter = useEmitter();
+    const router = useRouter();
+    //Funciones
     const logOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       emitter.emit('isLog', false);
+      router.push('/login');
     };
     return { logOut };
   },

@@ -8,6 +8,7 @@
       <div class="container-text">
         <h2>Bienvenido!!</h2>
         <p>Introduce tu usuario y contraseña</p>
+        <p v-if="errorLogin">{{ errorLogin }}</p>
         <form @submit.prevent="logear(usuario)">
           <input type="email" placeholder="Email" v-model="usuario.email" />
           <input
@@ -38,24 +39,39 @@ import createStore from '../store/index';
 export default {
   components: { Header, Footer },
   setup() {
+    //Tools
+    const router = useRouter();
+    const store = useStore();
+    const emitter = useEmitter();
+    //Variables
     const usuario = ref({
       email: '',
       password: '',
     });
+    let errorLogin = ref(null);
     let isLogin = createStore.state.token;
-    const router = useRouter();
-    const store = useStore();
-    const emitter = useEmitter();
+    //Si YA ESTÁ LOGUEADO, lo redirigimos a HOME, no pinta nada aqui
+    if (localStorage.getItem('token') || localStorage.getItem('userId')) {
+      router.push('/');
+    }
     const logear = async usuario => {
-      //
       await store.dispatch('login', usuario);
-      isLogin = createStore.state.token;
-      if (isLogin) {
-        emitter.emit('isLog', true);
-        router.push('/');
+      //Comprobamos si se ha logueado mirando si hay algo en el localStorage
+      if (
+        localStorage.getItem('token') !== null ||
+        localStorage.getItem('userId') !== null
+      ) {
+        isLogin = createStore.state.token;
+        if (isLogin) {
+          emitter.emit('isLog', true);
+          router.push('/');
+        }
+      } else {
+        //Si ha habido un error, pasamos el error
+        errorLogin.value = 'email/password incorrecto';
       }
     };
-    return { usuario, logear };
+    return { usuario, logear, errorLogin };
   },
 };
 </script>
@@ -63,7 +79,7 @@ export default {
 .login {
   padding-bottom: 100px;
   min-height: 90vh;
-  min-width: 100vw;
+  width: 100vw;
   display: flex;
   align-items: center;
 }

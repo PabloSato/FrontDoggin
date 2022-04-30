@@ -1,5 +1,5 @@
 <template>
-  <div class="ficha">
+  <div class="ficha" @click="mostrarEvento">
     <div class="d-lg-flex">
       <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
         <div class="backgroundEffect"></div>
@@ -34,7 +34,7 @@ import { ref } from '@vue/reactivity';
 import dayjs from 'dayjs';
 export default {
   props: ['evento'],
-  setup(props) {
+  setup(props, context) {
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
     let date = fecha.format('MMMM D, YYYY'); //Formateamos fecha
@@ -48,7 +48,11 @@ export default {
     const toggleAsistir = () => {
       asistir.value = !asistir.value;
     };
-    return { asistir, toggleAsistir, dia, mes, year };
+    // ----- SELECCIONAR EVENTO -------
+    const mostrarEvento = () => {
+      context.emit('eventoSeleccionado', props.evento);
+    };
+    return { asistir, toggleAsistir, dia, mes, year, mostrarEvento };
   },
 };
 </script>

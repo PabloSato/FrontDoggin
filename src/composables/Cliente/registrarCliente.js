@@ -19,7 +19,7 @@ const registrarCliente = (idCliente, idEvento, registrado, feedbackAccion) => {
       if (!data.ok) throw Error('error al registrarse');
       registrado.value = true;
       feedbackAccion.value = 'Usuario registrado con éxito';
-      emitter.emit('eventosClienteActualizado', idCliente);
+      emitter.emit('clienteActualizado', idCliente);
     } catch (err) {
       error.value = err.message;
       console.log(error.value);

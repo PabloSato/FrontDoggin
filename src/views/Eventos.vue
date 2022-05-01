@@ -28,10 +28,13 @@ import DetalleEvento from '../components/DetalleEvento.vue';
 //Composables
 import ListaEventos from '../components/ListaEventos.vue';
 import getCliente from '../composables/Cliente/getCliente';
+import useEmitter from '@/composables/emitter';
+
 export default {
   components: { ListaEventos, Header, Footer, DetalleEvento },
   props: ['idAdiestrador'],
   setup() {
+    const emitter = useEmitter();
     const eventoSeleccionado = ref(null);
     const mostrarEvento = evento => {
       eventoSeleccionado.value = evento;
@@ -41,9 +44,22 @@ export default {
     };
 
     const idCliente = localStorage.getItem('id');
-    const { cliente, error, load } = getCliente(idCliente);
-    load();
-    return { mostrarEvento, eventoSeleccionado, ocultarEvento, cliente };
+    const { cliente, error, loadCliente } = getCliente(idCliente);
+    loadCliente();
+    console.log('cliente', cliente);
+
+    emitter.on('clienteActualizado', () => {
+      loadCliente();
+      console.log('clienteActualizado!');
+      console.log('cliente', cliente);
+    });
+
+    return {
+      mostrarEvento,
+      eventoSeleccionado,
+      ocultarEvento,
+      cliente,
+    };
   },
 };
 </script>

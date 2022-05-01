@@ -1,9 +1,16 @@
 <template>
-  <h2>TOMA YA</h2>
+  <div class="crearEvento">
+    <h2>Crear Evento</h2>
+    <FormCrearEvento />
+  </div>
 </template>
 
 <script>
-export default {};
+//Componentes
+import FormCrearEvento from '../components/FormCrearEvento.vue';
+export default {
+  components: { FormCrearEvento },
+};
 </script>
 
 <style></style>

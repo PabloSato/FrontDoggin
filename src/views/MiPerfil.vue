@@ -6,6 +6,7 @@
     <img :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
     <button @click="verEventos(adiestrador._id)">mis eventos</button>
     <button @click="crearEvento(adiestrador._id)">crear evento</button>
+    <button>crear anuncio</button>
   </div>
 </template>
 

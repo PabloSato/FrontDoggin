@@ -5,6 +5,7 @@
       :key="evento._id"
       :evento="evento"
       @eventoSeleccionado="mostrarEvento"
+      :cliente="cliente"
     />
   </div>
 </template>
@@ -20,7 +21,7 @@ import { ref } from '@vue/reactivity';
 import { computed } from '@vue/runtime-core';
 export default {
   components: { Evento },
-  props: ['idAdiestrador'],
+  props: ['idAdiestrador', 'cliente'],
   setup(props, context) {
     let token = '';
     if (localStorage.getItem('token')) {

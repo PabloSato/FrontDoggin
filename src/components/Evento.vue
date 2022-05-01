@@ -17,10 +17,24 @@
           <div
             class="d-flex align-items-center justify-content-between mt-3 pb-3"
           >
-            <button class="btn btn-primary">Asistir</button>
+            <button
+              v-if="!registrado"
+              class="btn btn-primary"
+              @click.stop="registrarse"
+            >
+              Asistir
+            </button>
+            <button
+              v-if="registrado"
+              class="btn btn-danger"
+              @click.stop="cancelar"
+            >
+              Cancelar
+            </button>
             <div
               class="d-flex align-items-center justify-content-center foot"
             ></div>
+            <p>{{ feedbackAccion }}</p>
           </div>
         </div>
       </div>
@@ -32,8 +46,11 @@
 //Utilidades
 import { ref } from '@vue/reactivity';
 import dayjs from 'dayjs';
+// Composables
+import registrarCliente from '@/composables/Cliente/registrarCliente';
+import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
 export default {
-  props: ['evento'],
+  props: ['evento', 'cliente'],
   setup(props, context) {
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
@@ -42,17 +59,42 @@ export default {
     const dia = fecha.format('D'); //Sacamos día
     const mes = fecha.format('MMMM'); // Sacamos Mes
     const year = fecha.format('YYYY'); // Sacamos Año
-    // ---------- ASISTIR ------------
-    const asistir = ref(null);
-    asistir.value = true;
-    const toggleAsistir = () => {
-      asistir.value = !asistir.value;
-    };
+
+    // ------- ASISTENCIA -------
+    const registrado = ref(null);
+    registrado.value = !!props.cliente.eventos.find(
+      e => props.evento._id === e._id
+    );
+
+    const feedbackAccion = ref(null);
+
+    const { registrarse } = registrarCliente(
+      props.cliente._id,
+      props.evento._id,
+      registrado,
+      feedbackAccion
+    );
+
+    const { cancelar } = cancelarAsistencia(
+      props.cliente._id,
+      props.evento._id,
+      registrado,
+      feedbackAccion
+    );
     // ----- SELECCIONAR EVENTO -------
     const mostrarEvento = () => {
       context.emit('eventoSeleccionado', props.evento);
     };
-    return { asistir, toggleAsistir, dia, mes, year, mostrarEvento };
+    return {
+      dia,
+      mes,
+      year,
+      mostrarEvento,
+      registrado,
+      registrarse,
+      cancelar,
+      feedbackAccion,
+    };
   },
 };
 </script>

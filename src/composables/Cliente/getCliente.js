@@ -1,12 +1,15 @@
 import { ref } from 'vue';
-
-const getCliente = id => {
+import { BASEURL } from '@/main';
+const getCliente = idCliente => {
   const error = ref(null);
   const cliente = ref(null);
-
+  const token = localStorage.getItem('token');
   const load = async () => {
     try {
-      let data = await fetch('http://localhost:3000/clientes/' + id);
+      let data = await fetch(`${BASEURL}/clientes/${idCliente}`, {
+        method: 'get',
+        headers: { Authorization: `Bearer ${token}` },
+      });
       if (!data.ok) throw Error('error al coger al cliente');
       cliente.value = await data.json();
     } catch (err) {

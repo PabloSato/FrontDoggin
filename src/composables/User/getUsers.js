@@ -1,4 +1,5 @@
-import { ref } from "vue";
+import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const getUsers = () => {
   const users = ref([]);
@@ -6,8 +7,8 @@ const getUsers = () => {
 
   const load = async () => {
     try {
-      let data = await fetch("http://localhost:3001/users");
-      if (!data.ok) throw new Error("errorrrrr");
+      let data = await fetch(`${BASEURL}/users`);
+      if (!data.ok) throw new Error('errorrrrr');
       users.value = await data.json();
     } catch (err) {
       error.value = err.message;

@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const createEvento = (nuevoEvento, idAdiestrador) => {
   const error = ref(null);
@@ -12,7 +13,7 @@ const createEvento = (nuevoEvento, idAdiestrador) => {
 
   const insertEvento = async () => {
     try {
-      let data = await fetch('http://localhost:3000/eventos', {
+      let data = await fetch(`${BASEURL}/eventos`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(ev),

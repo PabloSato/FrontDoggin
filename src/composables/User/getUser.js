@@ -1,13 +1,14 @@
-import { ref } from "vue";
+import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
-const getUser = (id) => {
+const getUser = id => {
   const user = ref(null);
   const error = ref(null);
 
   const load = async () => {
     try {
-      let data = await fetch("http://localhost:3001/users/" + id);
-      if (!data.ok) throw new Error("errorrrrr");
+      let data = await fetch(`${BASEURL}/users/${id}`);
+      if (!data.ok) throw new Error('errorrrrr');
       user.value = await data.json();
     } catch (err) {
       error.value = err.message;

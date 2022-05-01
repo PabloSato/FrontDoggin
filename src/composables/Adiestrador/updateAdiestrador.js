@@ -1,11 +1,12 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const updateAdiestrador = (adiestrador, id) => {
   const error = ref(null);
   const adiestraUpdate = ref(null);
   const update = async () => {
     try {
-      let data = await fetch('http://localhost:3000/adiestradores/' + id, {
+      let data = await fetch(`${BASEURL}/adiestradores/${id}`, {
         method: 'patch',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(adiestrador),

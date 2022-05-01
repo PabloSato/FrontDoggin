@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const enviarMailToAdiestrador = (adiestradorId, clienteId, token, mail) => {
   const enviado = ref(null);
@@ -14,7 +15,7 @@ const enviarMailToAdiestrador = (adiestradorId, clienteId, token, mail) => {
   const send = async () => {
     try {
       let response = await fetch(
-        `http://localhost:3000/clientes/${clienteId}/adiestradores/${adiestradorId}/email`,
+        `${BASEURL}/clientes/${clienteId}/adiestradores/${adiestradorId}/email`,
         {
           method: 'post',
           headers: {

@@ -13,9 +13,7 @@
 
 <script>
 //Componentes
-import Header from '../components/Header.vue';
 import RegForm from '../components/RegForm.vue';
-import Footer from '../components/Footer.vue';
 //Composables
 import validarUser from '../composables/validarUser';
 import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
@@ -23,7 +21,7 @@ import createAdiestrador from '../composables/Adiestrador/createAdiestrador';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
-  components: { RegForm, Header, Footer },
+  components: { RegForm },
   setup() {
     //Recogemos los campos del User
     const user = ref({

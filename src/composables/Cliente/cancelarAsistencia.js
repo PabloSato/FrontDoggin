@@ -26,7 +26,7 @@ const cancelarAsistencia = (
       if (!data.ok) throw Error('error al cancelar');
       registrado.value = false;
       feedbackAccion.value = 'Asistencia al evento cancelada';
-      emitter.emit('clienteActualizado', idCliente);
+      emitter.emit('clienteActualizado');
     } catch (err) {
       error.value = err.message;
       console.log(error.value);

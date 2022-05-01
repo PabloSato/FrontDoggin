@@ -34,7 +34,10 @@ export default {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
     const crearEvento = id => {
-      router.push({ path: `/adiestradores/${id}/crearevento` });
+      router.push({
+        path: `/adiestradores/${id}/crearevento`,
+        params: { id: id },
+      });
     };
 
     //Returns

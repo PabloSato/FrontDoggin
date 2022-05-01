@@ -9,10 +9,18 @@
       <span class="month">{{ mes }}</span>
       <span class="year">{{ year }}</span>
     </div>
-    <button v-if="!registrado" class="btn btn-primary" @click="registrarse">
+    <button
+      v-if="cliente && !registrado"
+      class="btn btn-primary"
+      @click="registrarse"
+    >
       Asistir
     </button>
-    <button v-if="registrado" class="btn btn-danger" @click="cancelar">
+    <button
+      v-if="cliente && registrado"
+      class="btn btn-danger"
+      @click="cancelar"
+    >
       Cancelar
     </button>
     <p>{{ feedbackAccion }}</p>
@@ -41,27 +49,32 @@ export default {
     );
     load();
 
-    // ------- ASISTENCIA -------
-    const registrado = ref(null);
-    registrado.value = !!props.cliente.eventos.find(
-      e => props.evento._id === e._id
-    );
-
     const feedbackAccion = ref(null);
 
+    // ------- ASISTENCIA -------
+    const registrado = ref(null);
+    let idCliente = null;
+    if (props.cliente) {
+      registrado.value = !!props.cliente.eventos.find(
+        e => props.evento._id === e._id
+      );
+      idCliente = props.cliente._id;
+    }
+
     const { registrarse } = registrarCliente(
-      props.cliente._id,
+      idCliente,
       props.evento._id,
       registrado,
       feedbackAccion
     );
 
     const { cancelar } = cancelarAsistencia(
-      props.cliente._id,
+      idCliente,
       props.evento._id,
       registrado,
       feedbackAccion
     );
+
     return {
       adiestrador,
       dia,

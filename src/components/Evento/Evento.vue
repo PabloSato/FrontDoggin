@@ -18,14 +18,14 @@
             class="d-flex align-items-center justify-content-between mt-3 pb-3"
           >
             <button
-              v-if="!registrado"
+              v-if="cliente && !registrado"
               class="btn btn-primary"
               @click.stop="registrarse"
             >
               Asistir
             </button>
             <button
-              v-if="registrado"
+              v-if="cliente && registrado"
               class="btn btn-danger"
               @click.stop="cancelar"
             >
@@ -60,27 +60,32 @@ export default {
     const mes = fecha.format('MMMM'); // Sacamos Mes
     const year = fecha.format('YYYY'); // Sacamos Año
 
-    // ------- ASISTENCIA -------
-    const registrado = ref(null);
-    registrado.value = !!props.cliente.eventos.find(
-      e => props.evento._id === e._id
-    );
-
     const feedbackAccion = ref(null);
 
+    // ------- ASISTENCIA -------
+    const registrado = ref(null);
+    let idCliente = null;
+    if (props.cliente) {
+      registrado.value = !!props.cliente.eventos.find(
+        e => props.evento._id === e._id
+      );
+      idCliente = props.cliente._id;
+    }
+
     const { registrarse } = registrarCliente(
-      props.cliente._id,
+      idCliente,
       props.evento._id,
       registrado,
       feedbackAccion
     );
 
     const { cancelar } = cancelarAsistencia(
-      props.cliente._id,
+      idCliente,
       props.evento._id,
       registrado,
       feedbackAccion
     );
+
     // ----- SELECCIONAR EVENTO -------
     const mostrarEvento = () => {
       context.emit('eventoSeleccionado', props.evento);

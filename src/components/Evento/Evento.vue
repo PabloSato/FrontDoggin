@@ -31,6 +31,13 @@
             >
               Cancelar
             </button>
+            <button
+              v-if="adiestrador && owner"
+              class="btn btn-danger"
+              @click.stop="eliminar"
+            >
+              Cancelar
+            </button>
             <div
               class="d-flex align-items-center justify-content-center foot"
             ></div>
@@ -49,8 +56,9 @@ import dayjs from 'dayjs';
 // Composables
 import registrarCliente from '@/composables/Cliente/registrarCliente';
 import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
+import eliminarEvento from '@/composables/Evento/deleteEvento';
 export default {
-  props: ['evento', 'cliente'],
+  props: ['evento', 'cliente', 'adiestrador'],
   setup(props, context) {
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
@@ -86,6 +94,22 @@ export default {
       feedbackAccion
     );
 
+    // ------- GESTION -------
+    const owner = ref(null);
+    let idAdiestrador = null;
+    if (props.adiestrador) {
+      owner.value = !!props.adiestrador.eventos.find(
+        e => props.evento._id === e._id
+      );
+      idAdiestrador = props.adiestrador._id;
+    }
+
+    const { eliminar } = eliminarEvento(
+      idAdiestrador,
+      props.evento._id,
+      feedbackAccion
+    );
+
     // ----- SELECCIONAR EVENTO -------
     const mostrarEvento = () => {
       context.emit('eventoSeleccionado', props.evento);
@@ -99,6 +123,8 @@ export default {
       registrarse,
       cancelar,
       feedbackAccion,
+      eliminar,
+      owner,
     };
   },
 };

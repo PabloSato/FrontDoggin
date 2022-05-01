@@ -33,10 +33,10 @@ export default {
     //Variables
     const router = useRouter();
     const isLogin = ref(null);
-    const { adiestrador, error, load } = getAdiestraod(props.id);
+    const { adiestrador, error, loadAdiestrador } = getAdiestraod(props.id);
     let token = '';
     //Funciones
-    load();
+    loadAdiestrador();
     if (
       (localStorage.getItem('token') !== null ||
         localStorage.getItem('userId') !== null) &&

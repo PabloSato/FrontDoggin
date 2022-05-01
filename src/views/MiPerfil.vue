@@ -36,7 +36,6 @@ export default {
     const crearEvento = id => {
       router.push({
         path: `/adiestradores/${id}/crearevento`,
-        params: { id: id },
       });
     };
 

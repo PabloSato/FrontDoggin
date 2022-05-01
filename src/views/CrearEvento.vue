@@ -22,8 +22,8 @@ export default {
   components: { FormCrearEvento },
   setup(props) {
     const router = useRouter();
-    const idAdiestrador = props.id;
-    let errorEvento = ref(null);
+    const idAdiestrador = localStorage.getItem('id');
+    const errorEvento = ref(null);
     //Recogemos los campos del evento
     const evento = ref({
       nombre: null,
@@ -33,14 +33,13 @@ export default {
       maxAforo: null,
       private: null,
     });
-
     const procForm = async evento => {
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
       if (error.value !== 'error al crear el evento') {
         router.go(-1);
       } else {
-        errorEvento = error.value;
+        errorEvento.value = error.value;
       }
     };
 

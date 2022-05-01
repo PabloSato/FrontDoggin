@@ -10,7 +10,7 @@
       <label for="">Descripción:</label>
       <input
         type="text"
-        v-model="ev.descripción"
+        v-model="ev.descripcion"
         placeholder="añade descripcion...."
       /><br />
       <label for="">Fecha: </label>
@@ -36,7 +36,6 @@ export default {
   props: ['evento', 'errorEvento'],
   setup(props, context) {
     const ev = ref(null);
-    console.log('aqui', props.errorEvento);
     ev.value = props.evento;
     const procForm = () => {
       context.emit('formProce', ev);

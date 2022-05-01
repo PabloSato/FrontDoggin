@@ -36,7 +36,7 @@ export default {
       asunto: null,
       mensaje: null,
     });
-    let errorEnvio = ref(null);
+    const errorEnvio = ref(null);
     const adiestradorId = props.id;
     const adiestradorNombre = props.nombre;
     const clienteId = localStorage.getItem('id');

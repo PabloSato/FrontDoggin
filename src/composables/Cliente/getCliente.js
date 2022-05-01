@@ -4,7 +4,9 @@ const getCliente = idCliente => {
   const error = ref(null);
   const cliente = ref(null);
   const token = localStorage.getItem('token');
+
   const loadCliente = async () => {
+    if (!idCliente) return;
     try {
       let data = await fetch(`${BASEURL}/clientes/${idCliente}`, {
         method: 'get',

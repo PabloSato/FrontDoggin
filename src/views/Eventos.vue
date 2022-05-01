@@ -3,7 +3,6 @@
   <div class="contenedor">
     <div class="titulos">
       <h1>Eventos</h1>
-      <h2>Lista de eventos activos</h2>
     </div>
     <div class="detalles" v-if="eventoSeleccionado">
       <detalle-evento :evento="eventoSeleccionado" :cliente="cliente" />
@@ -22,12 +21,12 @@
 import { ref } from '@vue/reactivity';
 
 //Componentes
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-import DetalleEvento from '../components/DetalleEvento.vue';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import DetalleEvento from '@/components/Evento/DetalleEvento.vue';
 //Composables
-import ListaEventos from '../components/ListaEventos.vue';
-import getCliente from '../composables/Cliente/getCliente';
+import ListaEventos from '@/components/Evento/ListaEventos.vue';
+import getCliente from '@/composables/Cliente/getCliente';
 import useEmitter from '@/composables/emitter';
 
 export default {
@@ -54,6 +53,7 @@ export default {
       console.log('cliente', cliente);
     });
 
+    const filtro = ref('activos');
     return {
       mostrarEvento,
       eventoSeleccionado,

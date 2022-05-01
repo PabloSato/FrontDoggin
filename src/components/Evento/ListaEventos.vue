@@ -1,5 +1,10 @@
 <template>
   <div class="eventos">
+    <filtro-eventos
+      @filtroActualizado="filtro = $event"
+      :current="filtro"
+      v-if="cliente"
+    />
     <evento
       v-for="evento in eventosVisibles"
       :key="evento._id"
@@ -12,15 +17,15 @@
 
 <script>
 //Componentes
-import Evento from '../components/Evento.vue';
-
+import Evento from '@/components/Evento/Evento.vue';
+import FiltroEventos from '@/components/Evento/FiltroEventos.vue';
 //Composables
-import getEventos from '../composables/Evento/getEventos';
+import getEventos from '@/composables/Evento/getEventos';
 //Utilidades
 import { ref } from '@vue/reactivity';
 import { computed } from '@vue/runtime-core';
 export default {
-  components: { Evento },
+  components: { Evento, FiltroEventos },
   props: ['idAdiestrador', 'cliente'],
   setup(props, context) {
     let token = '';
@@ -30,14 +35,24 @@ export default {
     const { eventos, load } = getEventos(token);
     load();
 
+    const filtro = ref('activos');
     const eventosVisibles = computed(() => {
-      // let resultado = eventos.value;
-      // if (props.idAdiestrador) {
-      //   resultado = eventos.value.filter(evento => {
-      //     return evento.idAdiestrador === props.idAdiestrador;
-      //   });
-      // }
-      // return resultado.filter(evento => !evento.terminado && !evento.privado);
+      if (filtro.value === 'misEventos') {
+        const usuario = props.cliente
+          ? props.cliente
+          : props.adiestrador
+          ? props.adiestrador
+          : null;
+        if (usuario) {
+          const interseccion = eventos.value.filter(evento => {
+            const resultado = usuario.eventos.filter(eventoUsuario => {
+              return evento._id === eventoUsuario._id;
+            });
+            return !!resultado.length;
+          });
+          return interseccion;
+        }
+      }
       return eventos.value;
     });
 
@@ -46,7 +61,7 @@ export default {
       context.emit('eventoSeleccionado', evento);
     };
     //console.log(eventosVisibles); //para ver que viene
-    return { eventosVisibles, mostrarEvento, eventoSeleccionado };
+    return { eventosVisibles, mostrarEvento, eventoSeleccionado, filtro };
   },
 };
 </script>

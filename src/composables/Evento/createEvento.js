@@ -1,14 +1,16 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
-const createEvento = (nuevoEvento, idAdiestrador) => {
+const createEvento = evento => {
   const error = ref(null);
-  const evento = ref(null);
+  const nuevoEvento = ref(null);
   const ev = {
-    idAdiestrador: idAdiestrador,
     nombre: nuevoEvento.nombre,
+    descripción: nuevoEvento.descripción,
+    idAdiestrador: nuevoEvento.idAdiestrador,
     fecha: nuevoEvento.fecha,
     maxAforo: nuevoEvento.maxAforo,
+    private: nuevoEvento.private,
   };
 
   const insertEvento = async () => {
@@ -19,14 +21,14 @@ const createEvento = (nuevoEvento, idAdiestrador) => {
         body: JSON.stringify(ev),
       });
       if (!data.ok) throw Error('error al crear el evento');
-      evento.value = await data.json();
+      nuevoEvento.value = await data.json();
     } catch (err) {
       error.value = err.message;
       console.log(error.value);
     }
   };
 
-  return { evento, error, insertEvento };
+  return { nuevoEvento, error, insertEvento };
 };
 
 export default createEvento;

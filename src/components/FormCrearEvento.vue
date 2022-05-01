@@ -4,25 +4,28 @@
       <label for="">Nombre del Evento: </label>
       <input
         type="text"
-        v-model="evento.nombre"
+        v-model="ev.nombre"
         placeholder="añade nombre...."
       /><br />
       <label for="">Descripción:</label>
       <input
         type="text"
-        v-model="evento.descripción"
+        v-model="ev.descripción"
         placeholder="añade descripcion...."
       /><br />
       <label for="">Fecha: </label>
-      <input type="date" v-model="evento.fecha" /><br />
+      <input type="date" v-model="ev.fecha" /><br />
       <label for="">Aforo: </label>
-      <input type="number" v-model="evento.maxAforo" /><br />
+      <input type="number" v-model="ev.maxAforo" /><br />
       <label for="">Privado: </label>
-      <input type="radio" v-model="evento.privado" value="s" />
+      <input type="radio" v-model="ev.privado" value="s" />
       <label for="">Si</label><br />
       <input type="submit" value="Crear" />
       <input type="reset" value="Borrar" />
     </form>
+    <p v-if="errorEvento">
+      {{ errorEvento }}
+    </p>
   </fieldset>
 </template>
 
@@ -30,15 +33,16 @@
 //Utilidades
 import { ref } from 'vue';
 export default {
-  props: ['idAdiestrador', 'evento'],
+  props: ['evento', 'errorEvento'],
   setup(props, context) {
-    const evento = ref(null);
-    evento.value = props.evento;
+    const ev = ref(null);
+    console.log('aqui', props.errorEvento);
+    ev.value = props.evento;
     const procForm = () => {
-      context.emit('formProce', evento);
+      context.emit('formProce', ev);
     };
 
-    return { evento, procForm };
+    return { ev, procForm };
   },
 };
 </script>

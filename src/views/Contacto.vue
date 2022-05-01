@@ -50,8 +50,6 @@ export default {
         mail
       );
       await send();
-      console.log('aqui');
-      console.log(error);
       if (error.value !== 'error al mandar el email') {
         router.go(-1);
       } else {

@@ -2,8 +2,8 @@
   <div class="crearEvento">
     <h2>Crear Evento</h2>
     <FormCrearEvento
-      :idAdiestrador="id"
       :evento="evento"
+      :errorEvento="errorEvento"
       @formProce="procForm(evento)"
     />
   </div>
@@ -12,14 +12,19 @@
 <script>
 //Componentes
 import FormCrearEvento from '../components/FormCrearEvento.vue';
+//Composables
+import createEvento from '../composables/Evento/createEvento';
 //Utilidades
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   props: ['id'],
   components: { FormCrearEvento },
   setup(props) {
-    //Recogemos los campos del evento
+    const router = useRouter();
     const idAdiestrador = props.id;
+    let errorEvento = ref(null);
+    //Recogemos los campos del evento
     const evento = ref({
       nombre: null,
       descripción: null,
@@ -30,10 +35,16 @@ export default {
     });
 
     const procForm = async evento => {
-      console.log(evento);
+      const { nuevoEvento, error, insertEvento } = createEvento(evento);
+      await insertEvento();
+      if (error.value !== 'error al crear el evento') {
+        router.go(-1);
+      } else {
+        errorEvento = error.value;
+      }
     };
 
-    return { evento, procForm };
+    return { evento, procForm, errorEvento };
   },
 };
 </script>

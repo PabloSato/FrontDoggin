@@ -36,7 +36,7 @@ export default {
       asunto: null,
       mensaje: null,
     });
-    let errorEnvio = ref(null);
+    const errorEnvio = ref(null);
     const adiestradorId = props.id;
     const adiestradorNombre = props.nombre;
     const clienteId = localStorage.getItem('id');
@@ -50,8 +50,6 @@ export default {
         mail
       );
       await send();
-      console.log('aqui');
-      console.log(error);
       if (error.value !== 'error al mandar el email') {
         router.go(-1);
       } else {

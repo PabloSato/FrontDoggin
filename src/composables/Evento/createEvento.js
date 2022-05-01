@@ -1,32 +1,44 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
-const createEvento = (nuevoEvento, idAdiestrador) => {
+const createEvento = evento => {
   const error = ref(null);
-  const evento = ref(null);
+  const nuevoEvento = ref(null);
+  const idAdiestrador = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
   const ev = {
-    idAdiestrador: idAdiestrador,
-    nombre: nuevoEvento.nombre,
-    fecha: nuevoEvento.fecha,
-    maxAforo: nuevoEvento.maxAforo,
+    nombre: evento.nombre,
+    descripcion: evento.descripcion,
+    idAdiestrador: evento.idAdiestrador,
+    fecha: evento.fecha,
+    maxAforo: evento.maxAforo,
+    private: evento.private,
   };
+  console.log('evento');
+  console.log(ev);
 
   const insertEvento = async () => {
     try {
-      let data = await fetch(`${BASEURL}/eventos`, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(ev),
-      });
+      let data = await fetch(
+        `${BASEURL}/adiestradores/${idAdiestrador}/eventos`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(ev),
+        }
+      );
       if (!data.ok) throw Error('error al crear el evento');
-      evento.value = await data.json();
+      nuevoEvento.value = await data.json();
     } catch (err) {
       error.value = err.message;
       console.log(error.value);
     }
   };
 
-  return { evento, error, insertEvento };
+  return { nuevoEvento, error, insertEvento };
 };
 
 export default createEvento;

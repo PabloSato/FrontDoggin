@@ -23,13 +23,13 @@ export default {
     //Variables
     const idAdi = props.id;
     const idLocal = localStorage.getItem('id');
-    const { adiestrador, error, load } = getAdiestrador(idAdi);
+    const { adiestrador, error, loadAdiestrador } = getAdiestrador(idAdi);
     //Comprobamos si entra el mismoq ue se ha logueado
     if (idAdi !== idLocal) {
       router.push('/'); //Si no, lo mandamos fuera
     }
     //Funciones
-    load();
+    loadAdiestrador();
     const verEventos = id => {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };

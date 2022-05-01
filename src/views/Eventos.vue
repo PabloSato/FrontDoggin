@@ -5,12 +5,17 @@
       <h1>Eventos</h1>
     </div>
     <div class="detalles" v-if="eventoSeleccionado">
-      <detalle-evento :evento="eventoSeleccionado" :cliente="cliente" />
+      <detalle-evento
+        :evento="eventoSeleccionado"
+        :cliente="cliente"
+        :adiestrador="adiestrador"
+      />
     </div>
     <div class="lista-eventos">
       <lista-eventos
         :idAdiestrador="idAdiestrador"
         :cliente="cliente"
+        :adiestrador="adiestrador"
         @eventoSeleccionado="mostrarEvento"
       />
     </div>
@@ -28,6 +33,7 @@ import DetalleEvento from '@/components/Evento/DetalleEvento.vue';
 import ListaEventos from '@/components/Evento/ListaEventos.vue';
 import getCliente from '@/composables/Cliente/getCliente';
 import useEmitter from '@/composables/emitter';
+import getAdiestrador from '@/composables/Adiestrador/getAdiestrador';
 
 export default {
   components: { ListaEventos, Header, Footer, DetalleEvento },
@@ -42,10 +48,17 @@ export default {
       eventoSeleccionado.value = null;
     };
 
-    const idCliente = localStorage.getItem('id');
-    const { cliente, error, loadCliente } = getCliente(idCliente);
+    const rolUsuario = localStorage.getItem('rol');
+    const idCliente =
+      rolUsuario === 'CLIENTE' ? localStorage.getItem('id') : null;
+    const idAdiestrador =
+      rolUsuario === 'ADIESTRADOR' ? localStorage.getItem('id') : null;
+
+    const { cliente, loadCliente } = getCliente(idCliente);
     loadCliente();
-    console.log('cliente', cliente);
+
+    const { adiestrador, loadAdiestrador } = getAdiestrador(idAdiestrador);
+    loadAdiestrador();
 
     emitter.on('clienteActualizado', () => {
       loadCliente();
@@ -53,12 +66,12 @@ export default {
       console.log('cliente', cliente);
     });
 
-    const filtro = ref('activos');
     return {
       mostrarEvento,
       eventoSeleccionado,
       ocultarEvento,
       cliente,
+      adiestrador,
     };
   },
 };

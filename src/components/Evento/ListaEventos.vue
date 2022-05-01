@@ -3,7 +3,7 @@
     <filtro-eventos
       @filtroActualizado="filtro = $event"
       :current="filtro"
-      v-if="cliente"
+      v-if="cliente || adiestrador"
     />
     <evento
       v-for="evento in eventosVisibles"
@@ -11,6 +11,7 @@
       :evento="evento"
       @eventoSeleccionado="mostrarEvento"
       :cliente="cliente"
+      :adiestrador="adiestrador"
     />
   </div>
 </template>
@@ -24,15 +25,19 @@ import getEventos from '@/composables/Evento/getEventos';
 //Utilidades
 import { ref } from '@vue/reactivity';
 import { computed } from '@vue/runtime-core';
+import useEmitter from '@/composables/emitter';
+
 export default {
   components: { Evento, FiltroEventos },
-  props: ['idAdiestrador', 'cliente'],
+  props: ['idAdiestrador', 'cliente', 'adiestrador'],
   setup(props, context) {
-    let token = '';
-    if (localStorage.getItem('token')) {
-      token = localStorage.getItem('token');
-    }
-    const { eventos, load } = getEventos(token);
+    const emitter = useEmitter();
+
+    // let token = '';
+    // if (localStorage.getItem('token')) {
+    //   token = localStorage.getItem('token');
+    // }
+    const { eventos, load } = getEventos(localStorage.getItem('token'));
     load();
 
     const filtro = ref('activos');
@@ -57,6 +62,10 @@ export default {
     });
 
     const eventoSeleccionado = ref(null);
+
+    emitter.on('eventoEliminado', idEvento => {
+      eventos.value = eventos.value.filter(e => e._id !== idEvento);
+    });
     const mostrarEvento = evento => {
       context.emit('eventoSeleccionado', evento);
     };

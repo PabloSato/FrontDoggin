@@ -1,7 +1,7 @@
 <template>
-  <div v-if="adiestrador">
+  <div v-if="adiestradorEvento">
     <h1>{{ evento.nombre }}</h1>
-    <h3>{{ adiestrador.nombre }}</h3>
+    <h3>{{ adiestradorEvento.nombre }}</h3>
     <p>{{ evento.descripcion }}</p>
     <img :src="evento.imageUrl" alt="imagen del evento" />
     <div class="date">
@@ -23,6 +23,13 @@
     >
       Cancelar
     </button>
+    <button
+      v-if="adiestrador && owner"
+      class="btn btn-danger"
+      @click="eliminar"
+    >
+      Cancelar
+    </button>
     <p>{{ feedbackAccion }}</p>
   </div>
 </template>
@@ -32,9 +39,10 @@ import dayjs from 'dayjs';
 import getAdiestrador from '@/composables/Adiestrador/getAdiestrador';
 import registrarCliente from '@/composables/Cliente/registrarCliente';
 import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
+import eliminarEvento from '@/composables/Evento/deleteEvento';
 import { ref } from '@vue/runtime-core';
 export default {
-  props: ['evento', 'cliente'],
+  props: ['evento', 'cliente', 'adiestrador'],
   setup(props) {
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
@@ -44,10 +52,9 @@ export default {
     const mes = fecha.format('MMMM'); // Sacamos Mes
     const year = fecha.format('YYYY'); // Sacamos Añ
 
-    const { adiestrador, error, load } = getAdiestrador(
-      props.evento.idAdiestrador
-    );
-    load();
+    const detallesAdiestrador = getAdiestrador(props.evento.idAdiestrador);
+    detallesAdiestrador.loadAdiestrador();
+    const adiestradorEvento = ref(detallesAdiestrador.adiestrador);
 
     const feedbackAccion = ref(null);
 
@@ -75,8 +82,24 @@ export default {
       feedbackAccion
     );
 
+    // ------- GESTION -------
+    const owner = ref(null);
+    let idAdiestrador = null;
+    if (props.adiestrador) {
+      owner.value = !!props.adiestrador.eventos.find(
+        e => props.evento._id === e._id
+      );
+      idAdiestrador = props.adiestrador._id;
+    }
+
+    const { eliminar } = eliminarEvento(
+      idAdiestrador,
+      props.evento._id,
+      feedbackAccion
+    );
+
     return {
-      adiestrador,
+      adiestradorEvento,
       dia,
       mes,
       year,
@@ -84,6 +107,8 @@ export default {
       cancelar,
       registrado,
       feedbackAccion,
+      eliminar,
+      owner,
     };
   },
 };

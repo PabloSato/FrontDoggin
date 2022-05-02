@@ -11,6 +11,7 @@ import DetalleAdiestrador from '../views/DetalleAdiestrador.vue';
 import Contacto from '../views/Contacto.vue';
 import MiPerfil from '../views/MiPerfil.vue';
 import CrearEvento from '../views/CrearEvento.vue';
+import Anuncio from '../views/Anuncio.vue';
 
 const routes = [
   {
@@ -76,6 +77,12 @@ const routes = [
     path: '/adiestradores/:id/crearevento',
     name: 'crearEvento',
     component: CrearEvento,
+    props: true,
+  },
+  {
+    path: '/adiestradores/:id/broadcast',
+    name: 'anuncio',
+    component: Anuncio,
     props: true,
   },
   {

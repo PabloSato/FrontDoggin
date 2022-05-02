@@ -6,7 +6,7 @@
     <img :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
     <button @click="verEventos(adiestrador._id)">mis eventos</button>
     <button @click="crearEvento(adiestrador._id)">crear evento</button>
-    <button>crear anuncio</button>
+    <button @click="crearAnuncio(adiestrador._id)">crear anuncio</button>
   </div>
 </template>
 
@@ -38,9 +38,12 @@ export default {
         path: `/adiestradores/${id}/crearevento`,
       });
     };
+    const crearAnuncio = id => {
+      router.push({ path: `/adiestradores/${id}/broadcast` });
+    };
 
     //Returns
-    return { adiestrador, verEventos, crearEvento };
+    return { adiestrador, verEventos, crearEvento, crearAnuncio };
   },
 };
 </script>

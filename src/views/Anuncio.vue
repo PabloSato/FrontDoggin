@@ -1,7 +1,12 @@
 <template>
   <div class="anuncio">
     <h2>Envia un Anuncio a tus Clientes</h2>
-    <!-- <FormMail /> -->
+    <FormMail
+      :mail="mail"
+      :errorEnvio="errorEnvio"
+      :errorValida="errorValida"
+      @formProce="procForm(mail)"
+    />
   </div>
 </template>
 
@@ -10,6 +15,7 @@
 import FormMail from '../components/FormMail.vue';
 //Composables
 import enviarMailToAll from '../composables/Adiestrador/enviarMailToAll';
+import validarFormMail from '../composables/validarFormMail';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
@@ -33,8 +39,24 @@ export default {
       mensaje: null,
     });
     const errorEnvio = ref(null);
+    const errorValida = ref([null]);
 
-    return { mail, errorEnvio };
+    //Funciones
+    const procForm = async mail => {
+      const { validacion, mensajesValidacion } = validarFormMail(mail);
+
+      if (validacion) {
+        const { error, sendAll } = enviarMailToAll(mail);
+        errorValida.value = mensajesValidacion;
+        await sendAll();
+        if (error.value !== 'error al mandar el email') {
+          router.go(-1);
+        } else {
+          errorEnvio.value = error.value;
+        }
+      }
+    };
+    return { mail, errorEnvio, procForm, errorValida };
   },
 };
 </script>

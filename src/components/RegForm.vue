@@ -1,13 +1,6 @@
 <template>
   <h2>{{ act }} {{ quienH2 }}</h2>
-  <div v-if="errorInsert.length > 0">
-    <p>{{ errorInsert }}</p>
-  </div>
-  <div v-if="errorValida.length > 0">
-    <p v-for="mensaje in errorValida" :key="mensaje">
-      {{ mensaje }}
-    </p>
-  </div>
+
   <form @submit.prevent="procesaFormu" id="formulario">
     <label for="nombre">Nombre:</label>
     <input
@@ -46,6 +39,14 @@
     <input type="submit" value="registrar" />
     <input type="reset" value="borrar" />
   </form>
+  <div v-if="errorInsert.length > 0">
+    <p>{{ errorInsert }}</p>
+  </div>
+  <div v-if="errorValida.length > 0">
+    <p v-for="mensaje in errorValida" :key="mensaje">
+      {{ mensaje }}
+    </p>
+  </div>
 </template>
 
 <script>

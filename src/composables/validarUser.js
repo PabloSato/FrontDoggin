@@ -1,5 +1,3 @@
-import { ref } from 'vue';
-
 const validarUser = user => {
   //Expresiones Regulares
   const emailReg =

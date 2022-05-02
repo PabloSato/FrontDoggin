@@ -9,7 +9,7 @@ const registrarCliente = (idCliente, idEvento, registrado, feedbackAccion) => {
   const registrarse = async () => {
     try {
       let data = await fetch(`${BASEURL}/clientes/${idCliente}/eventos`, {
-        method: 'put',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

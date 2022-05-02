@@ -5,7 +5,13 @@
     <p>Rating: {{ adiestrador.rating }}</p>
     <img :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
     <div v-if="isLogin">
-      <FormValoracion :adiestrador="adiestrador" />
+      <FormValoracion
+        :adiestrador="adiestrador"
+        :valoracion="valoracion"
+        :errorValora="errorValora"
+        :okValora="okValora"
+        @proValorar="valoraFuncion(valoracion)"
+      />
       <router-link
         :to="{
           name: 'contacto',
@@ -23,6 +29,7 @@
 import FormValoracion from '../../components/Formularios/FormValoracion.vue';
 //Composable
 import getAdiestraod from '../../composables/Adiestrador/getAdiestrador';
+import valorarAdiestrador from '../../composables/Cliente/valorarAdiestrador';
 //Utilidades
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -31,6 +38,11 @@ export default {
   props: ['id'],
   setup(props) {
     //Variables
+    const valoracion = ref({
+      score: null,
+    });
+    const errorValora = ref(null);
+    const okValora = ref(null);
     const router = useRouter();
     const isLogin = ref(null);
     const { adiestrador, error, loadAdiestrador } = getAdiestraod(props.id);
@@ -48,8 +60,30 @@ export default {
     const verEventos = id => {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
+
+    //Funcion Valorar
+    const valoraFuncion = async valoracion => {
+      const { rating, error, insertValoracion } = valorarAdiestrador(
+        props.id,
+        valoracion
+      );
+      await insertValoracion();
+      if (error.value !== 'error al puntuar al Adiestrador') {
+        okValora.value = `Has puntuado con un ${rating.score}`;
+      } else {
+        errorValora.value = error.value;
+      }
+    };
     //Return
-    return { adiestrador, isLogin, verEventos };
+    return {
+      adiestrador,
+      isLogin,
+      verEventos,
+      valoracion,
+      valoraFuncion,
+      errorValora,
+      okValora,
+    };
   },
 };
 </script>

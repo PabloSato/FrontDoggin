@@ -8,7 +8,9 @@
         <router-link to="/">Home</router-link>
         <router-link to="/eventos">Eventos</router-link>
         <router-link to="/adiestradores">Adiestradores</router-link>
-        <router-link v-if="userLogin.rol === 'ADIESTRADOR'" :to="perfilUrl"
+        <router-link
+          v-if="userLogin.rol === 'ADIESTRADOR'"
+          :to="{ name: 'miPerfil', params: { id: userLogin.id } }"
           >Mi Perfil</router-link
         >
         <router-link v-if="!userLogin.token" to="/elige"
@@ -31,8 +33,6 @@ import { ref } from 'vue';
 export default {
   props: ['userLogin'],
   setup(props) {
-    const perfilUrl = ref(null);
-    perfilUrl.value = ref(`/adiestradores/${props.userLogin.id}/miperfil`);
     //Tools
     const emitter = useEmitter();
     const router = useRouter();
@@ -45,7 +45,7 @@ export default {
       emitter.emit('isLog', false);
       router.push('/login');
     };
-    return { logOut, perfilUrl };
+    return { logOut };
   },
 };
 </script>

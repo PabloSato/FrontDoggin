@@ -60,8 +60,6 @@ export default {
 
     emitter.on('clienteActualizado', () => {
       loadCliente();
-      console.log('clienteActualizado!');
-      console.log('cliente', cliente);
     });
 
     return {

@@ -57,9 +57,11 @@ import dayjs from 'dayjs';
 import registrarCliente from '@/composables/Cliente/registrarCliente';
 import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
 import eliminarEvento from '@/composables/Evento/deleteEvento';
+import useEmitter from '@/composables/Tools/emitter';
 export default {
   props: ['evento', 'cliente', 'adiestrador'],
   setup(props, context) {
+    const emitter = useEmitter();
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
     let date = fecha.format('MMMM D, YYYY'); //Formateamos fecha
@@ -83,14 +85,12 @@ export default {
     const { registrarse } = registrarCliente(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
     const { cancelar } = cancelarAsistencia(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
@@ -114,6 +114,13 @@ export default {
     const mostrarEvento = () => {
       context.emit('eventoSeleccionado', props.evento);
     };
+
+    emitter.on('clienteActualizado', idEvento => {
+      if (idEvento === props.evento._id) {
+        registrado.value = !registrado.value;
+      }
+    });
+
     return {
       dia,
       mes,

@@ -41,9 +41,11 @@ import registrarCliente from '@/composables/Cliente/registrarCliente';
 import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
 import eliminarEvento from '@/composables/Evento/deleteEvento';
 import { ref } from '@vue/runtime-core';
+import useEmitter from '@/composables/Tools/emitter';
 export default {
   props: ['evento', 'cliente', 'adiestrador'],
   setup(props) {
+    const emitter = useEmitter();
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
     // const date = fecha.format('MMMM D, YYYY'); //Formateamos fecha
@@ -71,14 +73,12 @@ export default {
     const { registrarse } = registrarCliente(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
     const { cancelar } = cancelarAsistencia(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
@@ -97,6 +97,14 @@ export default {
       props.evento._id,
       feedbackAccion
     );
+
+    // eventlisteners
+    emitter.on('clienteActualizado', idEvento => {
+      if (idEvento === props.evento._id) {
+        console.log('presente!', props.evento.nombre);
+        registrado.value = !registrado.value;
+      }
+    });
 
     return {
       adiestradorEvento,

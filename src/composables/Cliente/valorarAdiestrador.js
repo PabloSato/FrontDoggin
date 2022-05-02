@@ -15,10 +15,10 @@ const valorarAdiestrador = (idAdiestrador, valoracion) => {
       let response = await fetch(
         `${BASEURL}/adiestradores/${idAdiestrador}/rating`,
         {
-          method: 'post',
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            Authroization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(puntuacion),
         }

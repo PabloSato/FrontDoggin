@@ -1,9 +1,10 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 //Función LOGIN
 export const login = async ({ commit }, usuario) => {
   const error = ref(null);
   try {
-    const data = await fetch('http://localhost:3000/users/login', {
+    const data = await fetch(`${BASEURL}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

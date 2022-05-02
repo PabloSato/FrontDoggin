@@ -1,5 +1,5 @@
 <template>
-  <div class="ficha" @click="mostrarEvento">
+  <div class="ficha" @click="mostrarEvento" v-click-outside="onClickOutside">
     <div class="d-lg-flex">
       <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
         <div class="backgroundEffect"></div>
@@ -53,13 +53,24 @@
 //Utilidades
 import { ref } from '@vue/reactivity';
 import dayjs from 'dayjs';
+import vClickOutside from 'click-outside-vue3';
 // Composables
 import registrarCliente from '@/composables/Cliente/registrarCliente';
 import cancelarAsistencia from '@/composables/Cliente/cancelarAsistencia';
 import eliminarEvento from '@/composables/Evento/deleteEvento';
+import useEmitter from '@/composables/Tools/emitter';
 export default {
   props: ['evento', 'cliente', 'adiestrador'],
+  methods: {
+    onClickOutside(event) {
+      this.feedbackAccion = '';
+    },
+  },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   setup(props, context) {
+    const emitter = useEmitter();
     // -------- FECHAS -----------
     const fecha = dayjs(props.evento.fecha); //Recogemos la fecha del evento
     let date = fecha.format('MMMM D, YYYY'); //Formateamos fecha
@@ -83,14 +94,12 @@ export default {
     const { registrarse } = registrarCliente(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
     const { cancelar } = cancelarAsistencia(
       idCliente,
       props.evento._id,
-      registrado,
       feedbackAccion
     );
 
@@ -112,8 +121,16 @@ export default {
 
     // ----- SELECCIONAR EVENTO -------
     const mostrarEvento = () => {
+      feedbackAccion.value = '';
       context.emit('eventoSeleccionado', props.evento);
     };
+
+    emitter.on('clienteActualizado', idEvento => {
+      if (idEvento === props.evento._id) {
+        registrado.value = !registrado.value;
+      }
+    });
+
     return {
       dia,
       mes,

@@ -25,7 +25,7 @@ import getEventos from '@/composables/Evento/getEventos';
 //Utilidades
 import { ref } from '@vue/reactivity';
 import { computed } from '@vue/runtime-core';
-import useEmitter from '@/composables/emitter';
+import useEmitter from '@/composables/Tools/emitter';
 
 export default {
   components: { Evento, FiltroEventos },

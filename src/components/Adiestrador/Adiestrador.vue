@@ -42,7 +42,7 @@
 
 <script>
 //Componentes
-import FormValora from './FormValoracion.vue';
+import FormValora from '../Formularios/FormValoracion.vue';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';

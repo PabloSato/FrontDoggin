@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
-import useEmitter from '@/composables/emitter';
+import useEmitter from '@/composables/Tools/emitter';
 
 const cancelarAsistencia = (
   idCliente,

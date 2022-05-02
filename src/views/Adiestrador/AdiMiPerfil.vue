@@ -12,7 +12,7 @@
 
 <script>
 //Composables
-import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import getAdiestrador from '../../composables/Adiestrador/getAdiestrador';
 //Utilidades
 import { useRouter } from 'vue-router';
 export default {

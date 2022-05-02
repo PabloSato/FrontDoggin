@@ -12,10 +12,10 @@
 
 <script>
 //Componentes
-import FormMail from '../components/FormMail.vue';
+import FormMail from '../../components/Formularios/FormMail.vue';
 //Composables
-import enviarMailToAll from '../composables/Adiestrador/enviarMailToAll';
-import validarFormMail from '../composables/validarFormMail';
+import enviarMailToAll from '../../composables/Adiestrador/enviarMailToAll';
+import validarFormMail from '../../composables/Validacion/validarFormMail';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';

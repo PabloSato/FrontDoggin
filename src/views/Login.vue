@@ -28,7 +28,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import useEmitter from '../composables/emitter';
+import useEmitter from '../composables/Tools/emitter';
 import createStore from '../store/index';
 export default {
   setup() {

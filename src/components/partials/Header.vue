@@ -2,7 +2,7 @@
   <header>
     <div class="cabecera">
       <div class="logo">
-        <img src="../assets/logo_doggin.svg" alt="" />
+        <img src="../../assets/logo_doggin.svg" alt="" />
       </div>
       <div class="navegador">
         <router-link to="/">Home</router-link>
@@ -27,7 +27,7 @@
 
 <script>
 //Utilidades
-import useEmitter from '../composables/emitter';
+import useEmitter from '../../composables/Tools/emitter';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 export default {

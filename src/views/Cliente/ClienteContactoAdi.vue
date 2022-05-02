@@ -12,9 +12,9 @@
 
 <script>
 //Componentes
-import FormMail from '../components/FormMail.vue';
+import FormMail from '../../components/Formularios/FormMail.vue';
 //Composables
-import enviarMailToAdiestrador from '../composables/Cliente/enviarMailToAdiestrador';
+import enviarMailToAdiestrador from '../../composables/Cliente/enviarMailToAdiestrador';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';

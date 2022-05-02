@@ -12,11 +12,9 @@
 
 <script>
 //Componentes
-import ListaAdiestradores from '../components/ListaAdiestradores.vue';
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
+import ListaAdiestradores from '../components/Adiestrador/ListaAdiestradores.vue';
 export default {
-  components: { ListaAdiestradores, Header, Footer },
+  components: { ListaAdiestradores },
 };
 </script>
 

@@ -26,17 +26,15 @@
 import { ref } from '@vue/reactivity';
 
 //Componentes
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
 import DetalleEvento from '@/components/Evento/DetalleEvento.vue';
 //Composables
 import ListaEventos from '@/components/Evento/ListaEventos.vue';
 import getCliente from '@/composables/Cliente/getCliente';
-import useEmitter from '@/composables/emitter';
+import useEmitter from '@/composables/Tools/emitter';
 import getAdiestrador from '@/composables/Adiestrador/getAdiestrador';
 
 export default {
-  components: { ListaEventos, Header, Footer, DetalleEvento },
+  components: { ListaEventos, DetalleEvento },
   props: ['idAdiestrador'],
   setup() {
     const emitter = useEmitter();

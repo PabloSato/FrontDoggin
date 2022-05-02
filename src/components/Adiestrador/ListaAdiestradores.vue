@@ -10,9 +10,9 @@
 
 <script>
 //Componentes
-import Adiestrador from '../components/Adiestrador.vue';
+import Adiestrador from './Adiestrador.vue';
 //Composables
-import getAdiestradores from '../composables/Adiestrador/getAdiestradores';
+import getAdiestradores from '../../composables/Adiestrador/getAdiestradores';
 export default {
   components: { Adiestrador },
   setup() {

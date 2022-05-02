@@ -11,9 +11,9 @@
 
 <script>
 //Componentes
-import FormCrearEvento from '../components/FormCrearEvento.vue';
+import FormCrearEvento from '../../components/Formularios/FormCrearEvento.vue';
 //Composables
-import createEvento from '../composables/Evento/createEvento';
+import createEvento from '../../composables/Evento/createEvento';
 //Utilidades
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

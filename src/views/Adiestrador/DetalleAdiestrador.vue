@@ -20,9 +20,9 @@
 
 <script>
 //Components
-import FormValoracion from '../components/FormValoracion.vue';
+import FormValoracion from '../../components/Formularios/FormValoracion.vue';
 //Composable
-import getAdiestraod from '../composables/Adiestrador/getAdiestrador';
+import getAdiestraod from '../../composables/Adiestrador/getAdiestrador';
 //Utilidades
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

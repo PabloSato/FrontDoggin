@@ -11,8 +11,8 @@
 
 <script>
 //Componentes
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
+import Header from '../components/partials/Header.vue';
+import Footer from '../components/partials/Footer.vue';
 //Utilidades
 import { useRouter } from 'vue-router';
 export default {

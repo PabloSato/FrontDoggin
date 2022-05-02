@@ -17,9 +17,9 @@
 
 <script>
 //Componentes
-import Header from '../components/Header.vue';
+import Header from '../../components/partials/Header.vue';
 //Composables
-import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import getAdiestrador from '../../composables/Adiestrador/getAdiestrador';
 //Utilidades
 import _ from 'lodash';
 export default {

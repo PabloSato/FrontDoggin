@@ -10,10 +10,6 @@ const enviarMailToAdiestrador = (adiestradorId, mail) => {
     asunto: mail.asunto,
     mensaje: mail.mensaje,
   };
-  console.log('adies');
-  console.log(adiestradorId);
-  console.log('cli');
-  console.log(clienteId);
   const send = async () => {
     try {
       let response = await fetch(

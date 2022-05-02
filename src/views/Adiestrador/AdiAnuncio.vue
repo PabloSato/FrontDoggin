@@ -44,10 +44,9 @@ export default {
     //Funciones
     const procForm = async mail => {
       const { validacion, mensajesValidacion } = validarFormMail(mail);
-
+      errorValida.value = mensajesValidacion;
       if (validacion) {
         const { error, sendAll } = enviarMailToAll(mail);
-        errorValida.value = mensajesValidacion;
         await sendAll();
         if (error.value !== 'error al mandar el email') {
           router.go(-1);

@@ -4,6 +4,7 @@
     <FormMail
       :mail="mail"
       :errorEnvio="errorEnvio"
+      :errorValida="errorValida"
       @formProce="procForm(mail)"
     />
     <p></p>
@@ -14,6 +15,7 @@
 //Componentes
 import FormMail from '../../components/Formularios/FormMail.vue';
 //Composables
+import validarFormMail from '../../composables/Validacion/validarFormMail';
 import enviarMailToAdiestrador from '../../composables/Cliente/enviarMailToAdiestrador';
 //Utilidades
 import { useRouter } from 'vue-router';
@@ -37,27 +39,28 @@ export default {
       mensaje: null,
     });
     const errorEnvio = ref(null);
+    const errorValida = ref([null]);
     const adiestradorId = props.id;
     const adiestradorNombre = props.nombre;
-    const clienteId = localStorage.getItem('id');
-    const token = localStorage.getItem('token');
     //Funciones
     const procForm = async mail => {
-      const { enviado, error, send } = enviarMailToAdiestrador(
-        adiestradorId,
-        clienteId,
-        token,
-        mail
-      );
-      await send();
-      if (error.value !== 'error al mandar el email') {
-        router.go(-1);
-      } else {
-        errorEnvio.value = error.value;
+      const { validacion, mensajesValidacion } = validarFormMail(mail);
+      errorValida.value = mensajesValidacion;
+      if (validacion) {
+        const { enviado, error, send } = enviarMailToAdiestrador(
+          adiestradorId,
+          mail
+        );
+        await send();
+        if (error.value !== 'error al mandar el email') {
+          router.go(-1);
+        } else {
+          errorEnvio.value = error.value;
+        }
       }
     };
 
-    return { adiestradorNombre, mail, procForm, errorEnvio };
+    return { adiestradorNombre, mail, procForm, errorEnvio, errorValida };
   },
 };
 </script>

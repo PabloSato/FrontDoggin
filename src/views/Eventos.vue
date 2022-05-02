@@ -13,7 +13,7 @@
     </div>
     <div class="lista-eventos">
       <lista-eventos
-        :idAdiestrador="idAdiestrador"
+        :idAdiestrador="idOrganizador"
         :cliente="cliente"
         :adiestrador="adiestrador"
         @eventoSeleccionado="mostrarEvento"
@@ -35,7 +35,7 @@ import getAdiestrador from '@/composables/Adiestrador/getAdiestrador';
 
 export default {
   components: { ListaEventos, DetalleEvento },
-  props: ['idAdiestrador'],
+  props: ['idOrganizador'],
   setup() {
     const emitter = useEmitter();
     const eventoSeleccionado = ref(null);

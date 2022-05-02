@@ -29,16 +29,18 @@ import useEmitter from '@/composables/Tools/emitter';
 
 export default {
   components: { Evento, FiltroEventos },
-  props: ['idAdiestrador', 'cliente', 'adiestrador'],
+  props: ['idOrganizador', 'cliente', 'adiestrador'],
   setup(props, context) {
     const emitter = useEmitter();
-
     // let token = '';
     // if (localStorage.getItem('token')) {
     //   token = localStorage.getItem('token');
     // }
-    const { eventos, load } = getEventos(localStorage.getItem('token'));
-    load();
+    const { eventos, loadEventos } = getEventos(
+      localStorage.getItem('token'),
+      props.idOrganizador
+    );
+    loadEventos();
 
     const filtro = ref('activos');
     const eventosVisibles = computed(() => {

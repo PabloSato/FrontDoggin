@@ -13,7 +13,7 @@
     </div>
     <div class="lista-eventos">
       <lista-eventos
-        :idAdiestrador="idOrganizador"
+        :idOrganizador="idOrganizador"
         :cliente="cliente"
         :adiestrador="adiestrador"
         @eventoSeleccionado="mostrarEvento"

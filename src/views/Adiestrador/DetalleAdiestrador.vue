@@ -69,7 +69,9 @@ export default {
       );
       await insertValoracion();
       if (error.value !== 'error al puntuar al Adiestrador') {
-        okValora.value = `Has puntuado con un ${rating.score}`;
+        console.log('aquiii');
+        console.log(rating);
+        okValora.value = 'Has puntuado al adiestrador';
       } else {
         errorValora.value = error.value;
       }

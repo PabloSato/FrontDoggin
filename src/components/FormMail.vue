@@ -6,6 +6,7 @@
         type="text"
         v-model="mail.asunto"
         placeholder="add motivo..."
+        required
       /><br />
       <label for="">Mensaje: </label>
       <textarea
@@ -15,6 +16,7 @@
         rows="10"
         v-model="mail.mensaje"
         placeholder="add mensaje..."
+        required
       ></textarea>
       <br />
       <input type="submit" value="enviar" />
@@ -24,11 +26,16 @@
   <p v-if="errorEnvio">
     {{ errorEnvio }}
   </p>
+  <div v-if="errorValida.length > 0">
+    <p v-for="mensaje in errorValida" :key="mensaje">
+      {{ mensaje }}
+    </p>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['mail', 'errorEnvio'],
+  props: ['mail', 'errorEnvio', 'errorValida'],
   emits: ['formProce'],
   setup(props, context) {
     //Variables

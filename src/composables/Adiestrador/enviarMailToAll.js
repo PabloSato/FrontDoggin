@@ -1,14 +1,16 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
-const enviarMailToAll = (adiestradorId, token, mail) => {
-  const enviado = ref(null);
+const enviarMailToAll = mail => {
   const error = ref(null);
+  const adiestradorId = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
   const mensaje = {
     asunto: mail.asunto,
     mensaje: mail.mensaje,
   };
-
+  console.log('dentro');
+  console.log(mensaje);
   const sendAll = async () => {
     try {
       let response = await fetch(
@@ -22,19 +24,14 @@ const enviarMailToAll = (adiestradorId, token, mail) => {
           body: JSON.stringify(mensaje),
         }
       );
-      if (!response.ok) {
-        throw Error('error al mandar el email');
-      } else {
-        enviado.value = await response.json();
-
-        sendAll();
-      }
+      if (!response.ok) throw Error('error al mandar el email');
     } catch (err) {
       console.log(err.message);
       error.value = err.mensaje;
     }
   };
-  return { enviado, error, sendAll };
+  console.log('holaaa');
+  return { error, sendAll };
 };
 
 export default enviarMailToAll;

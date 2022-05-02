@@ -14,6 +14,7 @@
     <div class="lista-eventos">
       <lista-eventos
         :idOrganizador="idOrganizador"
+        :key="idOrganizador"
         :cliente="cliente"
         :adiestrador="adiestrador"
         @eventoSeleccionado="mostrarEvento"
@@ -24,7 +25,7 @@
 
 <script>
 import { ref } from '@vue/reactivity';
-
+import { watch } from 'vue';
 //Componentes
 import DetalleEvento from '@/components/Evento/DetalleEvento.vue';
 //Composables
@@ -61,7 +62,6 @@ export default {
     emitter.on('clienteActualizado', () => {
       loadCliente();
     });
-
     return {
       mostrarEvento,
       eventoSeleccionado,

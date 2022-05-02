@@ -101,7 +101,6 @@ export default {
     // eventlisteners
     emitter.on('clienteActualizado', idEvento => {
       if (idEvento === props.evento._id) {
-        console.log('presente!', props.evento.nombre);
         registrado.value = !registrado.value;
       }
     });

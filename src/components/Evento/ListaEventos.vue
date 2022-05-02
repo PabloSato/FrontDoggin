@@ -3,7 +3,7 @@
     <filtro-eventos
       @filtroActualizado="filtro = $event"
       :current="filtro"
-      v-if="cliente || adiestrador"
+      v-if="!idOrganizador && (cliente || adiestrador)"
     />
     <evento
       v-for="evento in eventosVisibles"
@@ -32,10 +32,6 @@ export default {
   props: ['idOrganizador', 'cliente', 'adiestrador'],
   setup(props, context) {
     const emitter = useEmitter();
-    // let token = '';
-    // if (localStorage.getItem('token')) {
-    //   token = localStorage.getItem('token');
-    // }
     const { eventos, loadEventos } = getEventos(
       localStorage.getItem('token'),
       props.idOrganizador
@@ -71,6 +67,7 @@ export default {
     const mostrarEvento = evento => {
       context.emit('eventoSeleccionado', evento);
     };
+
     //console.log(eventosVisibles); //para ver que viene
     return { eventosVisibles, mostrarEvento, eventoSeleccionado, filtro };
   },

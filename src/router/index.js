@@ -7,8 +7,8 @@ import Registro from '../views/Registro.vue';
 import MiPerfil from '../views/Adiestrador/AdiMiPerfil.vue';
 import Login from '../views/Login.vue';
 // -------------- REGISTRO -------------------
-import RegAdiestrador from '../views/Registro/RegAdiestrador.vue';
-import RegCliente from '../views/Registro/RegCliente.vue';
+import RegAdiestrador from '../views/Usuario/RegAdiestrador.vue';
+import RegCliente from '../views/Usuario/RegCliente.vue';
 // -------------- ADIESTRADOR -------------------
 import DetalleAdiestrador from '../views/Adiestrador/DetalleAdiestrador.vue';
 import AdiCrearEvento from '../views/Adiestrador/AdiCrearEvento.vue';
@@ -16,7 +16,7 @@ import AdiAnuncio from '../views/Adiestrador/AdiAnuncio.vue';
 // -------------- CLIENTE -------------------
 import ClienteContactoAdi from '../views/Cliente/ClienteContactoAdi.vue';
 // -------------- OTROS -------------------
-import EditarUSuario from '../views/Otros/EditarUsuario.vue';
+import EditarUSuario from '../views/Usuario/EditarUsuario.vue';
 
 const routes = [
   // -------------- VIEWS1 -------------------
@@ -70,7 +70,7 @@ const routes = [
     props: true,
   },
   {
-    path: '/adiestradores/:idAdiestrador/eventos',
+    path: '/adiestradores/:idOrganizador/eventos',
     name: 'eventos',
     component: Eventos,
     props: true,

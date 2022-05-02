@@ -1,9 +1,11 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
-const enviarMailToAdiestrador = (adiestradorId, clienteId, token, mail) => {
+const enviarMailToAdiestrador = (adiestradorId, mail) => {
   const enviado = ref(null);
   const error = ref(null);
+  const clienteId = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
   const mensaje = {
     asunto: mail.asunto,
     mensaje: mail.mensaje,

@@ -1,6 +1,18 @@
 <template>
   <Header />
   <div class="container">
+    <img
+      src="https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      alt="image">
+    <div class="container-text">
+      <h2>Bienvenido!!</h2>
+      <p>Introduce tu usuario y contraseña</p>
+      <input type="email" placeholder="User">
+      <input type="pasword" placeholder="Pass">
+      <button type="submit">Acceder</button>
+    </div>
+  </div>
+  <!-- <div class="container">
     <h1>Login</h1>
     <form @submit.prevent="logear(usuario)">
       <div class="mb-3">
@@ -28,7 +40,7 @@
     </form>
     <p v-if="!isLogin">Not logged in :(</p>
     {{ usuario }}
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -62,3 +74,83 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.container {
+  background-color: #5f4bb6;;
+  width: 600px;
+  height: 450px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  line-height: 1.5;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
+  
+  img {
+    width: 250px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &-text {
+    padding: 10px 40px 10px 10px;
+
+    h2 {
+      font-size: 2.3rem;
+      color: #dfe6ee;
+    }
+
+    p {
+      font-size: 14px;
+      color: #9ab7d7;
+      margin: 10px 0;
+    }
+
+    input,
+    button {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 3px;
+    }
+
+    input {
+      border: 2px solid #DADDEC;
+      margin: 5px 0 10px;
+      font-size: 1rem;
+      color: #656880;
+    }
+
+    button {
+      background:#9ab7d7;
+      display: block;
+      color: #5f4bb6;
+      font-size: 1rem;
+
+    }
+
+    button:hover {
+      box-shadow: 0 5px 20px #89caff94;
+      transition: box-shadow .3s ease-in-out;
+    }
+
+    span {
+      display: block;
+      text-align: center;
+      margin: 20px 0 0;
+      color: #BABDCB;
+      font-size: 12px;
+    }
+  }
+}
+</style>

@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const createCliente = user => {
   const usuarioId = ref(null);
@@ -12,7 +13,7 @@ const createCliente = user => {
   };
   const insertCliente = async () => {
     try {
-      let response = await fetch('http://localhost:3000/users', {
+      let response = await fetch(`${BASEURL}/users`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(us),
@@ -28,7 +29,7 @@ const createCliente = user => {
         };
         const insert = async () => {
           try {
-            let response2 = await fetch('http://localhost:3000/clientes', {
+            let response2 = await fetch(`${BASEURL}/clientes`, {
               method: 'post',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(cli),

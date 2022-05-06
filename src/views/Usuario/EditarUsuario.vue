@@ -1,5 +1,5 @@
 <template>
-    <Header />
+  <Header />
   <h2>Editar Descripción</h2>
   <form action="">
     <label for="bio">Descripción:</label><br />
@@ -17,18 +17,18 @@
 
 <script>
 //Componentes
-import Header from '../components/Header.vue'
+import Header from '../../components/partials/Header.vue';
 //Composables
-import getAdiestrador from '../composables/Adiestrador/getAdiestrador';
+import getAdiestrador from '../../composables/Adiestrador/getAdiestrador';
 //Utilidades
 import _ from 'lodash';
 export default {
-  components: {Header},
+  components: { Header },
   props: ['id'],
   setup(props) {
     let idAd = '625d730e35c6f4bb050fe7db';
-    const { adiestrador, error, load } = getAdiestrador(idAd);
-    load();
+    const { adiestrador, error, loadAdiestrador } = getAdiestrador(idAd);
+    loadAdiestrador();
 
     return { adiestrador };
   },

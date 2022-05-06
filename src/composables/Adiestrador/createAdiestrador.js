@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const createAdiestrador = user => {
   const usuarioId = ref(null);
@@ -12,7 +13,7 @@ const createAdiestrador = user => {
   };
   const insertAdiestrador = async () => {
     try {
-      let data = await fetch('http://localhost:3000/users', {
+      let data = await fetch(`${BASEURL}/users`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usuario),
@@ -28,7 +29,7 @@ const createAdiestrador = user => {
         };
         const insert = async () => {
           try {
-            let data = await fetch('http://localhost:3000/adiestradores', {
+            let data = await fetch(`${BASEURL}/adiestradores`, {
               method: 'post',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(adi),

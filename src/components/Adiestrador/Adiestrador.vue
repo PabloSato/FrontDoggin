@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="ficha">
     <div class="d-lg-flex">
       <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
         <div class="backgroundEffect"></div>
         <div class="pic">
-          <img class="" :src="adiestrador.imageUrl" alt="" />
+          <img class="" :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
           <div class="date">
             <span class="day">26</span> <span class="month">June</span>
             <span class="year">2019</span>
@@ -26,27 +26,14 @@
               <p>
                 Rating:
                 <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span>
-                <span v-else>No disponible</span>
+                <span v-else>-</span>
               </p>
-              <div class="formu">
-                <form @submit.prevent="procValora">
-                  <p class="clasificacion">
-                    <input id="radio1" type="radio" v-model="star" value="5" />
-                    <label for="radio1">★</label>
-                    <input id="radio2" type="radio" v-model="star" value="4" />
-                    <label for="radio2">★</label>
-                    <input id="radio3" type="radio" v-model="star" value="3" />
-                    <label for="radio3">★</label>
-                    <input id="radio4" type="radio" v-model="star" value="2" />
-                    <label for="radio4">★</label>
-                    <input id="radio5" type="radio" v-model="star" value="1" />
-                    <label for="radio5">★</label>
-                    <input type="submit" value="Votar" />
-                  </p>
-                </form>
-              </div>
             </div>
           </div>
+          <router-link
+            :to="{ name: 'detalle', params: { id: adiestrador._id } }"
+            >detalle</router-link
+          >
         </div>
       </div>
     </div>
@@ -54,42 +41,37 @@
 </template>
 
 <script>
+//Componentes
+import FormValora from '../Formularios/FormValoracion.vue';
 //Utilidades
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 export default {
+  components: { FormValora },
   props: ['adiestrador', 'star'],
   setup(props, context) {
+    //Variables
+    const isLogin = ref(null);
+    const adiestrador = props.adiestrador;
+
+    //Tools
     const router = useRouter();
+    //Funciones
     const verEventos = id => {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
 
-    const star = ref(null);
+    if (localStorage.getItem('token')) {
+      isLogin.value = true;
+    }
 
-    const procValora = async () => {
-      console.log(star.value);
-    };
-
-    return { verEventos, procValora, star };
+    return { verEventos, isLogin, adiestrador };
   },
 };
 </script>
 
-<style>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-}
-
-body {
-  margin-top: 30px;
-  background-color: #eee;
-}
-
-.container {
+<style scoped>
+.ficha {
   min-height: 100vh;
   padding: 20px 0;
   display: flex;
@@ -130,7 +112,7 @@ p {
   width: 100%;
   position: absolute;
   z-index: -1;
-  background: #1b9ce3;
+  background: #96bb7c;
   animation: popBackground 0.3s ease-in;
 }
 
@@ -177,7 +159,7 @@ p {
   justify-content: center;
   width: 50px;
   height: 70px;
-  background-color: #1b9ce3;
+  background-color: #96bb7c;
   color: white;
   position: absolute;
   bottom: 0px;
@@ -211,7 +193,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
-  background-color: #1b9ce3;
+  background-color: #96bb7c;
   border-radius: 25px;
   font-size: 12px;
   border: none;
@@ -219,7 +201,7 @@ p {
 
 .card:hover .content .btn {
   background: #fff;
-  color: #1b9ce3;
+  color: #96bb7c;
   box-shadow: #0000001a 0px 3px 5px;
 }
 
@@ -229,7 +211,7 @@ p {
 }
 
 .card .content .foot .admin {
-  color: #1b9ce3;
+  color: #96bb7c;
   font-size: 12px;
 }
 
@@ -240,31 +222,7 @@ p {
 .card .content .foot .icon {
   font-size: 12px;
 }
-/*-------------------------------VOLARACIONES-RATING */
-.formu {
-  margin-top: 10px;
-}
-.formu label {
-  font-size: 14px;
-  color: grey;
-}
-.formu input[type='radio'] {
-  display: none;
-}
-.formu .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-}
-.formu label:hover,
-.formu label:hover ~ label {
-  /*(~) => esto indica precedidas por. En este caso, label precedidas por label con hover*/
-  color: orange;
-}
-.formu input[type='radio']:checked ~ label {
-  /*En naranja todas las label que preceden a la que elegimos*/
-  color: orange;
-}
-.formu input[type='submit'] {
-  margin-right: 10px;
+.d-flex {
+  gap: 20px;
 }
 </style>

@@ -1,5 +1,21 @@
 import { createStore } from 'vuex';
+import * as actions from './actions';
+import mutations from './mutations';
 
+const state = {
+  token: null,
+  userId: null,
+  id: null,
+  rol: null,
+};
+
+export default createStore({
+  state,
+  actions,
+  mutations,
+});
+// ------------------ OLD --------------
+/*
 export default createStore({
   state: {
     //login
@@ -64,3 +80,5 @@ export default createStore({
   },
   modules: {},
 });
+
+*/

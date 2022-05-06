@@ -1,15 +1,37 @@
 <template .container-flex>
+  <Header :userLogin="login" />
   <router-view />
+  <Footer />
 </template>
 
 <script>
+//Componentes
+import Header from './components/partials/Header.vue';
+import Footer from './components/partials/Footer.vue';
+//Utilidades
 import { ref } from 'vue';
 import { mapActions } from 'vuex';
 export default {
-  computed: {
-    // isLogin(){
-    //   return localStorage.getItem('token');
-    // },
+  components: { Header, Footer },
+  // computed: {
+  //   login() {
+  //     console.log(localStorage.getItem('token'));
+  //     return !!localStorage.getItem('token');
+  //   },
+  // },
+  data() {
+    return {
+      login: {
+        token: localStorage.getItem('token'),
+        rol: localStorage.getItem('rol'),
+        id: localStorage.getItem('id'),
+      },
+    };
+  },
+  mounted() {
+    this.emitter.on('isLog', loginInfo => {
+      this.login = loginInfo;
+    });
   },
   methods: {
     ...mapActions(['leerToken']),
@@ -17,31 +39,8 @@ export default {
   created() {
     this.leerToken();
   },
-  updated() {
-    console.log('modificado');
-  },
+  updated() {},
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>

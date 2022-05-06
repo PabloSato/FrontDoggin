@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { BASEURL } from '@/main';
 
 const getAdiestradores = () => {
   const adiestradores = ref([]);
@@ -6,7 +7,7 @@ const getAdiestradores = () => {
 
   const load = async () => {
     try {
-      let data = await fetch('http://localhost:3000/adiestradores');
+      let data = await fetch(`${BASEURL}/adiestradores`);
       if (!data.ok) throw new Error('Error al intentar obtener adiestradores');
       adiestradores.value = await data.json();
     } catch (err) {

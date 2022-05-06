@@ -55,12 +55,14 @@ header {
   width: 100vw;
   background-color: #f1f1f1;
   box-shadow: 1px 1px 10px #cdddc2;
-  padding: 20px;
+  padding: 10px;
 }
 .cabecera {
-  width: 85vw;
+  width: 90%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
   justify-content: space-between;
 }
@@ -71,6 +73,7 @@ header {
   width: 60%;
   max-width: 655px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
@@ -85,8 +88,17 @@ header {
   border-bottom: 2px solid #96bb7c;
 }
 /*----------- MEDIAQUERI ------------------- */
-@media screen and (max-width: 550px) and (min-width: 375px) {
-  header {
+@media screen and (min-width: 750px) {
+  .cabecera {
+  flex-direction: row;
+  align-items:flex-end;
+}
+.navegador {
+  flex-direction: row;
+  width: 27rem;
+  justify-content: space-between;
+}
+/* header {
     display: block;
   }
   .logo {
@@ -95,6 +107,6 @@ header {
   }
   .navegador {
     flex-direction: column;
-  }
+  } */
 }
 </style>

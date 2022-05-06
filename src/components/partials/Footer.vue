@@ -38,7 +38,7 @@ export default {
 <style>
 footer {
   width: 100vw;
-  background-color: #184d47;
+  background-color: #170F11;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,4 +92,5 @@ footer > .navegador {
   justify-content: space-between;
   }
 }
+
 </style>

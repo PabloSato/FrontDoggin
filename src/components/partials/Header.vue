@@ -1,25 +1,27 @@
 <template>
   <header>
-    <div class="cabecera">
-      <div class="logo">
-        <img src="../../assets/logo_doggin.svg" alt="" />
-      </div>
-      <div class="navegador">
-        <router-link to="/">Home</router-link>
-        <router-link to="/eventos">Eventos</router-link>
-        <router-link to="/adiestradores">Adiestradores</router-link>
-        <router-link
-          v-if="userLogin.rol === 'ADIESTRADOR'"
-          :to="{ name: 'miPerfil', params: { id: userLogin.id } }"
-          >Mi Perfil</router-link
-        >
-        <router-link v-if="!userLogin.token" to="/elige"
-          >Registrarse</router-link
-        >
-        <router-link v-if="userLogin.token" @click="logOut" to="/"
-          >Logout</router-link
-        >
-        <router-link v-else to="/login">Login</router-link>
+    <div class="contenedorHeader">
+      <div class="cabecera">
+        <div class="logo">
+          <img src="../../assets/logo_doggin.svg" alt="" />
+        </div>
+        <div class="navegador">
+          <router-link to="/">Home</router-link>
+          <router-link to="/eventos">Eventos</router-link>
+          <router-link to="/adiestradores">Adiestradores</router-link>
+          <router-link
+            v-if="userLogin.rol === 'ADIESTRADOR'"
+            :to="{ name: 'miPerfil', params: { id: userLogin.id } }"
+            >Mi Perfil</router-link
+          >
+          <router-link v-if="!userLogin.token" to="/elige"
+            >Registrarse</router-link
+          >
+          <router-link v-if="userLogin.token" @click="logOut" to="/"
+            >Logout</router-link
+          >
+          <router-link v-else to="/login">Login</router-link>
+        </div>
       </div>
     </div>
   </header>
@@ -54,11 +56,11 @@ export default {
 header {
   width: 100vw;
   background-color: #f1f1f1;
-  box-shadow: 1px 1px 10px #cdddc2;
   padding: 10px;
 }
 .cabecera {
   width: 90%;
+  max-width: 1024px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -97,6 +99,10 @@ header {
   flex-direction: row;
   width: 27rem;
   justify-content: space-between;
+}
+.contenedorHeader{
+  display: flex;
+  justify-content: center;
 }
 /* header {
     display: block;

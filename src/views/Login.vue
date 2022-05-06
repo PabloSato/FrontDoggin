@@ -78,7 +78,14 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login {
   padding-bottom: 100px;
   min-height: 90vh;
@@ -100,7 +107,7 @@ export default {
   place-items: center;
   line-height: 1.5;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
-
+  
   img {
     width: 250px;
     height: 400px;
@@ -131,29 +138,31 @@ export default {
     }
 
     input {
-      border: 2px solid #daddec;
+      border: 2px solid #DADDEC;
       margin: 5px 0 10px;
       font-size: 1rem;
       color: #656880;
     }
 
     button {
-      background: #9ab7d7;
+      background:#9ab7d7;
       display: block;
       color: #5f4bb6;
       font-size: 1rem;
+
     }
 
     button:hover {
       box-shadow: 0 5px 20px #89caff94;
       transition: box-shadow 0.3s ease-in-out;
+
     }
 
     span {
       display: block;
       text-align: center;
       margin: 20px 0 0;
-      color: #babdcb;
+      color: #BABDCB;
       font-size: 12px;
     }
   }

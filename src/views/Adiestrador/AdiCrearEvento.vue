@@ -3,7 +3,7 @@
     <FormCrearEvento
       :evento="evento"
       :errorEvento="errorEvento"
-      @formProce="procForm(evento)"
+      @formProce="procForm(evento, invitados)"
     />
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
     //Recogemos los campos del evento
     const evento = ref({
       nombre: null,
-      descripción: null,
+      descripcion: null,
       idAdiestrador: idAdiestrador,
       fecha: null,
       maxAforo: null,
@@ -34,8 +34,9 @@ export default {
     });
 
     const procForm = async evento => {
+      console.log('por aui');
       console.log(evento);
-      /*
+
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
       if (error.value !== 'error al crear el evento') {
@@ -43,7 +44,6 @@ export default {
       } else {
         errorEvento.value = error.value;
       }
-      */
     };
 
     return { evento, procForm, errorEvento };

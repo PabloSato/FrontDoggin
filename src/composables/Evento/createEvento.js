@@ -6,16 +6,9 @@ const createEvento = evento => {
   const nuevoEvento = ref(null);
   const idAdiestrador = localStorage.getItem('id');
   const token = localStorage.getItem('token');
-  const ev = {
-    nombre: evento.nombre,
-    descripcion: evento.descripcion,
-    idAdiestrador: evento.idAdiestrador,
-    fecha: evento.fecha,
-    maxAforo: evento.maxAforo,
-    invitados: [],
-  };
+
   console.log('evento');
-  console.log(ev);
+  console.log(evento);
 
   const insertEvento = async () => {
     try {
@@ -27,7 +20,7 @@ const createEvento = evento => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(ev),
+          body: JSON.stringify(evento),
         }
       );
       if (!data.ok) throw Error('error al crear el evento');

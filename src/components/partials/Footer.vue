@@ -1,8 +1,8 @@
 <template>
   <footer>
-    <div>
-      <h2><router-link to="/">Dogginer</router-link></h2>
-    </div>
+      <div class="logo">
+        <img src="../../assets/logo_TFG_footer_azulM.svg" alt="" />
+      </div>
     <div class="navegador">
       <router-link to="/">Home</router-link>
       <router-link to="/eventos">Eventos</router-link>
@@ -38,14 +38,14 @@ export default {
 <style>
 footer {
   width: 100vw;
-  background-color: #184d47;
+  background-color: #170F11;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 0;
 }
-footer h2 a {
+/* footer h2 a {
   color: #5f4bb6;
   text-decoration: none;
 }
@@ -54,10 +54,11 @@ footer h2 a:hover {
 }
 footer h2 {
   margin-bottom: 40px;
-}
+} */
 footer > .navegador {
   width: 60%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
@@ -72,8 +73,24 @@ footer > .navegador a:hover {
   border-bottom: 2px solid #5f4bb6;
 }
 .copy {
-  margin-top: 45px;
-  font-size: 13px;
+  margin-top: 16px;
+  font-size: 10px;
   color: #9ab7d7;
 }
+footer >.logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 750px) {
+  footer >.logo img {
+  width: 200px;
+}
+
+footer > .navegador {
+  max-width: 430px;
+  flex-direction: row;
+  justify-content: space-between;
+  }
+}
+
 </style>

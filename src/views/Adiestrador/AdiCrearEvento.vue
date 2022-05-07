@@ -1,6 +1,5 @@
 <template>
   <div class="crearEvento">
-    <h2>Crear Evento</h2>
     <FormCrearEvento
       :evento="evento"
       :errorEvento="errorEvento"
@@ -31,9 +30,12 @@ export default {
       idAdiestrador: idAdiestrador,
       fecha: null,
       maxAforo: null,
-      private: null,
+      invitados: [],
     });
+
     const procForm = async evento => {
+      console.log(evento);
+
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
       if (error.value !== 'error al crear el evento') {

@@ -3,19 +3,23 @@ import { BASEURL } from '@/main';
 
 const getClientes = () => {
   const clientes = ref([]);
-  const error = ref(null);
+  const errorClientes = ref(null);
+  const token = localStorage.getItem('token');
 
-  const load = async () => {
+  const loadClientes = async () => {
     try {
-      let data = await fetch(`${BASEURL}/clientes`);
-      if (!data.ok) throw new Error('errorrrrr');
+      let data = await fetch(`${BASEURL}/clientes`, {
+        method: 'get',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!data.ok) throw new Error('Error al cargar los clientes');
       clientes.value = await data.json();
     } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
+      errorClientes.value = err.message;
+      console.log(errorClientes.value);
     }
   };
-  return { clientes, error, load };
+  return { clientes, errorClientes, loadClientes };
 };
 
 export default getClientes;

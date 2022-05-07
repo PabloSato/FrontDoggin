@@ -74,7 +74,8 @@ export default {
       for (let i = 0; i < clientes.value.length; i++) {
         for (let j = 0; j < ev.value.invitados.length; j++) {
           if (ev.value.invitados[j] === clientes.value[i].username) {
-            invitados.push(clientes.value[i]._id);
+            let invitado = { idCliente: clientes.value[i]._id };
+            invitados.push(invitado);
           }
         }
       }

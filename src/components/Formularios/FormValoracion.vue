@@ -38,7 +38,7 @@
         />
         <label :for="staticID + 5">★</label>
       </p>
-      <input type="submit" value="Valorar" />
+      <button type="submit" value="Valorar">Valorar</button>
     </form>
     <p v-if="errorValora">
       {{ errorValora }}
@@ -68,7 +68,27 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
+  button{
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 3px;
+  }
+  button {
+    background:#9ab7d7;
+    display: block;
+    color: #5f4bb6;
+    font-size: 1rem;
+    margin: 5px 5px 10px;
+  }
+
+  button:hover {
+    box-shadow: 0 5px 20px #89caff94;
+    transition: box-shadow 0.3s ease-in-out;
+
+  }
 .formu {
   margin-top: 10px;
   width: 100%;

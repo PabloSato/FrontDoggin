@@ -1,28 +1,42 @@
 <template>
   <div class="contForm">
     <div class="subContForm">
-      <h2>Envio de anuncio</h2>
-      <p>¡¡Manda un anuncio a tus clientes!!</p>
-      <img src="https://cdn.pixabay.com/photo/2018/01/31/05/32/post-3120315_960_720.jpg" alt="image"/>
+      <h2>{{ titulo }}</h2>
+      <p>{{ subTitulo }}</p>
+      <img
+        src="https://cdn.pixabay.com/photo/2018/01/31/05/32/post-3120315_960_720.jpg"
+        alt="image"
+      />
       <div class="container-text">
         <p v-if="errorEnvio">{{ errorEnvio }}</p>
         <div v-if="errorValida.length > 0">
           <p v-for="mensaje in errorValida" :key="mensaje">{{ mensaje }}</p>
         </div>
         <form @submit.prevent="procesaFormu">
-          <input type="text" v-model="mail.asunto" placeholder="Título del anuncio" required />  
-          <textarea v-model="mail.mensaje" id="mensaje"  rows="5" placeholder="Texto del anuncio" required></textarea>
+          <input
+            type="text"
+            v-model="mail.asunto"
+            placeholder="Asunto del mensaje"
+            required
+          />
+          <textarea
+            v-model="mail.mensaje"
+            id="mensaje"
+            rows="5"
+            placeholder="Texto del mensaje"
+            required
+          ></textarea>
           <button type="submit" value="enviar">Enviar</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
         </form>
-      </div>    
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['mail', 'errorEnvio', 'errorValida'],
+  props: ['mail', 'errorEnvio', 'errorValida', 'titulo', 'subTitulo'],
   emits: ['formProce'],
   setup(props, context) {
     //Variables

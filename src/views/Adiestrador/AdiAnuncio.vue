@@ -1,6 +1,6 @@
 <template>
   <div class="anuncio">
-    <h2>Envia un Anuncio a tus Clientes</h2>
+    <!-- <h2>Envia un Anuncio a tus Clientes</h2> -->
     <FormMail
       :mail="mail"
       :errorEnvio="errorEnvio"

@@ -13,6 +13,7 @@ import RegCliente from '../views/Usuario/RegCliente.vue';
 import DetalleAdiestrador from '../views/Adiestrador/DetalleAdiestrador.vue';
 import AdiCrearEvento from '../views/Adiestrador/AdiCrearEvento.vue';
 import AdiAnuncio from '../views/Adiestrador/AdiAnuncio.vue';
+import AdiContactoCliente from '../views/Adiestrador/AdiContactoCliente.vue';
 // -------------- CLIENTE -------------------
 import ClienteContactoAdi from '../views/Cliente/ClienteContactoAdi.vue';
 // -------------- OTROS -------------------
@@ -85,6 +86,12 @@ const routes = [
     path: '/adiestradores/:id/broadcast',
     name: 'anuncio',
     component: AdiAnuncio,
+    props: true,
+  },
+  {
+    path: '/adiestradores/:id/contacto/clientes',
+    name: 'contactoConClientes',
+    component: AdiContactoCliente,
     props: true,
   },
   // -------------- CLIENTES -------------------

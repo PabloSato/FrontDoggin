@@ -80,10 +80,6 @@ export default {
         }
       }
       ev.value.invitados = invitados;
-      console.log(ev.value.invitados);
-      console.log('AUI');
-      console.log(ev.value);
-      context.emit('formProce', ev);
     };
 
     const watchPrivado = watch(privado, () => {

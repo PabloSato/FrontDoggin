@@ -6,6 +6,7 @@ import mitt from 'mitt';
 const emitter = mitt();
 const app = createApp(App);
 app.config.globalProperties.emitter = emitter;
+
 // export const BASEURL = 'http://dogginer-api.eu-west-3.elasticbeanstalk.com/';
 export const BASEURL = 'http://localhost:3000';
 

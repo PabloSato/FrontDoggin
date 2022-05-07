@@ -12,7 +12,7 @@
       />
       <div class="container-text">
         <div>
-          <button><router-link :to="{ name: 'alta-ad' }">¿Eres Adiestrador?</router-link></button>
+          <button @click="soyAdiestrador()">Soy adiestrador</button>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
       />
       <div class="container-text">
         <div>
-          <button><router-link :to="{ name: 'alta-cliente' }">¿Eres Cliente?</router-link></button>
+          <button @click="soyCliente()">soy cliente</button>
         </div>
       </div>
     </div>
@@ -46,10 +46,17 @@ export default {
   setup() {
     //Tools
     const router = useRouter();
+    const soyAdiestrador = () => {
+      router.push({ name: 'alta-ad' });
+    }
+        const soyCliente = () => {
+      router.push({ name: 'alta-cliente' });
+    }
     //Comprobamos si el Usuario ya está Logueado, en el caso que asi sea, lo enviamos a Home
     if (localStorage.getItem('token') || localStorage.getItem('userId')) {
       router.push('/');
     }
+    return{soyAdiestrador,soyCliente};
   },
 };
 </script>

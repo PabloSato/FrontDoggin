@@ -31,9 +31,12 @@ export default {
       idAdiestrador: idAdiestrador,
       fecha: null,
       maxAforo: null,
-      private: null,
+      invitados: [],
     });
+
     const procForm = async evento => {
+      console.log(evento);
+
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
       if (error.value !== 'error al crear el evento') {

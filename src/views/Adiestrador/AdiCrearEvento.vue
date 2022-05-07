@@ -1,6 +1,5 @@
 <template>
   <div class="crearEvento">
-    <h2>Crear Evento</h2>
     <FormCrearEvento
       :evento="evento"
       :errorEvento="errorEvento"

@@ -1,7 +1,8 @@
 <template>
   <div class="adiestradores">
+    <input type="text" v-model="search" placeholder="Buscar" />
     <adiestrador
-      v-for="adiestrador in adiestradores"
+      v-for="adiestrador in adiestradoresVisibles"
       :key="adiestrador._id"
       :adiestrador="adiestrador"
     />
@@ -13,13 +14,18 @@
 import Adiestrador from './Adiestrador.vue';
 //Composables
 import getAdiestradores from '../../composables/Adiestrador/getAdiestradores';
+import { computed, ref } from '@vue/runtime-core';
 export default {
   components: { Adiestrador },
   setup() {
-    let array = [];
+    const search = ref(null);
+    search.value = '';
     const { adiestradores, load } = getAdiestradores();
     load();
-    return { adiestradores };
+    const adiestradoresVisibles = computed(() => {
+      return adiestradores.value.filter(a => a.nombre.match(search.value));
+    });
+    return { adiestradoresVisibles, search };
   },
 };
 </script>

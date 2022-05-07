@@ -7,13 +7,14 @@ const enviarMailToAdiestrador = (adiestradorId, mail) => {
   const clienteId = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const mensaje = {
+    destinatario: adiestradorId,
     asunto: mail.asunto,
     mensaje: mail.mensaje,
   };
   const send = async () => {
     try {
       let response = await fetch(
-        `${BASEURL}/clientes/${clienteId}/adiestradores/${adiestradorId}/email`,
+        `${BASEURL}/clientes/${clienteId}/adiestradores/email`,
         {
           method: 'post',
           headers: {

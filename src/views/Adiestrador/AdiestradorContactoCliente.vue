@@ -26,6 +26,12 @@ export default {
     ) {
       router.push('/');
     }
+    const mail = ref({
+      asunto: null,
+      mensaje: null,
+    });
+    const errorEnvio = ref(null);
+    const errorValida = ref([null]);
   },
 };
 </script>

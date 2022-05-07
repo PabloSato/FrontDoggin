@@ -2,6 +2,8 @@
   <div class="anuncio">
     <!-- <h2>Envia un Anuncio a tus Clientes</h2> -->
     <FormMail
+      :titulo="titulo"
+      :subTitulo="subTitulo"
       :mail="mail"
       :errorEnvio="errorEnvio"
       :errorValida="errorValida"
@@ -33,6 +35,8 @@ export default {
       router.push('/');
     }
     //Variables
+    const titulo = 'Envio de anuncio';
+    const subTitulo = '¡¡Manda un anuncio a tus clientes!!';
     //Mail
     const mail = ref({
       asunto: null,
@@ -55,7 +59,7 @@ export default {
         }
       }
     };
-    return { mail, errorEnvio, procForm, errorValida };
+    return { mail, errorEnvio, procForm, errorValida, titulo, subTitulo };
   },
 };
 </script>

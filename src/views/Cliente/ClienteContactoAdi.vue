@@ -1,7 +1,8 @@
 <template>
   <div class="contacto">
-    <h2>Contacta con {{ adiestradorNombre }}</h2>
     <FormMail
+      :titulo="titulo"
+      :subTitulo="subTitulo"
       :mail="mail"
       :errorEnvio="errorEnvio"
       :errorValida="errorValida"
@@ -41,7 +42,8 @@ export default {
     const errorEnvio = ref(null);
     const errorValida = ref([null]);
     const adiestradorId = props.id;
-    const adiestradorNombre = props.nombre;
+    const titulo = `Enviar mensaje a ${props.nombre}`;
+    const subTitulo = '¡¡Contacta con tu adiestrador!!';
     //Funciones
     const procForm = async mail => {
       const { validacion, mensajesValidacion } = validarFormMail(mail);
@@ -60,7 +62,14 @@ export default {
       }
     };
 
-    return { adiestradorNombre, mail, procForm, errorEnvio, errorValida };
+    return {
+      mail,
+      procForm,
+      errorEnvio,
+      errorValida,
+      titulo,
+      subTitulo,
+    };
   },
 };
 </script>

@@ -23,7 +23,9 @@ export default {
     const { adiestradores, load } = getAdiestradores();
     load();
     const adiestradoresVisibles = computed(() => {
-      return adiestradores.value.filter(a => a.nombre.match(search.value));
+      return adiestradores.value.filter(a =>
+        a.nombre.toLowerCase().match(search.value.toLowerCase())
+      );
     });
     return { adiestradoresVisibles, search };
   },

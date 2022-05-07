@@ -138,6 +138,7 @@ p{
 .container-text{
   text-align: center;
   padding: 10px 10px 10px 10px;
+  min-height: 100%;
 }
 
 

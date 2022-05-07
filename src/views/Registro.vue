@@ -12,8 +12,7 @@
       />
       <div class="container-text">
         <div>
-          <button :to="{ name: 'alta-cliente' }">Soy Adiestrador</button>
-          <router-link :to="{ name: 'alta-ad' }">¿Eres Adiestrador?</router-link>
+          <button><router-link :to="{ name: 'alta-ad' }">¿Eres Adiestrador?</router-link></button>
         </div>
       </div>
     </div>
@@ -27,8 +26,7 @@
       />
       <div class="container-text">
         <div>
-          <button :to="{ name: 'alta-cliente' }">Soy Cliente</button>
-          <router-link :to="{ name: 'alta-cliente' }">¿Eres Cliente?</router-link>
+          <button><router-link :to="{ name: 'alta-cliente' }">¿Eres Cliente?</router-link></button>
         </div>
       </div>
     </div>
@@ -113,7 +111,8 @@ export default {
     }
 
     input,
-    button {
+    button,
+    a {
       width: 100%;
       border: none;
       padding: 14px;

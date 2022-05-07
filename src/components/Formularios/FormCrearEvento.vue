@@ -29,7 +29,12 @@
             v-model="ev.invitados"
             mode="tags"
             placeholder="Añade los invitados"
-            :options="clientes.map(c => c.username)"
+            :options="
+              clientes.map(
+                c => c.username,
+                c => c._id
+              )
+            "
             :search="true"
           />
 
@@ -59,13 +64,24 @@ export default {
     const { clientes, errorClientes, loadClientes } = getClientes();
     loadClientes();
 
-    const invitados = [];
     const publico = ref(false);
     const privado = ref(null);
     const ev = ref(null);
     ev.value = props.evento;
 
     const procForm = () => {
+      let invitados = [];
+      for (let i = 0; i < clientes.value.length; i++) {
+        for (let j = 0; j < ev.value.invitados.length; j++) {
+          if (ev.value.invitados[j] === clientes.value[i].username) {
+            invitados.push(clientes.value[i]._id);
+          }
+        }
+      }
+      ev.value.invitados = invitados;
+      console.log(ev.value.invitados);
+      console.log('AUI');
+      console.log(ev.value);
       context.emit('formProce', ev);
     };
 
@@ -73,7 +89,7 @@ export default {
       privado.value === 's' ? (publico.value = true) : (publico.value = false);
     });
 
-    return { ev, procForm, privado, publico, invitados, clientes };
+    return { ev, procForm, privado, publico, clientes };
   },
 };
 </script>

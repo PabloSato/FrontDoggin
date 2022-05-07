@@ -1,7 +1,6 @@
 <template>
   <div class="contForm">
     <div class="subContForm">
-      <h2>{{ act }} {{ quienH2 }}</h2>
       <img src="https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="image"/>
       <div class="container-text">
         <h2>Bienvenido!!</h2>
@@ -9,7 +8,7 @@
         <div>
             <p class="alertaForm" v-if="errorLogin">{{ errorLogin }}</p>
         </div>
-        <form @submit.prevent="procesaFormu" id="formulario">
+        <form @submit.prevent="logear(usuario)" id="formulario">
           <input type="email" placeholder="Email" v-model="usuario.email" />
           <input type="password" placeholder="Pass" v-model="usuario.password"/>
           <button type="submit">Acceder</button>
@@ -17,7 +16,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>

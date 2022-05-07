@@ -12,7 +12,7 @@ const createEvento = evento => {
     idAdiestrador: evento.idAdiestrador,
     fecha: evento.fecha,
     maxAforo: evento.maxAforo,
-    private: evento.private,
+    invitados: [],
   };
   console.log('evento');
   console.log(ev);

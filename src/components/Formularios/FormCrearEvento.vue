@@ -3,7 +3,7 @@
     <div class="subContForm">
       <h2>Crear Evento</h2>
       <img
-        src="https://cdn.pixabay.com/photo/2019/07/04/17/17/hand-4316948_960_720.jpg"
+        src="https://cdn.pixabay.com/photo/2014/02/24/08/28/huskies-273409_960_720.jpg"
         alt="image"
       />
       <div class="container-text">
@@ -18,38 +18,21 @@
             v-model="ev.nombre"
             placeholder="añade nombre...."
           />
-
           <input
             type="text"
             v-model="ev.descripcion"
             placeholder="añade descripcion...."
           />
-
           <input type="date" v-model="ev.fecha" />
-
           <input type="number" v-model="ev.maxAforo" placeholder="aforo" />
-          <div v-if="!publico">
-            <label for="">Privado: </label>
-            <input type="radio" v-model="privado" value="s" />
-            <label for="">Si</label>
-            <input type="radio" v-model="privado" value="n" checked />
-            <label for="">No</label>
-          </div>
-          <div v-if="publico">
-            <label for="">Privado: </label>
-            <input type="radio" v-model="ev.privado" value="s" checked />
-            <label for="">Si</label>
-            <input type="radio" v-model="privado" value="n" />
-            <label for="">No</label>
-            <label>Añadir invitados:</label>
-            <Multiselect
-              v-model="ev.invitados"
-              mode="tags"
-              placeholder="Añade los invitados"
-              :options="clientes.map(c => c.username)"
-              :search="true"
-            />
-          </div>
+          <Multiselect
+            v-model="ev.invitados"
+            mode="tags"
+            placeholder="Añade los invitados"
+            :options="clientes.map(c => c.username)"
+            :search="true"
+          />
+
           <button type="submit" value="registrar">Crear Evento</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
         </form>
@@ -69,12 +52,12 @@ import { ref, watch } from 'vue';
 export default {
   components: { Multiselect },
   props: ['evento', 'errorEvento'],
+  emits: ['formProce'],
   setup(props, context) {
     //const listaClientes = ['Bataman', 'Superman', 'Iron Man'];
 
     const { clientes, errorClientes, loadClientes } = getClientes();
     loadClientes();
-    console.log(clientes);
 
     const invitados = [];
     const publico = ref(false);

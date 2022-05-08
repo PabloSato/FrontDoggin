@@ -8,9 +8,17 @@
         alt="image"
       />
       <div class="container-text">
-        <p v-if="errorEnvio">{{ errorEnvio }}</p>
+        <p class="feedback" :class="{ error: errorEnvio, exito: !errorEnvio }">
+          {{ feedback }}
+        </p>
         <div v-if="errorValida.length > 0">
-          <p v-for="mensaje in errorValida" :key="mensaje">{{ mensaje }}</p>
+          <p
+            v-for="mensaje in errorValida"
+            :key="mensaje"
+            class="feedback error"
+          >
+            {{ mensaje }}
+          </p>
         </div>
         <form @submit.prevent="procesaFormu">
           <input
@@ -28,6 +36,7 @@
           ></textarea>
           <button type="submit" value="enviar">Enviar</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
+          <button @click.prevent="volver">Volver</button>
         </form>
       </div>
     </div>
@@ -35,17 +44,24 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
 export default {
-  props: ['mail', 'errorEnvio', 'errorValida'],
+  props: ['mail', 'errorEnvio', 'errorValida', 'feedback'],
   emits: ['formProce'],
   setup(props, context) {
+    // const router = ref(null);
+    const router = useRouter();
     //Variables
     const mail = props.mail;
     //Funciones
     const procesaFormu = () => {
       context.emit('formProce', mail);
     };
-    return { mail, procesaFormu };
+    const volver = () => {
+      router.go(-1);
+    };
+    return { mail, procesaFormu, volver };
   },
 };
 </script>

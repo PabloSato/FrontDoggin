@@ -2,11 +2,15 @@ import { ref } from 'vue';
 import { BASEURL } from '@/main';
 import useEmitter from '@/composables/Tools/emitter';
 
-const eliminarEvento = (idAdiestrador, idEvento, feedbackAccion) => {
+const eliminarEvento = (
+  idAdiestrador,
+  idEvento,
+  feedbackAccion,
+  errorAccion
+) => {
   const emitter = useEmitter();
 
   const token = localStorage.getItem('token');
-  const error = ref(null);
   const eliminar = async () => {
     try {
       let data = await fetch(
@@ -18,16 +22,16 @@ const eliminarEvento = (idAdiestrador, idEvento, feedbackAccion) => {
           },
         }
       );
-      if (!data.ok) throw Error('error al eliminar');
+      if (!data.ok) throw Error('No se pudo cancelar el evento');
+      errorAccion.value = false;
       feedbackAccion.value = 'Evento cancelado';
       emitter.emit('eventoEliminado', idEvento);
     } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
+      errorAccion.value = true;
       feedbackAccion.value = err.message;
     }
   };
-  return { feedbackAccion, eliminar };
+  return { feedbackAccion, errorAccion, eliminar };
 };
 
 export default eliminarEvento;

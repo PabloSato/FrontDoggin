@@ -7,6 +7,7 @@
       <p>{{ evento.descripcion }}</p>
       <h9>{{ dia }} {{ mes }} {{ year }}</h9>
       <p class="alertaForm">{{ feedbackAccion }}</p>
+      <!-- <p class="feedback":class="{error: errorAccion, exito: !errorAccion,}">{{ feedbackAccion }}</p> -->
       <button v-if="cliente && !registrado" @click="registrarse">Asistir</button>
       <button class="alter" v-if="cliente && registrado" @click="cancelar"> Cancelar </button>
       <button class="alter" v-if="adiestrador && owner" @click="eliminar"> Cancelar </button>
@@ -39,6 +40,7 @@ export default {
     const adiestradorEvento = ref(detallesAdiestrador.adiestrador);
 
     const feedbackAccion = ref(null);
+    const errorAccion = ref(null);
 
     // ------- ASISTENCIA -------
     const registrado = ref(null);
@@ -53,13 +55,15 @@ export default {
     const { registrarse } = registrarCliente(
       idCliente,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     const { cancelar } = cancelarAsistencia(
       idCliente,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     // ------- GESTION -------
@@ -75,7 +79,8 @@ export default {
     const { eliminar } = eliminarEvento(
       idAdiestrador,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     // eventlisteners
@@ -94,6 +99,7 @@ export default {
       cancelar,
       registrado,
       feedbackAccion,
+      errorAccion,
       eliminar,
       owner,
     };

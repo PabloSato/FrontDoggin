@@ -40,12 +40,15 @@
       </p>
       <button type="submit" value="Valorar">Valorar</button>
     </form>
-    <p v-if="errorValora">
+    <p class="feedback" :class="{ error: errorValora, exito: !errorValora }">
+      {{ feedback }}
+    </p>
+    <!-- <p v-if="errorValora">
       {{ errorValora }}
     </p>
     <p v-if="okValora">
       {{ okValora }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -53,7 +56,7 @@
 //Utilidades
 import { ref } from 'vue';
 export default {
-  props: ['adiestrador', 'valoracion', 'errorValora', 'okValora'],
+  props: ['adiestrador', 'valoracion', 'errorValora', 'feedback'],
   emits: ['proValorar'],
   setup(props, context) {
     //Variables
@@ -63,32 +66,31 @@ export default {
     const procValora = () => {
       context.emit('proValorar', valoracion);
     };
+
     return { procValora, staticID };
   },
 };
 </script>
 
 <style lang="scss">
+button {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  border-radius: 3px;
+}
+button {
+  background: #9ab7d7;
+  display: block;
+  color: #5f4bb6;
+  font-size: 1rem;
+  margin: 5px 5px 10px;
+}
 
-  button{
-    width: 100%;
-    border: none;
-    padding: 14px;
-    border-radius: 3px;
-  }
-  button {
-    background:#9ab7d7;
-    display: block;
-    color: #5f4bb6;
-    font-size: 1rem;
-    margin: 5px 5px 10px;
-  }
-
-  button:hover {
-    box-shadow: 0 5px 20px #89caff94;
-    transition: box-shadow 0.3s ease-in-out;
-
-  }
+button:hover {
+  box-shadow: 0 5px 20px #89caff94;
+  transition: box-shadow 0.3s ease-in-out;
+}
 .formu {
   margin-top: 10px;
   width: 100%;

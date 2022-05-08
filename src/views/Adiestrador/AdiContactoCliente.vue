@@ -7,6 +7,7 @@
       :mail="mail"
       :errorEnvio="errorEnvio"
       :errorValida="errorValida"
+      :feedback="feedback"
       @formProce="procForm(mail)"
     />
   </div>
@@ -37,6 +38,7 @@ export default {
     const listaTrue = true;
     const errorEnvio = ref(null);
     const errorValida = ref([null]);
+    const feedback = ref(null);
     const titulo = 'Comunícate con tus clientes';
     const subTitulo = '¡¡Manda un mensaje personalizado!!';
     const idAdiestrador = localStorage.getItem('id');
@@ -47,11 +49,18 @@ export default {
       if (validacion) {
         const { enviado, error, send } = enviarMailToCliente(clienteId, mail);
         await send();
-        if (error.value !== 'error al mandar el email') {
-          router.go(-1);
+        if (error.value) {
+          errorEnvio.value = true;
+          feedback.value = error.value.mensaje;
         } else {
-          errorEnvio.value = error.value;
+          errorEnvio.value = false;
+          feedback.value = 'Email enviado';
         }
+        // if (error.value !== 'error al mandar el email') {
+        //   router.go(-1);
+        // } else {
+        //   errorEnvio.value = error.value;
+        // }
       }
     };
     return {
@@ -62,6 +71,7 @@ export default {
       titulo,
       subTitulo,
       listaTrue,
+      feedback,
     };
   },
 };

@@ -7,11 +7,16 @@
         alt="image"
       />
       <div class="container-text">
-        <div v-if="errorEvento">
-          <p class="alertaForm">
-            {{ errorEvento }}
-          </p>
-        </div>
+        <p
+          class="feedback"
+          :class="{ error: errorEvento, exito: !errorEvento }"
+        >
+          {{ feedback }}
+        </p>
+
+        <p class="feedback error">
+          {{ errorLength }}
+        </p>
         <form @submit.prevent="procForm">
           <input
             type="text"
@@ -55,7 +60,7 @@ import Multiselect from '@vueform/multiselect';
 import { ref, watch } from 'vue';
 export default {
   components: { Multiselect },
-  props: ['evento', 'errorEvento'],
+  props: ['evento', 'errorEvento', 'feedback'],
   emits: ['formProce'],
   setup(props, context) {
     //const listaClientes = ['Bataman', 'Superman', 'Iron Man'];
@@ -65,6 +70,7 @@ export default {
 
     const publico = ref(false);
     const privado = ref(null);
+    const errorLength = ref(null);
     const ev = ref(null);
     ev.value = props.evento;
 
@@ -81,7 +87,9 @@ export default {
         }
         ev.value.invitados = invitados;
         context.emit('formProce', ev);
+        errorLength.value = null;
       } else {
+        errorLength.value = 'Hay más invitados que el aforo máximo marcado';
       }
     };
 
@@ -89,7 +97,7 @@ export default {
       privado.value === 's' ? (publico.value = true) : (publico.value = false);
     });
 
-    return { ev, procForm, privado, publico, clientes };
+    return { ev, procForm, privado, publico, clientes, errorLength };
   },
 };
 </script>

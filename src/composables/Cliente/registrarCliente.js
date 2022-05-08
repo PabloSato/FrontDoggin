@@ -16,7 +16,7 @@ const registrarCliente = (idCliente, idEvento, feedbackAccion, errorAccion) => {
         },
         body: JSON.stringify({ idEvento: idEvento }),
       });
-      if (!data.ok) throw Error('error al registrarse');
+      if (!data.ok) throw Error('No se ha podido realizar el registro');
       errorAccion.value = false;
       feedbackAccion.value = 'Usuario registrado con éxito';
       emitter.emit('clienteActualizado', idEvento);

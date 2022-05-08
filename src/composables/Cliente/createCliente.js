@@ -19,7 +19,7 @@ const createCliente = user => {
         body: JSON.stringify(us),
       });
       if (!response.ok) {
-        throw Error('error al insertar usuario');
+        throw Error('No se ha podido crear el usuario');
       } else {
         usuarioId.value = await response.json();
         const cli = {
@@ -34,18 +34,16 @@ const createCliente = user => {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(cli),
             });
-            if (!response2.ok) throw Error('error al insertar cliente');
+            if (!response2.ok) throw Error('No se ha podido crear el usuario');
             cliente.value = await response2.json();
           } catch (err) {
             error.value = err.message;
-            console.log('error2 ' + error.value);
           }
         };
         insert();
       }
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
     }
   };
 

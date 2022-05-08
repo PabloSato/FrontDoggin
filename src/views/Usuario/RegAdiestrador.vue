@@ -39,26 +39,22 @@ export default {
     }
     //Variable que nos recogerá los errores de validación
     const errorValida = ref([null]); //Guardamos los errores de validacion
-    let errorInsert = '';
+    const errorInsert = ref(null);
     //Función que procesa el formulario
     const procForm = async user => {
       const { validacion, mensajesValidacion } = validarUser(user);
       errorValida.value = mensajesValidacion; //Si hay algun error en validación, guardamos su mensaje
       //Si la validación ha sido correcta, insertamos
-      console.log(errorValida.value);
       if (validacion) {
         const { adiestrador, error, insertAdiestrador } =
           createAdiestrador(user);
         //Llamams a la función que inserta el Usuario/Adiestrador
-        insertAdiestrador();
+        await insertAdiestrador();
         //redireccionamos ?¿?¿?¿
-        if (
-          error.value !== 'error al insertar usuario' ||
-          error.value !== 'error al insertar adiestrador'
-        ) {
-          router.push('/login');
+        if (error.value) {
+          errorInsert.value = error.value;
         } else {
-          errorInsert = error.value;
+          router.push('/login');
         }
       }
     };

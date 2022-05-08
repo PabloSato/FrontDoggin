@@ -44,5 +44,13 @@ export default {
 </script>
 
 <style>
-
+.feedback {
+  font-size: 34px !important;
+}
+.feedback.error {
+  color: red;
+}
+.feedback.exito {
+  color: green;
+}
 </style>

@@ -55,8 +55,11 @@ export default {
     let token = '';
     //Funciones
 
-    const contactos = () =>  {
-    router.push({ name: adiestrador.nombre, id: adiestrador._id});
+    const contactos = () => {
+      router.push({
+        name: 'contacto',
+        params: { id: adiestrador._id, nombre: adiestrador.nombre },
+      });
     };
 
     loadAdiestrador();
@@ -96,6 +99,7 @@ export default {
       valoraFuncion,
       errorValora,
       okValora,
+      contactos,
     };
   },
 };

@@ -44,6 +44,7 @@
           />
           <button type="submit" value="registrar">Crear Evento</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
+          <button @click.prevent="volver">Volver</button>
         </form>
       </div>
     </div>
@@ -58,13 +59,14 @@ import getClientes from '../../composables/Cliente/getClientes';
 import Multiselect from '@vueform/multiselect';
 //Utilidades
 import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   components: { Multiselect },
   props: ['evento', 'errorEvento', 'feedback'],
   emits: ['formProce'],
   setup(props, context) {
     //const listaClientes = ['Bataman', 'Superman', 'Iron Man'];
-
+    const router = useRouter();
     const { clientes, errorClientes, loadClientes } = getClientes();
     loadClientes();
 
@@ -97,7 +99,10 @@ export default {
       privado.value === 's' ? (publico.value = true) : (publico.value = false);
     });
 
-    return { ev, procForm, privado, publico, clientes, errorLength };
+    const volver = () => {
+      router.go(-1);
+    };
+    return { ev, procForm, privado, publico, clientes, errorLength, volver };
   },
 };
 </script>

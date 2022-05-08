@@ -25,9 +25,9 @@ const valorarAdiestrador = (idAdiestrador, valoracion) => {
       );
       if (!response.ok) throw Error('error al puntuar al Adiestrador');
       rating.value = await response.json();
+      rating.value = rating.value.rating;
     } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
+      error.value = { error: true, mensaje: err.message };
     }
   };
   return { rating, error, insertValoracion };

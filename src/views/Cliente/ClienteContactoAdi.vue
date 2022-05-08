@@ -6,6 +6,7 @@
       :mail="mail"
       :errorEnvio="errorEnvio"
       :errorValida="errorValida"
+      :feedback="feedback"
       @formProce="procForm(mail)"
     />
     <p></p>
@@ -41,6 +42,7 @@ export default {
     });
     const errorEnvio = ref(null);
     const errorValida = ref([null]);
+    const feedback = ref(null);
     const adiestradorId = props.id;
     const titulo = `Enviar mensaje a ${props.nombre}`;
     const subTitulo = '¡¡Contacta con tu adiestrador!!';
@@ -54,11 +56,18 @@ export default {
           mail
         );
         await send();
-        if (error.value !== 'error al mandar el email') {
-          router.go(-1);
+        if (error.value) {
+          errorEnvio.value = true;
+          feedback.value = error.value.mensaje;
         } else {
-          errorEnvio.value = error.value;
+          errorEnvio.value = false;
+          feedback.value = 'Email enviado';
         }
+        // if (error.value !== 'error al mandar el email') {
+        //   router.go(-1);
+        // } else {
+        //   errorEnvio.value = error.value;
+        // }
       }
     };
 
@@ -69,6 +78,7 @@ export default {
       errorValida,
       titulo,
       subTitulo,
+      feedback,
     };
   },
 };

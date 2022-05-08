@@ -30,7 +30,15 @@
     >
       Cancelar
     </button>
-    <p>{{ feedbackAccion }}</p>
+    <p
+      class="feedback"
+      :class="{
+        error: errorAccion,
+        exito: !errorAccion,
+      }"
+    >
+      {{ feedbackAccion }}
+    </p>
   </div>
 </template>
 
@@ -59,6 +67,7 @@ export default {
     const adiestradorEvento = ref(detallesAdiestrador.adiestrador);
 
     const feedbackAccion = ref(null);
+    const errorAccion = ref(null);
 
     // ------- ASISTENCIA -------
     const registrado = ref(null);
@@ -73,13 +82,15 @@ export default {
     const { registrarse } = registrarCliente(
       idCliente,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     const { cancelar } = cancelarAsistencia(
       idCliente,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     // ------- GESTION -------
@@ -95,7 +106,8 @@ export default {
     const { eliminar } = eliminarEvento(
       idAdiestrador,
       props.evento._id,
-      feedbackAccion
+      feedbackAccion,
+      errorAccion
     );
 
     // eventlisteners
@@ -114,6 +126,7 @@ export default {
       cancelar,
       registrado,
       feedbackAccion,
+      errorAccion,
       eliminar,
       owner,
     };

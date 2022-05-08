@@ -1,8 +1,8 @@
 <template>
   <div class="contForm">
     <div class="subContForm">
-      <h2>Envio de anuncio</h2>
-      <p>¡¡Manda un anuncio a tus clientes!!</p>
+      <h2>{{ titulo }}</h2>
+      <p>{{ subTitulo }}</p>
       <img
         src="https://cdn.pixabay.com/photo/2018/01/31/05/32/post-3120315_960_720.jpg"
         alt="image"
@@ -27,6 +27,19 @@
             placeholder="Título del anuncio"
             required
           />
+          <div v-if="listaTrue">
+            <Multiselect
+              v-model="mail.destinatario"
+              placeholder="añade destinatario"
+              :options="
+                clientes.map(
+                  c => c.username,
+                  c => c._id
+                )
+              "
+              :search="true"
+            />
+          </div>
           <textarea
             v-model="mail.mensaje"
             id="mensaje"
@@ -44,10 +57,25 @@
 </template>
 
 <script>
+//Composables
+import getClientes from '../../composables/Cliente/getClientes';
+//Componentes
+import Multiselect from '@vueform/multiselect';
+//Utilidades
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
 export default {
-  props: ['mail', 'errorEnvio', 'errorValida', 'feedback'],
+  components: { Multiselect },
+  props: [
+    'mail',
+    'errorEnvio',
+    'errorValida',
+    'feedback',
+    'adiToCliente',
+    'titulo',
+    'subTitulo',
+    'listaTrue',
+  ],
   emits: ['formProce'],
   setup(props, context) {
     // const router = ref(null);
@@ -55,13 +83,15 @@ export default {
     //Variables
     const mail = props.mail;
     //Funciones
+    const { clientes, errorClientes, loadClientes } = getClientes();
+    loadClientes();
     const procesaFormu = () => {
       context.emit('formProce', mail);
     };
     const volver = () => {
       router.go(-1);
     };
-    return { mail, procesaFormu, volver };
+    return { mail, procesaFormu, volver, clientes };
   },
 };
 </script>

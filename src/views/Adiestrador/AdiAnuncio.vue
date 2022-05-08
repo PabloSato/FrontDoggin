@@ -36,8 +36,10 @@ export default {
       router.push('/');
     }
     //Variables
-    const titulo = 'Envio de anuncio';
-    const subTitulo = '¡¡Manda un anuncio a tus clientes!!';
+    const titulo = ref();
+    const subTitulo = ref();
+    titulo.value = 'Envio de anuncio';
+    subTitulo.value = '¡¡Manda un anuncio a tus clientes!!';
     //Mail
     const mail = ref({
       asunto: null,
@@ -81,4 +83,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.anuncio {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-top: 20px;
+  width: 100vw;
+  min-height: 90vh;
+}
+</style>

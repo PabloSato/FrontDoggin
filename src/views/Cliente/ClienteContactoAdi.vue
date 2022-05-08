@@ -44,8 +44,10 @@ export default {
     const errorValida = ref([null]);
     const feedback = ref(null);
     const adiestradorId = props.id;
-    const titulo = `Enviar mensaje a ${props.nombre}`;
-    const subTitulo = '¡¡Contacta con tu adiestrador!!';
+    const titulo = ref();
+    const subTitulo = ref();
+    titulo.value = `Enviar mensaje a ${props.nombre}`;
+    subTitulo.value = '¡¡Contacta con tu adiestrador!!';
     //Funciones
     const procForm = async mail => {
       const { validacion, mensajesValidacion } = validarFormMail(mail);

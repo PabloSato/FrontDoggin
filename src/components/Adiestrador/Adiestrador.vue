@@ -25,7 +25,9 @@
             <div class="d-flex align-items-center justify-content-center foot">
               <p>
                 Rating:
-                <span v-if="adiestrador.rating">{{ adiestrador.rating }}</span>
+                <span v-if="adiestrador.rating">{{
+                  adiestrador.rating.toFixed(1)
+                }}</span>
                 <span v-else>-</span>
               </p>
             </div>

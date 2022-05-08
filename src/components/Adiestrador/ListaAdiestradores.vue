@@ -43,6 +43,7 @@ export default {
       );
       if (filterTags.value.length) {
         adiestradoresBuscados = adiestradoresBuscados.filter(a => {
+          if (!a.tags) return false;
           const resultado = a.tags.find(
             aT => !!filterTags.value.find(t => t === aT)
           );

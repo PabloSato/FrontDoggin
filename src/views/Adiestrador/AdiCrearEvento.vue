@@ -3,6 +3,7 @@
     <FormCrearEvento
       :evento="evento"
       :errorEvento="errorEvento"
+      :feedback="feedback"
       @formProce="procForm(evento, invitados)"
     />
   </div>
@@ -45,7 +46,7 @@ export default {
       }
     };
 
-    return { evento, procForm, errorEvento };
+    return { evento, procForm, errorEvento, feedback };
   },
 };
 </script>

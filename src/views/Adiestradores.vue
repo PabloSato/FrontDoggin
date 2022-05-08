@@ -61,7 +61,7 @@ p{
   flex-direction: column;
   place-items: center;
   line-height: 1.5;
-  padding: 30px;
+  // padding: 30px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
   
   img {
@@ -117,7 +117,7 @@ p{
 
 .container-text{
   text-align: center;
-  padding: 10px 10px 10px 10px;
+  // padding: 10px 10px 10px 10px;
   min-height: 100%;
 }
 }
@@ -163,7 +163,7 @@ p{
 // }
 .contCard {
 
-  padding-top: 20px;
+  // padding-top: 20px;
   width: 90%;
   max-width: 1024px;
 }

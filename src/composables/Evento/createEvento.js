@@ -23,11 +23,10 @@ const createEvento = evento => {
           body: JSON.stringify(evento),
         }
       );
-      if (!data.ok) throw Error('error al crear el evento');
+      if (!data.ok) throw Error('No se ha podido crear el evento');
       nuevoEvento.value = await data.json();
     } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
+      error.value = { error: true, mensaje: err.message };
     }
   };
 

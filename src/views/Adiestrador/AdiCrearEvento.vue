@@ -3,6 +3,7 @@
     <FormCrearEvento
       :evento="evento"
       :errorEvento="errorEvento"
+      :feedback="feedback"
       @formProce="procForm(evento, invitados)"
     />
   </div>
@@ -23,6 +24,7 @@ export default {
     const router = useRouter();
     const idAdiestrador = localStorage.getItem('id');
     const errorEvento = ref(null);
+    const feedback = ref(null);
     //Recogemos los campos del evento
     const evento = ref({
       nombre: null,
@@ -32,18 +34,19 @@ export default {
       maxAforo: null,
       invitados: [],
     });
-
     const procForm = async evento => {
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
-      if (error.value !== 'error al crear el evento') {
-        router.go(-1);
+      if (error.value) {
+        errorEvento.value = true;
+        feedback.value = error.mensaje;
       } else {
-        errorEvento.value = error.value;
+        errorEvento.value = false;
+        feedback.value = 'Evento creado correctamente';
       }
     };
 
-    return { evento, procForm, errorEvento };
+    return { evento, procForm, errorEvento, feedback };
   },
 };
 </script>

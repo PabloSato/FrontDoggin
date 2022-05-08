@@ -73,7 +73,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .contenedor {
   display: flex;
   flex-direction: column;
@@ -93,21 +93,32 @@ export default {
 
 .backdrop {
   z-index: 100;
-  background: rgb(0, 0, 0, 0.3);
+  background: black;
+  opacity: 0.8;
   width: 100vw;
   height: 100vh;
   position: absolute;
 }
+
+/* css del modal */
 .detalles {
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   text-align: center;
   z-index: 150;
-  position: absolute;
+  position:fixed;
   height: 90vh;
+  width: 100%;
+  margin: 0;
+  /* border: 2px solid black; */
+}
+@media screen and (min-width: 750px) {
+.detalles {
+
   width: 50%;
   left: 25%;
-  margin: 0;
-  border: 2px solid black;
+}
+
+
 }
 </style>

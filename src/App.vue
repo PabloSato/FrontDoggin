@@ -1,4 +1,4 @@
-<template .container-flex>
+<template>
   <Header :userLogin="login" />
   <router-view />
   <Footer />
@@ -43,4 +43,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

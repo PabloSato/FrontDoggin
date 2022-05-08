@@ -27,19 +27,24 @@ export default {
 </script>
 
 <style>
+
 .filter-nav button {
-  background: none;
+  background: #170f11;
+  display: inline-block;
+  color: #5f4bb6;
+  font-size: 1rem;
+  margin: 5px 5px 10px;
+  width: 300px;
   border: none;
-  color: #bbb;
-  outline: none;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-right: 10px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  cursor: pointer;
+  padding: 14px;
+  border-radius: 3px;
 }
 .filter-nav button.active {
-  color: #555;
+  background:#9ab7d7
 }
+ button:hover {
+    box-shadow: 0 5px 20px #89caff94;
+    transition: box-shadow 0.3s ease-in-out;
+
+  }
 </style>

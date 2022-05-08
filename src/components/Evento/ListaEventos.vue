@@ -5,7 +5,8 @@
       :current="filtro"
       v-if="!idOrganizador && (cliente || adiestrador)"
     />
-    <evento
+    <div class="lista">
+<evento
       v-for="evento in eventosVisibles"
       :key="evento._id"
       :evento="evento"
@@ -13,6 +14,8 @@
       :cliente="cliente"
       :adiestrador="adiestrador"
     />
+    </div>
+    
   </div>
 </template>
 
@@ -76,10 +79,14 @@ export default {
 
 <style>
 .eventos {
-  max-width: 80%;
   margin: 0 auto;
   display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.lista{
+  display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 </style>

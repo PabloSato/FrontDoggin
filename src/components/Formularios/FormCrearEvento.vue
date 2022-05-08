@@ -87,6 +87,7 @@ export default {
         }
         ev.value.invitados = invitados;
         context.emit('formProce', ev);
+        errorLength.value = null;
       } else {
         errorLength.value = 'Hay más invitados que el aforo máximo marcado';
       }

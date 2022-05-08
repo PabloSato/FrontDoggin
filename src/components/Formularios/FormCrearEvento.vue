@@ -37,7 +37,6 @@
             "
             :search="true"
           />
-
           <button type="submit" value="registrar">Crear Evento</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
         </form>
@@ -71,15 +70,19 @@ export default {
 
     const procForm = () => {
       let invitados = [];
-      for (let i = 0; i < clientes.value.length; i++) {
-        for (let j = 0; j < ev.value.invitados.length; j++) {
-          if (ev.value.invitados[j] === clientes.value[i].username) {
-            let invitado = { idCliente: clientes.value[i]._id };
-            invitados.push(invitado);
+      if (ev.value.maxAforo >= ev.value.invitados.length) {
+        for (let i = 0; i < clientes.value.length; i++) {
+          for (let j = 0; j < ev.value.invitados.length; j++) {
+            if (ev.value.invitados[j] === clientes.value[i].username) {
+              let invitado = { idCliente: clientes.value[i]._id };
+              invitados.push(invitado);
+            }
           }
         }
+        ev.value.invitados = invitados;
+        context.emit('formProce', ev);
+      } else {
       }
-      ev.value.invitados = invitados;
     };
 
     const watchPrivado = watch(privado, () => {

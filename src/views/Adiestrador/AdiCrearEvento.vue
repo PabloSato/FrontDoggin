@@ -51,4 +51,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.crearEvento {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-top: 20px;
+  width: 100vw;
+  min-height: 90vh;
+}
+</style>

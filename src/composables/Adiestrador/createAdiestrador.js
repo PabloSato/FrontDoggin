@@ -19,13 +19,14 @@ const createAdiestrador = user => {
         body: JSON.stringify(usuario),
       });
       if (!data.ok) {
-        throw Error('error al insertar usuario');
+        throw Error('No se ha podido crear el usuario');
       } else {
         usuarioId.value = await data.json();
         const adi = {
           userId: usuarioId.value._id,
           nombre: user.nombre,
           bio: user.bio,
+          imageUrl: user.imageUrl,
         };
         const insert = async () => {
           try {
@@ -34,18 +35,16 @@ const createAdiestrador = user => {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(adi),
             });
-            if (!data.ok) throw Error('error al insertar adiestrador');
+            if (!data.ok) throw Error('No se ha podido crear el usuario');
             adiestrador.value = await data.json();
           } catch (err) {
-            error.value = err.message;
-            console.log(error.value);
+            error.value = { error: true, mensaje: err.message };
           }
         };
         insert();
       }
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
     }
   };
   return { adiestrador, error, insertAdiestrador };

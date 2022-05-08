@@ -18,7 +18,6 @@
 import FormMail from '../../components/Formularios/FormMail.vue';
 //Composables
 import validarFormMail from '../../composables/Validacion/validarFormMail';
-import getClientesAdiestrador from '../../composables/Adiestrador/getClientesAdiestrador';
 import enviarMailToCliente from '../../composables/Adiestrador/enviarMailToCliente';
 //Utilidades
 import { useRouter } from 'vue-router';
@@ -29,25 +28,31 @@ export default {
   setup(props) {
     //Variables
     const router = useRouter();
+    const adiToCliente = ref(null);
+    adiToCliente.value = true;
     //ANTES DE NADA COMPROBAMOS SI ESTÁ LOGUEADO
     const mail = ref({
-      cliente: null,
+      destinatario: null,
       asunto: null,
       mensaje: null,
     });
-    const listaTrue = true;
+    const listaTrue = ref();
+    listaTrue.value = true;
     const errorEnvio = ref(null);
     const errorValida = ref([null]);
     const feedback = ref(null);
-    const titulo = 'Comunícate con tus clientes';
-    const subTitulo = '¡¡Manda un mensaje personalizado!!';
+    const titulo = ref();
+    const subTitulo = ref();
+    titulo.value = 'Comunícate con tus clientes';
+    subTitulo.value = '¡¡Manda un mensaje personalizado!!';
     const idAdiestrador = localStorage.getItem('id');
     //Funciones
 
     const procForm = async mail => {
       const { validacion, mensajesValidacion } = validarFormMail(mail);
+
       if (validacion) {
-        const { enviado, error, send } = enviarMailToCliente(clienteId, mail);
+        const { enviado, error, send } = enviarMailToCliente(mail);
         await send();
         if (error.value) {
           errorEnvio.value = true;

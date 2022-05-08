@@ -1,30 +1,25 @@
 import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
-const enviarMailToCliente = (clienteId, mail) => {
+const enviarMailToCliente = mail => {
   const enviado = ref(null);
   const error = ref(null);
   const adiestradorId = localStorage.getItem('id');
   const token = localStorage.getItem('token');
-  const mensaje = {
-    asunto: mail.asunto,
-    mensaje: mail.mensaje,
-  };
 
   const send = async () => {
     try {
       let response = await fetch(
-        `${BASEURL}/adiestradores/${adiestradorId}/clientes/${clienteId}/email`,
+        `${BASEURL}/adiestradores/${adiestradorId}/clientes/email`,
         {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(mensaje),
+          body: JSON.stringify(mail),
         }
       );
-      response.ok = false;
       if (!response.ok) {
         throw Error('No se ha podido enviar el email');
       } else {

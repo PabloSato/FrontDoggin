@@ -7,11 +7,13 @@
         alt="image"
       />
       <div class="container-text">
-        <div v-if="errorInsert.length > 0">
-          <p class="alertaForm">{{ errorInsert }}</p>
-        </div>
+        <p class="feedback error">{{ errorInsert }}</p>
         <div v-if="errorValida.length > 0">
-          <p class="alertaForm" v-for="mensaje in errorValida" :key="mensaje">
+          <p
+            class="feedback error"
+            v-for="mensaje in errorValida"
+            :key="mensaje"
+          >
             {{ mensaje }}
           </p>
         </div>
@@ -35,6 +37,7 @@
             required
           />
           <input
+            v-if="quienH2 === 'Adiestrador'"
             type="text"
             v-model="user.imageUrl"
             placeholder="añade la url de tu imagen"

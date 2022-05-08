@@ -2,29 +2,27 @@ import { ref } from 'vue';
 import { BASEURL } from '@/main';
 
 const getClientesAdiestrador = idAdiestrador => {
+  if (!idAdiestrador) return;
   const listaClientes = ref([null]);
   const errorLista = ref(null);
   const token = localStorage.getItem('token');
 
-  const loadClientes = async () => {
+  const loadListaClientes = async () => {
     try {
       let data = await fetch(
         `${BASEURL}/adiestradores/${idAdiestrador}/clientes`,
         {
           method: 'get',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
-      if (!data.ok) throw Error('Error al obtener clientes');
+      if (!data.ok) throw new Error('Error al cargar los clientes');
       listaClientes.value = await data.json();
     } catch (err) {
-      errorLista.value = err.message;
-      console.log(errorLista.value);
+      errorClientes.value = err.message;
+      console.log(errorClientes.value);
     }
   };
-  return { listaClientes, errorLista, loadClientes };
+  return { listaClientes, errorLista, loadListaClientes };
 };
 export default getClientesAdiestrador;

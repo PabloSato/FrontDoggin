@@ -12,6 +12,9 @@
           <button @click="verEventos(adiestrador._id)">mis eventos</button>
           <button @click="crearEvento(adiestrador._id)">crear evento</button>
           <button @click="crearAnuncio(adiestrador._id)">crear anuncio</button>
+          <button @click="enviarMensaje(adiestrador._id)">
+            enviar mensaje
+          </button>
         </div>
       </div>
     </div>
@@ -49,9 +52,19 @@ export default {
     const crearAnuncio = id => {
       router.push({ path: `/adiestradores/${id}/broadcast` });
     };
-
+    const enviarMensaje = id => {
+      router.push({
+        path: `/adiestradores/${id}/contacto/clientes`,
+      });
+    };
     //Returns
-    return { adiestrador, verEventos, crearEvento, crearAnuncio };
+    return {
+      adiestrador,
+      verEventos,
+      crearEvento,
+      crearAnuncio,
+      enviarMensaje,
+    };
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="contForm">
     <div class="subContForm">
-      <h2>{{ titulo }}</h2>
-      <p>{{ subTitulo }}</p>
+      <h2>Envio de anuncio</h2>
+      <p>¡¡Manda un anuncio a tus clientes!!</p>
       <img
         src="https://cdn.pixabay.com/photo/2018/01/31/05/32/post-3120315_960_720.jpg"
         alt="image"
@@ -16,14 +16,14 @@
           <input
             type="text"
             v-model="mail.asunto"
-            placeholder="Asunto del mensaje"
+            placeholder="Título del anuncio"
             required
           />
           <textarea
             v-model="mail.mensaje"
             id="mensaje"
             rows="5"
-            placeholder="Texto del mensaje"
+            placeholder="Texto del anuncio"
             required
           ></textarea>
           <button type="submit" value="enviar">Enviar</button>
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  props: ['mail', 'errorEnvio', 'errorValida', 'titulo', 'subTitulo'],
+  props: ['mail', 'errorEnvio', 'errorValida'],
   emits: ['formProce'],
   setup(props, context) {
     //Variables

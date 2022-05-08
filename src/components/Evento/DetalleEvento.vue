@@ -1,23 +1,16 @@
 <template>
-  <div class="contModal" v-if="adiestradorEvento">
+  <div  class="contModal" v-if="adiestradorEvento">
     <div class="subContModal">
       <h2>{{ evento.nombre }}</h2>
       <h3>{{ adiestradorEvento.nombre }}</h3>
       <img :src="evento.imageUrl" alt="imagen del evento" />
       <p>{{ evento.descripcion }}</p>
-      <h9>{{ dia }} {{ mes }} {{ year }}</h9>
-      <p class="feedback" :class="{ error: errorAccion, exito: !errorAccion }">
-        {{ feedbackAccion }}
-      </p>
-      <button v-if="cliente && !registrado" @click="registrarse">
-        Asistir
-      </button>
-      <button class="alter" v-if="cliente && registrado" @click="cancelar">
-        Cancelar
-      </button>
-      <button class="alter" v-if="adiestrador && owner" @click="eliminar">
-        Cancelar
-      </button>
+      <h6>{{ dia }} {{ mes }} {{ year }}</h6>
+      <p class="alertaForm">{{ feedbackAccion }}</p>
+      <!-- <p class="feedback":class="{error: errorAccion, exito: !errorAccion,}">{{ feedbackAccion }}</p> -->
+      <button v-if="cliente && !registrado" @click="registrarse">Asistir</button>
+      <button class="alter" v-if="cliente && registrado" @click="cancelar"> Cancelar </button>
+      <button class="alter" v-if="adiestrador && owner" @click="eliminar"> Cancelar </button>
     </div>
   </div>
 </template>

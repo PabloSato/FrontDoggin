@@ -44,7 +44,7 @@
               v-model="user.bio"
               id="bio"
               rows="5"
-              placeholder="Boigrafía sobre ti..."
+              placeholder="Biografía sobre ti..."
               required
             ></textarea>
           </div>

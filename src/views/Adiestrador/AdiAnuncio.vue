@@ -7,6 +7,7 @@
       :mail="mail"
       :errorEnvio="errorEnvio"
       :errorValida="errorValida"
+      :feedback="feedback"
       @formProce="procForm(mail)"
     />
   </div>
@@ -44,6 +45,7 @@ export default {
     });
     const errorEnvio = ref(null);
     const errorValida = ref([null]);
+    const feedback = ref(null);
 
     //Funciones
     const procForm = async mail => {
@@ -52,14 +54,29 @@ export default {
       if (validacion) {
         const { error, sendAll } = enviarMailToAll(mail);
         await sendAll();
-        if (error.value !== 'error al mandar el email') {
-          router.go(-1);
+        if (error.value) {
+          errorEnvio.value = true;
+          feedback.value = error.value.mensaje;
         } else {
-          errorEnvio.value = error.value;
+          errorEnvio.value = false;
+          feedback.value = 'Email enviado';
         }
+        // if (error.value !== 'error al mandar el email') {
+        //   router.go(-1);
+        // } else {
+        //   errorEnvio.value = error.value;
+        // }
       }
     };
-    return { mail, errorEnvio, procForm, errorValida, titulo, subTitulo };
+    return {
+      mail,
+      errorEnvio,
+      procForm,
+      errorValida,
+      titulo,
+      subTitulo,
+      feedback,
+    };
   },
 };
 </script>

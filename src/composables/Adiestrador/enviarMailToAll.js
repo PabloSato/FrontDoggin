@@ -24,13 +24,11 @@ const enviarMailToAll = mail => {
           body: JSON.stringify(mensaje),
         }
       );
-      if (!response.ok) throw Error('error al mandar el email');
+      if (!response.ok) throw Error('No se ha podido enviar el anuncio');
     } catch (err) {
-      console.log(err.message);
-      error.value = err.mensaje;
+      error.value = { error: true, mensaje: err.message };
     }
   };
-  console.log('holaaa');
   return { error, sendAll };
 };
 

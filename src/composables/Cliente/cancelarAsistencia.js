@@ -2,7 +2,12 @@ import { ref } from 'vue';
 import { BASEURL } from '@/main';
 import useEmitter from '@/composables/Tools/emitter';
 
-const cancelarAsistencia = (idCliente, idEvento, feedbackAccion) => {
+const cancelarAsistencia = (
+  idCliente,
+  idEvento,
+  feedbackAccion,
+  errorAccion
+) => {
   const emitter = useEmitter();
 
   const token = localStorage.getItem('token');
@@ -19,15 +24,15 @@ const cancelarAsistencia = (idCliente, idEvento, feedbackAccion) => {
         }
       );
       if (!data.ok) throw Error('error al cancelar');
+      errorAccion.value = false;
       feedbackAccion.value = 'Asistencia al evento cancelada';
       emitter.emit('clienteActualizado', idEvento);
     } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
+      errorAccion.value = true;
       feedbackAccion.value = err.message;
     }
   };
-  return { feedbackAccion, cancelar };
+  return { feedbackAccion, errorAccion, cancelar };
 };
 
 export default cancelarAsistencia;

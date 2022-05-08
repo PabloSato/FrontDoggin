@@ -6,13 +6,14 @@
       <h2>Bio</h2>
       <p>{{ adiestrador.bio }}</p>
       <h2>Rating</h2>
-      <p>{{ adiestrador.rating }}/5 puntos</p>
+      <p v-if="avgRating">{{ avgRating }}/5 puntos</p>
+      <p v-else>{{ adiestrador.rating.toFixed(1) }}/5 puntos</p>
       <div v-if="isLogin">
         <FormValoracion
           :adiestrador="adiestrador"
           :valoracion="valoracion"
           :errorValora="errorValora"
-          :okValora="okValora"
+          :feedback="feedback"
           @proValorar="valoraFuncion(valoracion)"
         />
         <!-- <router-link
@@ -37,7 +38,7 @@ import FormValoracion from '../../components/Formularios/FormValoracion.vue';
 import getAdiestraod from '../../composables/Adiestrador/getAdiestrador';
 import valorarAdiestrador from '../../composables/Cliente/valorarAdiestrador';
 //Utilidades
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
   components: { FormValoracion },
@@ -48,11 +49,14 @@ export default {
       score: null,
     });
     const errorValora = ref(null);
-    const okValora = ref(null);
+    const feedback = ref(null);
+    // const okValora = ref(null);
     const router = useRouter();
     const isLogin = ref(null);
     const { adiestrador, error, loadAdiestrador } = getAdiestraod(props.id);
     let token = '';
+
+    const avgRating = ref(null);
     //Funciones
 
     const contactos = () => {
@@ -81,25 +85,27 @@ export default {
         valoracion
       );
       await insertValoracion();
-      if (error.value !== 'error al puntuar al Adiestrador') {
-        console.log('aquiii');
-        console.log(rating);
-        okValora.value = 'Has puntuado al adiestrador';
+      if (error.value) {
+        errorValora.value = true;
+        feedback.value = error.value.mensaje;
       } else {
-        errorValora.value = error.value;
+        errorValora.value = false;
+        avgRating.value = rating.value;
+        feedback.value = 'Has puntuado al adiestrador';
       }
     };
     //Return
     return {
       verEventos,
       adiestrador,
+      avgRating,
       isLogin,
       verEventos,
       valoracion,
       valoraFuncion,
       errorValora,
-      okValora,
       contactos,
+      feedback,
     };
   },
 };

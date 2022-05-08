@@ -1,45 +1,17 @@
 <template>
-  <div class="ficha">
-    <div class="d-lg-flex">
-      <div class="card border-0 me-lg-4 mb-lg-0 mb-4">
-        <div class="backgroundEffect"></div>
-        <div class="pic">
-          <img class="" :src="adiestrador.imageUrl" :alt="adiestrador.nombre" />
-          <div class="date">
-            <span class="day">26</span> <span class="month">June</span>
-            <span class="year">2019</span>
-          </div>
-        </div>
-        <div class="content">
-          <p class="h-1 mt-4">{{ adiestrador.nombre }}</p>
-          <p class="text-muted mt-3">{{ adiestrador.bio }}</p>
-          <div
-            class="d-flex align-items-center justify-content-between mt-3 pb-3"
-          >
-            <button
-              class="btn btn-primary"
-              @click="verEventos(adiestrador._id)"
-            >
-              Ver eventos
-            </button>
-            <div class="d-flex align-items-center justify-content-center foot">
-              <p>
-                Rating:
-                <span v-if="adiestrador.rating">{{
-                  adiestrador.rating.toFixed(1)
-                }}</span>
-                <span v-else>-</span>
-              </p>
-            </div>
-          </div>
-          <router-link
-            :to="{ name: 'detalle', params: { id: adiestrador._id } }"
-            >detalle</router-link
-          >
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <figure class="image-block">
+    <div class="backgroundEffect"></div>
+    <h1>{{ adiestrador.nombre }}</h1>
+    <img :src="adiestrador.imageUrl" :alt="adiestrador.nombre"/>
+    <figcaption>
+      <h3>{{ adiestrador.nombre }}</h3>
+      <p>{{ adiestrador.bio }}</p>
+      <p> Rating: <span v-if="adiestrador.rating">{{ adiestrador.rating.toFixed(1) }}</span> <span v-else>-</span> </p>
+      <button class="" @click="verEventos(adiestrador._id)" > Ver eventos </button>
+      <button @click="detalle()">Detalle</button>
+    </figcaption>
+  </figure>
 </template>
 
 <script>
@@ -59,6 +31,12 @@ export default {
     //Tools
     const router = useRouter();
     //Funciones
+
+    const detalle = () => {
+      router.push ({name: 'detalle', params:{id: adiestrador._id},
+      });
+    };
+
     const verEventos = id => {
       router.push({ path: `/adiestradores/${id}/eventos` });
     };
@@ -67,164 +45,116 @@ export default {
       isLogin.value = true;
     }
 
-    return { verEventos, isLogin, adiestrador };
+    return { verEventos, isLogin, adiestrador, detalle };
   },
 };
 </script>
 
-<style scoped>
-.ficha {
-  min-height: 100vh;
-  padding: 20px 0;
+<style lang="scss" scoped>
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+*, 
+*:before, 
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #444;
+}
+
+body {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 }
 
-p {
-  margin: 0px;
-}
-
-.card {
-  width: 280px;
-  height: 520px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #fff;
-  transition: all 0.5s ease;
-  cursor: pointer;
-  user-select: none;
-  z-index: 10;
+figure {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 430px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
 }
-
-.card .backgroundEffect {
-  bottom: 0;
-  height: 0px;
-  width: 100%;
+figure:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
-.card:hover {
-  color: #fff;
-  transform: scale(1.025);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+figure:hover img {
+  transform: scale(1.25);
 }
-
-.card:hover .backgroundEffect {
+figure:hover figcaption {
   bottom: 0;
-  height: 320px;
-  width: 100%;
+}
+figure h1 {
   position: absolute;
-  z-index: -1;
-  background: #96bb7c;
-  animation: popBackground 0.3s ease-in;
-}
-
-@keyframes popBackground {
-  0% {
-    height: 20px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-  }
-
-  50% {
-    height: 80px;
-    border-top-left-radius: 75%;
-    border-top-right-radius: 75%;
-  }
-
-  75% {
-    height: 160px;
-    border-top-left-radius: 85%;
-    border-top-right-radius: 85%;
-  }
-
-  100% {
-    height: 320px;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
-  }
-}
-
-.card .pic {
-  position: relative;
-}
-
-.card .pic img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-}
-
-.card .date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 70px;
-  background-color: #96bb7c;
+  top: 50px;
+  left: 20px;
+  margin: 0;
+  padding: 0;
   color: white;
+  text-shadow: 0 0 0.5em black;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 1;
+}
+figure img {
+  height: 100%;
+  transition: 0.25s;
+}
+figure figcaption {
   position: absolute;
-  bottom: 0px;
-  transition: all ease;
+  bottom: -90%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  color: white;
+  line-height: 1;
+  transition: 0.25s;
 }
-
-.card .date .day {
+figure figcaption h3 {
+  margin: 0 0 20px;
+  padding: 0;
+}
+figure figcaption p {
   font-size: 14px;
-  font-weight: 600;
+  line-height: 1.75;
 }
-
-.card .date .month,
-.card .date .year {
-  font-size: 10px;
-}
-
-.card .text-muted {
-  font-size: 12px;
-}
-
-.card:hover .text-muted {
-  color: #fff !important;
-}
-
-.card .content {
-  padding: 0 20px;
-}
-
-.card .content .btn {
+figure figcaption button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 10px;
-  background-color: #96bb7c;
-  border-radius: 25px;
-  font-size: 12px;
+  margin: 10px 0 0;
+  padding: 10px 30px;
+  background-color: #1abc9c;
   border: none;
-}
-
-.card:hover .content .btn {
-  background: #fff;
-  color: #96bb7c;
-  box-shadow: #0000001a 0px 3px 5px;
-}
-
-.card .content .btn .fas {
-  font-size: 10px;
-  padding-left: 5px;
-}
-
-.card .content .foot .admin {
-  color: #96bb7c;
-  font-size: 12px;
-}
-
-.card:hover .content .foot .admin {
-  color: #fff;
-}
-
-.card .content .foot .icon {
-  font-size: 12px;
-}
-.d-flex {
-  gap: 20px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
 }
 </style>

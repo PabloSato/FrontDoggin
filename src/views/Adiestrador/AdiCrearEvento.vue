@@ -34,9 +34,6 @@ export default {
     });
 
     const procForm = async evento => {
-      console.log('por aui');
-      console.log(evento);
-
       const { nuevoEvento, error, insertEvento } = createEvento(evento);
       await insertEvento();
       if (error.value !== 'error al crear el evento') {

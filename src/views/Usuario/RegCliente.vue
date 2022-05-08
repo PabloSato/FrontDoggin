@@ -30,6 +30,7 @@ export default {
       email: null,
       password: null,
       nombre: null,
+      imageUrl: null,
     });
     //Router
     const router = useRouter();

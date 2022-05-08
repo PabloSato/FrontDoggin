@@ -5,7 +5,7 @@
       <h3>{{ adiestradorEvento.nombre }}</h3>
       <img :src="evento.imageUrl" alt="imagen del evento" />
       <p>{{ evento.descripcion }}</p>
-      <h9>{{ dia }} {{ mes }} {{ year }}</h9>
+      <h6>{{ dia }} {{ mes }} {{ year }}</h6>
       <p class="alertaForm">{{ feedbackAccion }}</p>
       <!-- <p class="feedback":class="{error: errorAccion, exito: !errorAccion,}">{{ feedbackAccion }}</p> -->
       <button v-if="cliente && !registrado" @click="registrarse">Asistir</button>

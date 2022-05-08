@@ -69,7 +69,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+}
 h2{
   font-size: 2.3rem;
   color: #dfe6ee;
@@ -109,7 +109,7 @@ p{
   flex-direction: column;
   place-items: center;
   line-height: 1.5;
-  padding: 30px;
+  // padding: 30px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
   
   img {
@@ -165,10 +165,10 @@ p{
 
 .container-text{
   text-align: center;
-  padding: 10px 10px 10px 10px;
+  // padding: 10px 10px 10px 10px;
   min-height: 100%;
 }
-}
+
 /* .contenedor {
   display: flex;
   flex-direction: column;
@@ -192,7 +192,7 @@ p{
 .contenedor {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  // padding-top: 20px;
   width: 100vw;
   min-height: 90vh;
 }
@@ -252,7 +252,7 @@ p{
 // }
 .contCard {
 
-  padding-top: 20px;
+  // padding-top: 20px;
   width: 90%;
   max-width: 1024px;
 
@@ -262,6 +262,7 @@ p{
 
   width: 50%;
   left: 25%;
+  height: auto;
 }
 
 

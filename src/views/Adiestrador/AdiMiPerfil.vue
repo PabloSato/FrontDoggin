@@ -12,9 +12,7 @@
           <button @click="verEventos(adiestrador._id)">mis eventos</button>
           <button @click="crearEvento(adiestrador._id)">crear evento</button>
           <button @click="crearAnuncio(adiestrador._id)">crear anuncio</button>
-          <button @click="enviarMensaje(adiestrador._id)">
-            enviar mensaje
-          </button>
+          <button class="alter" @click="enviarMensaje(adiestrador._id)">enviar mensaje</button>
         </div>
       </div>
     </div>

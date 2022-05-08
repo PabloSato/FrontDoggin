@@ -29,6 +29,7 @@ export default {
       password: null,
       nombre: null,
       bio: null,
+      imageUrl: null,
     });
     //Router
     const router = useRouter();

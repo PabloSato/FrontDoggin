@@ -71,11 +71,13 @@ export default {
   margin: 20px auto;
   min-height: 85vh;
   max-width: 1024px;
+  width: 90%;
 }
 .contenedorResgistrase {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 2rem;
 }
 .login {
   width: 100%;
@@ -98,7 +100,6 @@ export default {
   img {
     border-radius: 20px;
     width: 100%;
-    max-height: 150px;
     object-fit: cover;
     object-position: center;
   }
@@ -166,9 +167,10 @@ export default {
   .login {
     display: flex;
     justify-content: center;
+    margin: 5px;
   }
   .container {
-    width: 90%;
+    width: 100%;
 
     img {
       max-height: 200px;

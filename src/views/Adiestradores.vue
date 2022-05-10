@@ -2,7 +2,7 @@
   <div class="contCard">
     <div class="contCardPrim">
       <h2>Adiestradores</h2>
-      <p>Lista de adiestradores</p>
+      <!-- <p>Lista de adiestradores</p> -->
       <lista-adiestradores />
     </div>
   </div>

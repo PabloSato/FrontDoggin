@@ -2,7 +2,7 @@
   <div class="contCard">
     <div class="contCardPrim">
       <h2>Eventos</h2>
-      <p>Lista de eventos</p>
+      <!-- <p>Lista de eventos</p> -->
       <div class="backdrop" v-if="eventoSeleccionado" @click="ocultarEvento"></div>
       <div class="detalles" v-if="eventoSeleccionado">
         <detalle-evento :evento="eventoSeleccionado" :cliente="cliente" :adiestrador="adiestrador"/>

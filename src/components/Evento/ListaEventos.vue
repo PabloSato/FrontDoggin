@@ -82,7 +82,7 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-flow: column;
-  align-items: center;
+  /* align-items: center; */
 }
 .lista{
   display: flex;

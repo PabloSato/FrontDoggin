@@ -95,7 +95,7 @@ p{
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-content: center;
   padding-top: 20px;
   width: 100%;
@@ -110,7 +110,7 @@ p{
   place-items: center;
   line-height: 1.5;
   // padding: 30px;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
+  // box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
   
   img {
     width: 100%;

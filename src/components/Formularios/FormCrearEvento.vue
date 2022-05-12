@@ -21,12 +21,12 @@
           <input
             type="text"
             v-model="ev.nombre"
-            placeholder="añade nombre...."
+            placeholder="Nombre completo...."
           />
           <input
             type="text"
             v-model="ev.descripcion"
-            placeholder="añade descripcion...."
+            placeholder="Añade descripcion...."
           />
           <input type="date" v-model="ev.fecha" />
           <input type="number" v-model="ev.maxAforo" placeholder="aforo" />

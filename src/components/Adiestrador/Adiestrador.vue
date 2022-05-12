@@ -78,6 +78,7 @@ html {
 }
 
 body {
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
@@ -87,6 +88,7 @@ body {
 }
 
 figure {
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;

@@ -5,7 +5,7 @@
       :errorValida="errorValida"
       :errorInsert="errorInsert"
       act="Nuevo"
-      quienH2="Adiestrador"
+      quienH2="adiestrador"
       @formProce="procForm(user)"
     />
   </div>
@@ -70,6 +70,6 @@ export default {
   flex-direction: column;
   padding-top: 20px;
   width: 100vw;
-  min-height: 90vh;
+  /* min-height: 90vh; */
 }
 </style>

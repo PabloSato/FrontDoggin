@@ -58,6 +58,6 @@ export default {
   padding-top: 20px;
   padding-top: 20px;
   width: 100vw;
-  min-height: 90vh;
+  /* min-height: 90vh; */
 }
 </style>

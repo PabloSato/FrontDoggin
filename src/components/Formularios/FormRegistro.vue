@@ -21,19 +21,19 @@
           <input
             type="text"
             v-model="user.nombre"
-            placeholder="añade nombre"
-            required
-          />
-          <input
-            type="password"
-            v-model="user.password"
-            placeholder="Contraseña"
+            placeholder="Nombre completo"
             required
           />
           <input
             type="mail"
             v-model="user.email"
-            placeholder="mi_e-mail@dogginer.dog"
+            placeholder="e-mail@dogginer.dog"
+            required
+          />
+           <input
+            type="password"
+            v-model="user.password"
+            placeholder="Contraseña"
             required
           />
           <input
@@ -177,6 +177,7 @@ export default {
     display: flex;
     width: 90%;
     max-width: 1024px;
+    min-height: 85vh;
 
     img {
       width: 660px;

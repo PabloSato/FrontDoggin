@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .adiestradores {
   display: flex;
   flex-flow: row wrap;

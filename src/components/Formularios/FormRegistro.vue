@@ -183,7 +183,7 @@ export default {
     }
   }
   .container-text {
-    width: 490px;
+    width: 625px;
   }
 }
 </style>

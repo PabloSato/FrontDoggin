@@ -237,7 +237,7 @@ export default {
     flex-direction: row;
   }
   .container-text {
-    width: 490px;
+    width: 625px;
   }
 }
 </style>

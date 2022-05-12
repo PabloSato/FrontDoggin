@@ -7,7 +7,6 @@
         alt="image"
       />
       <div class="container-text">
-        <p class="feedback error">{{ errorInsert }}</p>
         <div v-if="errorValida.length > 0">
           <p
             class="feedback error"
@@ -51,6 +50,7 @@
               required
             ></textarea>
           </div>
+        <p class="feedback error">{{ errorInsert }}</p>
           <button type="submit" value="registrar">Registrar</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
         </form>
@@ -97,12 +97,7 @@ export default {
     margin-bottom: 5px;
   }
 
-  .alertaForm {
-    font-size: 1rem;
-    color: #ff5733;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
+
 }
 .contForm {
   width: 100%;

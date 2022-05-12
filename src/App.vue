@@ -45,12 +45,19 @@ export default {
 
 <style>
 .feedback {
-  font-size: 34px !important;
+  font-size: 1rem !important;
+  text-align: center;
 }
 .feedback.error {
-  color: red;
+    font-size: 1rem;
+    color: yellow;
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 .feedback.exito {
-  color: green;
+    font-size: 1rem;
+    color: rgb(234, 243, 216);
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 </style>

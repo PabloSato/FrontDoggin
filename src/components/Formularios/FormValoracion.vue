@@ -38,11 +38,11 @@
         />
         <label :for="staticID + 5">★</label>
       </p>
+      <p class="feedback" :class="{ error: errorValora, exito: !errorValora }">
+        {{ feedback }}
+      </p>
       <button type="submit" value="Valorar">Valorar</button>
     </form>
-    <p class="feedback" :class="{ error: errorValora, exito: !errorValora }">
-      {{ feedback }}
-    </p>
   </div>
 </template>
 

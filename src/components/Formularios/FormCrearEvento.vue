@@ -7,12 +7,6 @@
         alt="image"
       />
       <div class="container-text">
-        <p
-          class="feedback"
-          :class="{ error: errorEvento, exito: !errorEvento }"
-        >
-          {{ feedback }}
-        </p>
 
         <p class="feedback error">
           {{ errorLength }}
@@ -42,6 +36,12 @@
             "
             :search="true"
           />
+        <p
+          class="feedback"
+          :class="{ error: errorEvento, exito: !errorEvento }"
+        >
+          {{ feedback }}
+        </p>
           <button type="submit" value="registrar">Crear Evento</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
           <button @click.prevent="volver">Volver</button>
@@ -126,12 +126,7 @@ export default {
     margin-bottom: 5px;
   }
 
-  .alertaForm {
-    font-size: 1rem;
-    color: #ff5733;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
+ 
 }
 .contForm {
   width: 100%;

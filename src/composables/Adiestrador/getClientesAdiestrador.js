@@ -3,7 +3,7 @@ import { BASEURL } from '@/main';
 
 const getClientesAdiestrador = idAdiestrador => {
   if (!idAdiestrador) return;
-  const listaClientes = ref([null]);
+  const listaClientes = ref([]);
   const errorLista = ref(null);
   const token = localStorage.getItem('token');
 

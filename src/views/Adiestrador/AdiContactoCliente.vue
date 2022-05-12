@@ -61,11 +61,6 @@ export default {
           errorEnvio.value = false;
           feedback.value = 'Email enviado';
         }
-        // if (error.value !== 'error al mandar el email') {
-        //   router.go(-1);
-        // } else {
-        //   errorEnvio.value = error.value;
-        // }
       }
     };
     return {

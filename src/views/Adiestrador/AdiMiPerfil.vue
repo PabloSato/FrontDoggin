@@ -7,7 +7,7 @@
         <h2>Bio</h2>
         <p>{{ adiestrador.bio }}</p>
         <h2>Rating</h2>
-        <p>{{ adiestrador.rating }}/5 puntos</p>
+        <p>{{ adiestrador.rating ? adiestrador.rating.toFixed(1) : '-' }}/5 puntos</p>
         <div class="botonesRow">
           <button @click="verEventos(adiestrador._id)">mis eventos</button>
           <button @click="crearEvento(adiestrador._id)">crear evento</button>

@@ -24,7 +24,7 @@
           <input
             type="text"
             v-model="mail.asunto"
-            placeholder="Título del anuncio"
+            placeholder="Título del mensaje"
             required
           />
           <div v-if="listaTrue">
@@ -32,7 +32,7 @@
               v-model="mail.destinatario"
               placeholder="añade destinatario"
               :options="
-                clientes.map(
+                listaClientes.map(
                   c => c.username,
                   c => c._id
                 )
@@ -64,6 +64,7 @@ import Multiselect from '@vueform/multiselect';
 //Utilidades
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
+import getClientesAdiestrador from '@/composables/Adiestrador/getClientesAdiestrador';
 export default {
   components: { Multiselect },
   props: [
@@ -83,15 +84,19 @@ export default {
     //Variables
     const mail = props.mail;
     //Funciones
-    const { clientes, errorClientes, loadClientes } = getClientes();
-    loadClientes();
+    // const { clientes, errorClientes, loadClientes } = getClientes();
+    // loadClientes();
+
+    const idAdiestrador = localStorage.getItem('id');
+    const { listaClientes, errorLista, loadListaClientes} = getClientesAdiestrador(idAdiestrador || '');
+    loadListaClientes();
     const procesaFormu = () => {
       context.emit('formProce', mail);
     };
     const volver = () => {
       router.go(-1);
     };
-    return { mail, procesaFormu, volver, clientes };
+    return { mail, procesaFormu, volver, listaClientes };
   },
 };
 </script>

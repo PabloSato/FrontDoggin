@@ -43,12 +43,6 @@
     <p class="feedback" :class="{ error: errorValora, exito: !errorValora }">
       {{ feedback }}
     </p>
-    <!-- <p v-if="errorValora">
-      {{ errorValora }}
-    </p>
-    <p v-if="okValora">
-      {{ okValora }}
-    </p> -->
   </div>
 </template>
 

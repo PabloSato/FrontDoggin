@@ -7,7 +7,7 @@
       <p>{{ adiestrador.bio }}</p>
       <h2>Rating</h2>
       <div v-if="adiestrador.rating">
-        <p v-if="avgRating">{{ avgRating }}/5 puntos</p>
+        <p v-if="avgRating">{{ avgRating.toFixed(1) }}/5 puntos</p>
         <p v-else>{{ adiestrador.rating.toFixed(1) }}/5 puntos</p>
       </div>
       <p v-else>No hay valoraciones todavía</p>

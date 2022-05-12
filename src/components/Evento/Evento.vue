@@ -166,6 +166,31 @@ figure {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
 }
+figure {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 430px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+//imagen oscura
+figure:before {
+  content:'';
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: 1s;
+  
+}
 figure:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -176,15 +201,16 @@ figure:hover figcaption {
   bottom: 0;
 }
 figure h1 {
+  // position: relative;
   position: absolute;
   top: 50px;
-  left: 20px;
+  // left: 20px;
   margin: 0;
   padding: 0;
   color: white;
   text-shadow: 0 0 0.5em black;
-  font-size: 60px;
-  font-weight: 100;
+  font-size: 40px;
+  font-weight: 300;
   line-height: 1;
 }
 figure img {

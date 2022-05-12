@@ -6,10 +6,10 @@
     <figcaption>
       <h3>{{ dia }}/{{ mes }}/{{ year }}</h3>
       <p>{{ evento.descripcion }}</p>
+      <p class="feedback" :class="{ error: errorAccion, exito: !errorAccion, }" > {{ feedbackAccion }} </p>
       <button v-if="cliente && !registrado" class="" @click.stop="registrarse">Asistir </button>
       <button v-if="cliente && registrado" class="" @click.stop="cancelar" > Cancelar </button>
       <button v-if="adiestrador && owner" class="" @click.stop="eliminar" > Cancelar </button>
-      <p class="feedback" :class="{ error: errorAccion, exito: !errorAccion, }" > {{ feedbackAccion }} </p>
     </figcaption>
   </figure>
 </template>

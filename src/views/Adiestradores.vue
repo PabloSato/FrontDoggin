@@ -36,12 +36,7 @@ p{
 
 }
 
-.alertaForm{
-  font-size: 1rem;
-  color: #FF5733;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
+
 .contCard {
   background: #5f4bb6;
   text-align: center;

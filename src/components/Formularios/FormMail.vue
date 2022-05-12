@@ -8,17 +8,7 @@
         alt="image"
       />
       <div class="container-text">
-        <p class="feedback" :class="{ error: errorEnvio, exito: !errorEnvio }">
-          {{ feedback }}
-        </p>
         <div v-if="errorValida.length > 0">
-          <p
-            v-for="mensaje in errorValida"
-            :key="mensaje"
-            class="feedback error"
-          >
-            {{ mensaje }}
-          </p>
         </div>
         <form @submit.prevent="procesaFormu">
           <input
@@ -47,6 +37,14 @@
             placeholder="Texto del anuncio"
             required
           ></textarea>
+          <p
+            v-for="mensaje in errorValida"
+            :key="mensaje"
+            class="feedback error"
+          >
+            {{ mensaje }}
+          </p>
+          <p class="feedback" :class="{ error: errorEnvio, exito: !errorEnvio }">{{ feedback }}</p>
           <button type="submit" value="enviar">Enviar</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
           <button @click.prevent="volver">Volver</button>
@@ -122,12 +120,6 @@ export default {
     margin-bottom: 5px;
   }
 
-  .alertaForm {
-    font-size: 1rem;
-    color: #ff5733;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
 }
 .contForm {
   width: 100%;

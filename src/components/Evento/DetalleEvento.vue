@@ -6,8 +6,7 @@
       <img :src="evento.imageUrl" alt="imagen del evento" />
       <p>{{ evento.descripcion }}</p>
       <h6>{{ dia }} {{ mes }} {{ year }}</h6>
-      <p class="alertaForm">{{ feedbackAccion }}</p>
-      <!-- <p class="feedback":class="{error: errorAccion, exito: !errorAccion,}">{{ feedbackAccion }}</p> -->
+      <p class="feedback" :class="{error: errorAccion, exito: !errorAccion}">{{ feedbackAccion }}</p>
       <button v-if="cliente && !registrado" @click="registrarse">Asistir</button>
       <button class="alter" v-if="cliente && registrado" @click="cancelar"> Cancelar </button>
       <button class="alter" v-if="adiestrador && owner" @click="eliminar"> Cancelar </button>
@@ -122,13 +121,6 @@ export default {
     font-size: 1rem;
     color: #dfe6ee;
     font-weight: 100;
-    margin-bottom: 5px;
-  }
-
-  .alertaForm {
-    font-size: 1rem;
-    color: #ff5733;
-    font-weight: 500;
     margin-bottom: 5px;
   }
 }

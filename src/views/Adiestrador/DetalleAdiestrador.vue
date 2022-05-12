@@ -19,12 +19,6 @@
           :feedback="feedback"
           @proValorar="valoraFuncion(valoracion)"
         />
-        <!-- <router-link
-          :to="{
-            name: 'contacto',
-            params: { id: adiestrador._id, nombre: adiestrador.nombre },
-          }"
-          >Contacto</router-link> -->
         <div class="botonesRow">
           <button @click="contactos()">Contactos</button>
           <button @click="verEventos(adiestrador._id)">Eventos</button>
@@ -140,12 +134,7 @@ export default {
     margin-bottom: 5px;
   }
 
-  .alertaForm {
-    font-size: 1rem;
-    color: #ff5733;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
+
 }
 .contForm {
   width: 100%;

@@ -59,13 +59,15 @@ export default {
     const { adiestrador, error, loadAdiestrador } = getAdiestraod(props.id);
     let token = '';
 
+    loadAdiestrador();
+
     const avgRating = ref(null);
     //Funciones
 
     const contactos = () => {
       router.push({
         name: 'contacto',
-        params: { id: adiestrador._id, nombre: adiestrador.nombre },
+        params: { id: adiestrador.value._id, nombre: adiestrador.nombre },
       });
     };
 

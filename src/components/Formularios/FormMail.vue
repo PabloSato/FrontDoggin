@@ -86,10 +86,12 @@ export default {
     //Funciones
     // const { clientes, errorClientes, loadClientes } = getClientes();
     // loadClientes();
-
+    
     const idAdiestrador = localStorage.getItem('id');
     const { listaClientes, errorLista, loadListaClientes} = getClientesAdiestrador(idAdiestrador || '');
+    if (localStorage.getItem('rol') === 'ADIESTRADOR') {
     loadListaClientes();
+    }
     const procesaFormu = () => {
       context.emit('formProce', mail);
     };
@@ -205,7 +207,7 @@ export default {
     }
   }
   .container-text {
-    width: 625px;
+    width: 490px;
   }
 }
 </style>

@@ -19,8 +19,8 @@ const getClientesAdiestrador = idAdiestrador => {
       if (!data.ok) throw new Error('Error al cargar los clientes');
       listaClientes.value = await data.json();
     } catch (err) {
-      errorClientes.value = err.message;
-      console.log(errorClientes.value);
+      errorLista.value = err.message;
+      console.log(errorLista.value);
     }
   };
   return { listaClientes, errorLista, loadListaClientes };

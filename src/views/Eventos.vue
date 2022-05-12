@@ -229,11 +229,9 @@ p{
 }
 
 @media screen and (min-width: 750px) {
-// .subContForm{
-//   display: flex;
-//   width: 90%;
-//   max-width: 1024px;
-
+.subContForm{
+  min-height: 85vh;
+  }
 //     img {
 //     width: 660px;
       

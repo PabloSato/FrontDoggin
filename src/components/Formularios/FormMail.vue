@@ -201,6 +201,7 @@ export default {
     display: flex;
     width: 90%;
     max-width: 1024px;
+    min-height: 85vh;
 
     img {
       width: 660px;

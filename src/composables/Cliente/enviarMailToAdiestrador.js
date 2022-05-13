@@ -25,7 +25,7 @@ const enviarMailToAdiestrador = (adiestradorId, mail) => {
         }
       );
       if (!response.ok) throw Error('error al mandar el email');
-      enviado.value = await response.json();
+      // enviado.value = await response.json();
     } catch (err) {
       // console.log(err.message);
       error.value = err.message;

@@ -204,10 +204,11 @@ p{
 .backdrop {
   z-index: 100;
   background: black;
-  opacity: 0.8;
+  opacity: .8;
   width: 100vw;
-  height: 100vh;
-  position: absolute;
+  height: 484vw;
+  position: fixed;
+  top: -30%;
 }
 
 /* css del modal */
@@ -256,6 +257,7 @@ p{
   width: 50%;
   left: 25%;
   height: auto;
+  // transform: translate(-5%, 25%);
 }
 
 

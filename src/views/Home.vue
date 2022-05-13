@@ -1,13 +1,17 @@
 <template>
-  <div class="home"></div>
+  <!-- <div class="home"></div> -->
+  <NoticiaSentarse />
+  <NoticiaTumbarse />
 </template>
 
 <script>
 //Componentes
 import Header from '../components/partials/Header.vue';
+import NoticiaSentarse from '../components/Home/NoticiaSentarse.vue';
+import NoticiaTumbarse from '../components/Home/NoticiaTumbarse.vue';
 import Footer from '../components/partials/Footer.vue';
 export default {
-  components: { Header, Footer },
+  components: { Header, Footer, NoticiaSentarse, NoticiaTumbarse },
   name: 'Home',
   setup() {
     if (localStorage.getItem('idUsuario')) {
@@ -16,11 +20,7 @@ export default {
 };
 </script>
 <style scoped>
-.home {
-  min-height: 90vh;
-  width: 100vw;
-  background: url('https://images.unsplash.com/photo-1543702303-71766260f6d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80')
-    center;
-  background-size: cover;
+.container{
+  margin-bottom: 30px;
 }
 </style>

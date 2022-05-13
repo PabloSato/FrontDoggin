@@ -1,6 +1,6 @@
 <template>
   <div class="formu">
-    <form @submit.prevent="procValora">
+    <form @submit.prevent="procValora" v-if="isAbleToRate">
       <p class="clasificacion">
         <input
           :id="staticID + 1"
@@ -47,8 +47,8 @@
 </template>
 
 <script>
+import getIsAbleToRate from '@/composables/Cliente/getIsAbleToRate'
 //Utilidades
-import { ref } from 'vue';
 export default {
   props: ['adiestrador', 'valoracion', 'errorValora', 'feedback'],
   emits: ['proValorar'],
@@ -56,12 +56,15 @@ export default {
     //Variables
     const valoracion = props.valoracion;
     const staticID = props.adiestrador._id;
+
+    const {isAbleToRate, searchEventos} = getIsAbleToRate(localStorage.getItem('id'), staticID)
+    searchEventos();
+
     //Funciones
     const procValora = () => {
       context.emit('proValorar', valoracion);
     };
-
-    return { procValora, staticID };
+    return { procValora, staticID, isAbleToRate};
   },
 };
 </script>

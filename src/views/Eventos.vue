@@ -33,9 +33,12 @@ export default {
     const eventoSeleccionado = ref(null);
     const mostrarEvento = evento => {
       eventoSeleccionado.value = evento;
+      document.querySelector('body').style.overflow= "hidden";
     };
     const ocultarEvento = () => {
       eventoSeleccionado.value = null;
+      document.querySelector('body').style.overflow = "auto";
+
     };
 
     const rolUsuario = localStorage.getItem('rol');
@@ -209,6 +212,7 @@ p{
   height: 484vw;
   position: fixed;
   top: -30%;
+  cursor: pointer;
 }
 
 /* css del modal */

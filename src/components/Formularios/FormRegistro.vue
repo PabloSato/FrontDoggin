@@ -29,19 +29,19 @@
             placeholder="e-mail@dogginer.dog"
             required
           />
-           <input
+          <input
             type="password"
             v-model="user.password"
             placeholder="Contraseña"
             required
           />
           <input
-            v-if="quienH2 === 'Adiestrador'"
+            v-if="quienH2 === 'adiestrador'"
             type="text"
             v-model="user.imageUrl"
             placeholder="añade la url de tu imagen"
           />
-          <div v-if="quienH2 === 'Adiestrador'">
+          <div v-if="quienH2 === 'adiestrador'">
             <textarea
               v-model="user.bio"
               id="bio"
@@ -50,7 +50,7 @@
               required
             ></textarea>
           </div>
-        <p class="feedback error">{{ errorInsert }}</p>
+          <p class="feedback error">{{ errorInsert }}</p>
           <button type="submit" value="registrar">Registrar</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
         </form>
@@ -96,8 +96,6 @@ export default {
     font-weight: 100;
     margin-bottom: 5px;
   }
-
-
 }
 .contForm {
   width: 100%;

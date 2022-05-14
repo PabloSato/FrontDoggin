@@ -10,6 +10,7 @@ const createAdiestrador = user => {
     email: user.email,
     password: user.password,
     role: 'ADIESTRADOR',
+    username: user.nombre,
   };
   const insertAdiestrador = async () => {
     try {
@@ -19,6 +20,9 @@ const createAdiestrador = user => {
         body: JSON.stringify(usuario),
       });
       if (!data.ok) {
+        if (data.status == 409) {
+          throw Error('Username no disponible, usuario no registrado');
+        }
         throw Error('No se ha podido crear el usuario');
       } else {
         usuarioId.value = await data.json();

@@ -20,7 +20,7 @@
           @proValorar="valoraFuncion(valoracion)"
         />
         <div class="botonesRow">
-          <button @click="contactos()">Contactos</button>
+          <button @click="contactos()">Contacto</button>
           <button @click="verEventos(adiestrador._id)">Eventos</button>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default {
     const contactos = () => {
       router.push({
         name: 'contacto',
-        params: { id: adiestrador.value._id, nombre: adiestrador.nombre },
+        params: { id: adiestrador.value._id, nombre: adiestrador.value.nombre },
       });
     };
 
@@ -133,8 +133,6 @@ export default {
     font-weight: 100;
     margin-bottom: 5px;
   }
-
-
 }
 .contForm {
   width: 100%;

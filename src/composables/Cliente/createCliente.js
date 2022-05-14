@@ -10,8 +10,10 @@ const createCliente = user => {
     email: user.email,
     password: user.password,
     role: 'CLIENTE',
+    username: user.nombre,
   };
   const insertCliente = async () => {
+    console.log(us);
     try {
       let response = await fetch(`${BASEURL}/users`, {
         method: 'post',
@@ -19,6 +21,9 @@ const createCliente = user => {
         body: JSON.stringify(us),
       });
       if (!response.ok) {
+        if (response.status == 409) {
+          throw Error('Username no disponible, usuario no registrado');
+        }
         throw Error('No se ha podido crear el usuario');
       } else {
         usuarioId.value = await response.json();

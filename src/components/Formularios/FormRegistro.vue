@@ -20,7 +20,7 @@
           <input
             type="text"
             v-model="user.nombre"
-            placeholder="Nombre completo"
+            placeholder="Username"
             required
           />
           <input

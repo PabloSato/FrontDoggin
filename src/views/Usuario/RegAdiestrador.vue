@@ -30,6 +30,7 @@ export default {
       nombre: null,
       bio: null,
       imageUrl: null,
+      tags: [],
     });
     //Router
     const router = useRouter();

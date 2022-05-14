@@ -42,6 +42,15 @@
             placeholder="añade la url de tu imagen"
           />
           <div v-if="quienH2 === 'adiestrador'">
+            <Multiselect
+              v-model="user.tags"
+              mode="tags"
+              placeholer="Selecciona tags"
+              :options="TAGS"
+              :search="true"
+            />
+          </div>
+          <div v-if="quienH2 === 'adiestrador'">
             <textarea
               v-model="user.bio"
               id="bio"
@@ -60,10 +69,13 @@
 </template>
 
 <script>
+//Comonentes
+import Multiselect from '@vueform/multiselect';
 //Utilidades
 import { ref } from 'vue';
 export default {
   props: ['quienH2', 'user', 'errorValida', 'act', 'errorInsert'],
+  components: { Multiselect },
   emits: ['formProce'],
   setup(props, context) {
     const user = ref(null); //Variable para el usuario
@@ -72,8 +84,10 @@ export default {
     const procesaFormu = () => {
       context.emit('formProce', user);
     };
+    const TAGS = ref([]);
+    TAGS.value = ['Agility', 'Cachorros', 'Razas grandes', 'Pastoreo'];
 
-    return { user, procesaFormu };
+    return { user, procesaFormu, TAGS };
   },
 };
 </script>

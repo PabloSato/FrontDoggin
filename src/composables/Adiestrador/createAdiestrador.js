@@ -27,6 +27,7 @@ const createAdiestrador = user => {
           nombre: user.nombre,
           bio: user.bio,
           imageUrl: user.imageUrl,
+          tags: user.tags,
         };
         const insert = async () => {
           try {

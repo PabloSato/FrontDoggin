@@ -162,7 +162,7 @@ export default {
 .container-text {
   text-align: center;
   padding: 10px 10px 10px 10px;
-  min-height: 100%;
+  // min-height: 100%;
 }
 
 @media screen and (min-width: 750px) {

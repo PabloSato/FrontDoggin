@@ -1,7 +1,8 @@
 <template>
   <div class="adiestradores">
     <input class="search" type="text" v-model="search" placeholder="Buscar" />
-    <Multiselect class="multiselect"
+    <Multiselect
+      class="multiselect"
       v-model="filterTags"
       mode="tags"
       placeholder="Selecciona filtros"
@@ -77,36 +78,36 @@ export default {
   height: 40px;
   width: 80%;
   padding: 10px;
-  border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
-  border-radius: var(--ms-radius,4px);
+  border: var(--ms-border-width, 1px) solid var(--ms-border-color, #d1d5db);
+  border-radius: var(--ms-radius, 4px);
 }
-.multiselect{
+.multiselect {
   position: relative;
   margin: 10px !important;
-  width: 80%!important;
+  width: 80% !important;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   box-sizing: border-box;
   cursor: pointer;
   outline: none;
-  border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
-  border-radius: var(--ms-radius,4px);
-  background: var(--ms-bg,#fff);
-  font-size: var(--ms-font-size,1rem);
-  min-height: calc(var(--ms-border-width, 1px)*2 + var(--ms-font-size, 1rem)*var(--ms-line-height, 1.375) + var(--ms-py, .5rem)*2);
-  }
+  border: var(--ms-border-width, 1px) solid var(--ms-border-color, #d1d5db);
+  border-radius: var(--ms-radius, 4px);
+  background: var(--ms-bg, #fff);
+  font-size: var(--ms-font-size, 1rem);
+  min-height: calc(
+    var(--ms-border-width, 1px) * 2 + var(--ms-font-size, 1rem) *
+      var(--ms-line-height, 1.375) + var(--ms-py, 0.5rem) * 2
+  );
+}
 
 @media screen and (min-width: 750px) {
-.search {
-  width: 540px;
+  .search {
+    width: 540px;
+  }
+  .multiselect {
+    width: 540px !important;
+    margin-inline: 20% !important;
+  }
 }
-.multiselect{
-  width: 540px!important;
-  margin-inline: 20% !important;
-  }
-
-
-
-  }
 </style>

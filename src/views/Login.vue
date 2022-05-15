@@ -9,7 +9,7 @@
         <h2>Bienvenido!!</h2>
         <p>Introduce tu usuario y contraseña</p>
         <div>
-          <p class="feedback" v-if="errorLogin">{{ errorLogin  }}</p>
+          <p class="feedback error" v-if="errorLogin">{{ errorLogin  }}</p>
         </div>
         <form @submit.prevent="logear(usuario)" id="formulario">
           <input type="email" placeholder="Email" v-model="usuario.email" />

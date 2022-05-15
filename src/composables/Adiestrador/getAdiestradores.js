@@ -4,7 +4,6 @@ import { BASEURL } from '@/main';
 const getAdiestradores = () => {
   const adiestradores = ref([]);
   const error = ref(null);
-
   const load = async () => {
     try {
       let data = await fetch(`${BASEURL}/adiestradores`);
@@ -12,7 +11,6 @@ const getAdiestradores = () => {
       adiestradores.value = await data.json();
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
     }
   };
   return { adiestradores, error, load };

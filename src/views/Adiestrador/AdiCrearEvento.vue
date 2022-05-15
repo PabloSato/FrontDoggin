@@ -33,6 +33,7 @@ export default {
       fecha: null,
       maxAforo: null,
       invitados: [],
+      imageUrl: null,
     });
     const procForm = async evento => {
       const { nuevoEvento, error, insertEvento } = createEvento(evento);

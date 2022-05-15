@@ -7,7 +7,6 @@
         alt="image"
       />
       <div class="container-text">
-
         <p class="feedback error">
           {{ errorLength }}
         </p>
@@ -21,6 +20,11 @@
             type="text"
             v-model="ev.descripcion"
             placeholder="Añade descripcion...."
+          />
+          <input
+            type="text"
+            v-model="ev.imageUrl"
+            placeholder="añade la url de tu imagen"
           />
           <input type="date" v-model="ev.fecha" />
           <input type="number" v-model="ev.maxAforo" placeholder="aforo" />
@@ -36,12 +40,12 @@
             "
             :search="true"
           />
-        <p
-          class="feedback"
-          :class="{ error: errorEvento, exito: !errorEvento }"
-        >
-          {{ feedback }}
-        </p>
+          <p
+            class="feedback"
+            :class="{ error: errorEvento, exito: !errorEvento }"
+          >
+            {{ feedback }}
+          </p>
           <button type="submit" value="registrar">Crear Evento</button>
           <button class="alter" type="reset" value="borrar">Borrar</button>
           <button @click.prevent="volver">Volver</button>
@@ -125,8 +129,6 @@ export default {
     font-weight: 100;
     margin-bottom: 5px;
   }
-
- 
 }
 .contForm {
   width: 100%;

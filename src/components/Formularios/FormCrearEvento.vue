@@ -26,7 +26,7 @@
             v-model="ev.imageUrl"
             placeholder="añade la url de tu imagen"
           />
-          <input type="date" v-model="ev.fecha" />
+          <input type="date" v-model="ev.fecha" required />
           <input type="number" v-model="ev.maxAforo" placeholder="aforo" />
           <Multiselect
             v-model="ev.invitados"
@@ -82,6 +82,7 @@ export default {
 
     const procForm = () => {
       let invitados = [];
+
       if (ev.value.maxAforo >= ev.value.invitados.length) {
         for (let i = 0; i < clientes.value.length; i++) {
           for (let j = 0; j < ev.value.invitados.length; j++) {

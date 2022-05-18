@@ -14,6 +14,7 @@
 import FormCrearEvento from '../../components/Formularios/FormCrearEvento.vue';
 //Composables
 import createEvento from '../../composables/Evento/createEvento';
+import validarFormEventos from '../../composables/Validacion/validarFormEventos';
 //Utilidades
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -36,14 +37,20 @@ export default {
       imageUrl: null,
     });
     const procForm = async evento => {
-      const { nuevoEvento, error, insertEvento } = createEvento(evento);
-      await insertEvento();
-      if (error.value) {
-        errorEvento.value = true;
-        feedback.value = error.mensaje;
+      const { validacion, mensajesValidacion } = validarFormEventos(evento);
+      if (validacion) {
+        const { nuevoEvento, error, insertEvento } = createEvento(evento);
+        await insertEvento();
+        if (error.value) {
+          errorEvento.value = true;
+          feedback.value = error.mensaje;
+        } else {
+          errorEvento.value = false;
+          feedback.value = 'Evento creado correctamente';
+        }
       } else {
-        errorEvento.value = false;
-        feedback.value = 'Evento creado correctamente';
+        errorEvento.value = true;
+        feedback.value = mensajesValidacion;
       }
     };
 

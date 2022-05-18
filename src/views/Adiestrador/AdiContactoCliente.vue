@@ -61,6 +61,9 @@ export default {
           errorEnvio.value = false;
           feedback.value = 'Email enviado';
         }
+      } else {
+        errorEnvio.value = true;
+        feedback.value = mensajesValidacion;
       }
     };
     return {

@@ -27,7 +27,12 @@
             placeholder="añade la url de tu imagen"
           />
           <input type="date" v-model="ev.fecha" required />
-          <input type="number" v-model="ev.maxAforo" placeholder="aforo" />
+          <input
+            type="number"
+            v-model="ev.maxAforo"
+            placeholder="aforo"
+            required
+          />
           <Multiselect
             v-model="ev.invitados"
             mode="tags"

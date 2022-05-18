@@ -130,7 +130,7 @@ figure h1 {
   padding: 0;
   color: white;
   text-shadow: 0 0 0.5em black;
-  font-size: 40px;
+  font-size: 2em;
   font-weight: 300;
   line-height: 1;
 }
